@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dto>
+	<field id="id" type="string" previewValue="ID" />
+	<field id="typeID" type="string" previewValue="type1" />
+    <field id="profileImage" type="string" previewValue="type1" />
+	<field id="typeImageAsset" type="string" previewValue="family" />
+	<field id="firstname" type="string" previewValue="John" />
+	<field id="lastname" type="string" previewValue="Doe" />
+	<field id="phone" type="string" previewValue="+49 123 12345" />
+	<field id="mobile" type="string" previewValue="+49 888 12345" />
+	<field id="street" type="string" previewValue="Mystreet" />
+	<field id="country" type="string" previewValue="Myland" />
+	<field id="state" type="string" previewValue="Mystate" />
+	<field id="city" type="string" previewValue="Mycity" />
+	<field id="postalCode" type="string" previewValue="1234" />
+	<field id="webSite" type="string" previewValue="http://www.wikipedia.com" />
+</dto>

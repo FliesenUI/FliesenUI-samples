@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html lang="en"  >
+	<head>
+		<title>My Screen</title>
+	    <meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="lib/angular-material.min.css">
+		<link rel="stylesheet" href="cmlib/codemirror.css">
+		<link rel="stylesheet" href="cmlib/show-hint.css">
+		<link rel="stylesheet" href="lib/flui.css">
+	</head>
+	<body ng-app="app" ng-controller="detailsLarge_Ctrl" id="screenDetailsLargePanel" style="margin-left:20px;margin-right:20px">
+		<script src="lib/angular.min.js"></script>
+		<script src="lib/angular-animate.min.js"></script>
+		<script src="lib/angular-aria.min.js"></script>
+		<script src="lib/angular-messages.min.js"></script>
+		<script src="lib/angular-material.min.js"></script>
+		<script src="lib/showdown.min.js"></script>
+		<script src="cmlib/codemirror.js"></script>
+		<script src="cmlib/xml.js"></script>
+		<script src="cmlib/active-line.js"></script>
+		<script src="cmlib/matchbrackets.js"></script>
+		<script src="cmlib/closetag.js"></script>
+		<script src="cmlib/matchtags.js"></script>
+		<script src="cmlib/xml-fold.js"></script>
+		<script src="cmlib/show-hint.js"></script>
+		<script type="text/javascript">
+            browserMode = "JavaFX";
+            htmlFileSuffix = "jfx";
+            singlePageApp = false;
+            var app = angular.module('app', ['ngMaterial']).config(function($mdThemingProvider) {
+                $mdThemingProvider.theme('default')
+                    .primaryPalette('light-blue')
+                    .accentPalette('blue-grey')
+                    .backgroundPalette('blue-grey')
+                    .warnPalette('red');
+            });
+        </script>
+<script type="text/javascript">
+var getClientProperties = function(){
+    var result = new Object();
+    
+    try{
+        result.userAgent = navigator.userAgent;
+        if ("WebBrowser" == browserMode){
+            result.screenAvailableWidthInPixels = window.screen.availWidth;
+            result.screenAvailableHeightInPixels = window.screen.availHeight;
+            result.screenWidthInPixels = window.screen.width;
+            result.screenHeightInPixels= window.screen.height;
+        } else {
+            result.screenAvailableWidthInPixels = webView.getAvailWidth();
+            result.screenAvailableHeightInPixels = webView.getAvailHeight();
+            result.screenWidthInPixels = webView.getScreenWidth();
+            result.screenHeightInPixels= webView.getScreenHeight();
+        }
+        result.windowInnerWidthInPixels = window.innerWidth;
+        result.windowInnerHeightInPixels= window.innerHeight;
+        
+        result.pixelHeightPerCM = document.getElementById("box1cm").offsetHeight;
+        result.pixelWidthPerCM = document.getElementById("box1cm").offsetWidth;
+        result.pixelHeightPerInch = result.pixelHeightPerCM  * 0.393701;
+        result.pixelWidthPerInch = result.pixelWidthPerCM * 0.393701;
+        
+        result.screenWidthInCM = result.screenWidthInPixels / result.pixelWidthPerCM;
+        result.screenHeightInCM = result.screenHeightInPixels / result.pixelHeightPerCM;
+        result.screenWidthInInch = result.screenWidthInCM * 0.393701;
+        result.screenHeightInInch = result.screenHeightInCM * 0.393701;
+        
+        var a = result.screenWidthInInch;
+        var b = result.screenHeightInInch;
+        
+        result.screenDiagonalInInch = Math.sqrt((a * a) + (b * b));
+        
+        // console.log(JSON.stringify(result));
+        
+    } catch (err){
+        result.errorMessage = err.message + ";" + JSON.stringify(err);
+    }
+    return JSON.stringify(result);
+}
+        </script>
+		<script src="detailsLarge_part1.js"></script>
+
+
+		        <div id="box1cm" style="width: 1cm; height: 1cm; position: absolute; left: -100%; top: -100%;"></div>
+<div layout="row" layout-wrap="" layout-align="space-between center">
+			<div flex="100">
+				<span>
+					<h1 ng-show="detailsLarge_info_propertyVisible" style="white-space: pre-wrap;">{{detailsLarge_info_propertyText}}</h1>
+				</span>
+			</div>
+			<div flex="100">
+				<span>
+					<span ng-show="detailsLarge_typeLabel_propertyVisible" style="white-space: pre-wrap;">{{detailsLarge_typeLabel_propertyText}}</span>
+					<select ng-model="detailsLarge_typeSelectBox_selectedItem" ng-options="i.label for i in types.items" ng-change="detailsLarge_typeSelectBox_changed(detailsLarge_typeSelectBox_selectedItem.id)"></select>
+				</span>
+			</div>
+			<div flex="100">
+				<span>
+					<div style="height:20px"></div>
+				</span>
+			</div>
+			<div flex="20">
+				<span>
+					<md-input-container class="md-block">
+						<label>{{detailsLarge_firstnameTextField_propertyLabel}}</label>
+						<input ng-model="detailsLarge_firstnameTextField_propertyText" style="width:99%;" ng-show="detailsLarge_firstnameTextField_propertyVisible"/>
+					</md-input-container>
+				</span>
+			</div>
+			<div flex="20">
+				<span>
+					<md-input-container class="md-block">
+						<label>{{detailsLarge_lastnameTextField_propertyLabel}}</label>
+						<input ng-model="detailsLarge_lastnameTextField_propertyText" style="width:99%;" ng-show="detailsLarge_lastnameTextField_propertyVisible"/>
+					</md-input-container>
+				</span>
+			</div>
+			<div flex="20">
+				<span/>
+			</div>
+			<div flex="20">
+				<span>
+					<button class="fliesenUIButton" onclick="detailsLarge$javaFXUploadFileProfileImageFileUpload();" ng-show="detailsLarge_profileImageFileUpload_propertyVisible">{{detailsLarge_profileImageFileUpload_propertyText}}</button>
+				</span>
+			</div>
+			<div flex="20">
+				<span>
+					<span ng-show="detailsLarge_profileImage_propertyVisible">
+						<img ng-src="imagestream:{{contact.profileImage}}" height="60px"/>
+					</span>
+				</span>
+			</div>
+			<div flex="20">
+				<span>
+					<md-input-container class="md-block">
+						<label>{{detailsLarge_phoneTextField_propertyLabel}}</label>
+						<input ng-model="detailsLarge_phoneTextField_propertyText" style="width:99%;" ng-show="detailsLarge_phoneTextField_propertyVisible"/>
+					</md-input-container>
+				</span>
+			</div>
+			<div flex="20">
+				<span>
+					<md-input-container class="md-block">
+						<label>{{detailsLarge_mobileTextField_propertyLabel}}</label>
+						<input ng-model="detailsLarge_mobileTextField_propertyText" style="width:99%;" ng-show="detailsLarge_mobileTextField_propertyVisible"/>
+					</md-input-container>
+				</span>
+			</div>
+			<div flex="60">
+				<span/>
+			</div>
+			<div flex="20">
+				<span>
+					<md-input-container class="md-block">
+						<label>{{detailsLarge_streetTextField_propertyLabel}}</label>
+						<input ng-model="detailsLarge_streetTextField_propertyText" style="width:99%;" ng-show="detailsLarge_streetTextField_propertyVisible"/>
+					</md-input-container>
+				</span>
+			</div>
+			<div flex="20">
+				<span>
+					<md-input-container class="md-block">
+						<label>{{detailsLarge_cityTextField_propertyLabel}}</label>
+						<input ng-model="detailsLarge_cityTextField_propertyText" style="width:99%;" ng-show="detailsLarge_cityTextField_propertyVisible"/>
+					</md-input-container>
+				</span>
+			</div>
+			<div flex="20">
+				<span>
+					<md-input-container class="md-block">
+						<label>{{detailsLarge_postalCodeTextField_propertyLabel}}</label>
+						<input ng-model="detailsLarge_postalCodeTextField_propertyText" style="width:99%;" ng-show="detailsLarge_postalCodeTextField_propertyVisible"/>
+					</md-input-container>
+				</span>
+			</div>
+			<div flex="20">
+				<span>
+					<md-input-container class="md-block">
+						<label>{{detailsLarge_countryTextField_propertyLabel}}</label>
+						<input ng-model="detailsLarge_countryTextField_propertyText" style="width:99%;" ng-show="detailsLarge_countryTextField_propertyVisible"/>
+					</md-input-container>
+				</span>
+			</div>
+			<div flex="20">
+				<span>
+					<md-input-container class="md-block">
+						<label>{{detailsLarge_stateTextField_propertyLabel}}</label>
+						<input ng-model="detailsLarge_stateTextField_propertyText" style="width:99%;" ng-show="detailsLarge_stateTextField_propertyVisible"/>
+					</md-input-container>
+				</span>
+			</div>
+			<div flex="80">
+				<span>
+					<md-input-container class="md-block">
+						<label>{{detailsLarge_webSiteTextField_propertyLabel}}</label>
+						<input ng-model="detailsLarge_webSiteTextField_propertyText" style="width:99%;" ng-show="detailsLarge_webSiteTextField_propertyVisible"/>
+					</md-input-container>
+				</span>
+			</div>
+			<div flex="20">
+				<span>
+					<button class="fliesenUIButton" ng-click="detailsLarge_widgetButtonOpenWebSiteButtonClicked();" ng-show="detailsLarge_openWebSiteButton_propertyVisible">{{detailsLarge_openWebSiteButton_propertyText}}</button>
+				</span>
+			</div>
+			<div flex="100">
+				<span>
+					<button class="fliesenUIButton fliesenUIPrimary" ng-click="detailsLarge_widgetButtonSaveButtonClicked();" ng-show="detailsLarge_saveButton_propertyVisible">{{detailsLarge_saveButton_propertyText}}</button>
+					<button class="fliesenUIButton" ng-click="detailsLarge_widgetButtonCancelButtonClicked();" ng-show="detailsLarge_cancelButton_propertyVisible">{{detailsLarge_cancelButton_propertyText}}</button>
+				</span>
+			</div>
+		</div>
+
+		
+		<script src="detailsLarge_part2.js"></script>
+	</body>
+</html>

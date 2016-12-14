@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dto>
+	<field id="id" type="string" previewValue="1" />
+	<field id="label" type="string" previewValue="type xyz" />
+	<field id="imageAssetID" type="string" previewValue="myimage" />
+</dto>

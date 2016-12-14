@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FliesenUIProject
+	formatVersion="1"
+    title="Hello World" 
+    startScreenID="helloWorld"
+    margin="20" 
+    darkTheme="false" 
+    themePrimaryPalette="light-blue" 
+    themeAccentPalette="blue-grey" 
+    themeBackgroundPalette="blue-grey" 
+    themeWarnPalette="red">
+		<output sourceDirPath="..\\JavaDesktop\\gen_src" flavor="Java"/>
+</FliesenUIProject>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen title="Hello World Screen" >
+	<container orientation="row">
+		<bar>
+			<cell size="100">
+				<label id="titleLabel" text="Hello World" style="large"/>
+			</cell>
+		</bar>
+		<bar>
+			<cell size="80">
+				<textField id="nameTextField" labelText="Your name" text="John" />
+			</cell>
+			<cell size="20">
+				<button id="greetButton" text="Greet" primary="true">
+                    <eventParameter value="nameTextField.text" />
+                </button>
+			</cell>
+		</bar>
+        <bar>
+			<cell size="100">
+				<label id="greetingLabel" text=""/>
+			</cell>
+		</bar>
+
+
+    </container>
+</screen>

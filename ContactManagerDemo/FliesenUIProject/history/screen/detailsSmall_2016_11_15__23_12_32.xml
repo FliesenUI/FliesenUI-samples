@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen title="My Screen" parameterDTO="contact">
+    <dto id="types" type="contactTypeList"/>
+    <dto id="contact" type="contact" />
+	<container orientation="row">
+		<bar>
+			<cell size="100">
+				<label id="info" text="Contact Details" style="normal"/>
+			</cell>
+		</bar>
+        <bar>
+			<cell size="100">
+                <image id="profileImage" imageStreamIDDTOField="contact.profileImage" imageHeight="60" />
+			</cell>
+		</bar>
+		<bar>
+			<cell size="100">
+                <label id="typeLabel" text="Type:" />
+				<selectBox id="typeSelectBox" dto="types.items" idDTOField="id" labelDTOField="label" />
+			</cell>
+		</bar>
+		<bar>
+			<cell size="100">
+				<space height="20" />
+			</cell>
+		</bar>
+		<bar>
+			<cell size="100">
+				<textField id="firstnameTextField" textDTOField="contact.firstname" text="first" labelText="Firstname:" />
+			</cell>
+        </bar>
+        <bar>
+			<cell size="100">
+				<textField id="lastnameTextField" textDTOField="contact.lastname" text="last" labelText="Firstname:" />
+			</cell>
+        </bar>
+		<bar>
+			<cell size="100">
+				<textField id="phoneTextField" textDTOField="contact.phone" text="phone" labelText="Phone:" />
+			</cell>
+        </bar>
+        <bar>
+			<cell size="100">
+				<textField id="mobileTextField" textDTOField="contact.mobile" text="mobile" labelText="Mobile:" />
+			</cell>
+		</bar>
+
+		<bar>
+			<cell size="100">
+				<textField id="streetTextField" textDTOField="contact.street" text="street" labelText="Street:" />
+			</cell>
+        </bar>
+        <bar>
+			<cell size="100">
+				<textField id="cityTextField" textDTOField="contact.city" text="city" labelText="City:" />
+			</cell>
+        </bar>
+        <bar>
+			<cell size="100">
+				<textField id="postalCodeTextField" textDTOField="contact.postalCode" text="postalCode" labelText="Postal Code:" />
+			</cell>
+        </bar>
+        <bar>
+			<cell size="100">
+				<textField id="countryTextField" textDTOField="contact.country" text="country" labelText="Country:" />
+			</cell>
+        </bar>
+        <bar>
+			<cell size="100">
+				<textField id="stateTextField" textDTOField="contact.state" text="state" labelText="State:" />
+			</cell>
+		</bar>
+		<bar>
+			<cell size="80">
+				<textField id="webSiteTextField" textDTOField="contact.webSite" text="web site" labelText="Web Site:" />
+			</cell>
+			<cell size="20">
+                <button id="openWebSiteButton" text="open">
+                    <eventParameter value="contact" />
+                </button>
+			</cell>
+		</bar>
+		<bar>
+            
+			<cell size="100">
+                <button id="saveButton" text="save" primary="true">
+                    <eventParameter value="contact" />
+                    <eventParameter value="typeSelectBox.selectedID" />
+                </button>
+                <button id="cancelButton" text="cancel" />
+                <fileUpload id="profileImageFileUpload" text="Upload profile image" visible="false">
+                    <eventParameter value="contact" />
+                </fileUpload>
+			</cell>
+		</bar>
+
+
+
+    </container>
+</screen>

@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en"  >
+	<head>
+		<title>My Screen</title>
+	    <meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="lib/angular-material.min.css">
+		<link rel="stylesheet" href="cmlib/codemirror.css">
+		<link rel="stylesheet" href="cmlib/show-hint.css">
+		<link rel="stylesheet" href="lib/flui.css">
+	</head>
+	<body ng-app="app" ng-controller="overviewSmall_Ctrl" id="screenOverviewSmallPanel" style="margin-left:20px;margin-right:20px">
+		<script src="lib/angular.min.js"></script>
+		<script src="lib/angular-animate.min.js"></script>
+		<script src="lib/angular-aria.min.js"></script>
+		<script src="lib/angular-messages.min.js"></script>
+		<script src="lib/angular-material.min.js"></script>
+		<script src="lib/showdown.min.js"></script>
+		<script src="cmlib/codemirror.js"></script>
+		<script src="cmlib/xml.js"></script>
+		<script src="cmlib/active-line.js"></script>
+		<script src="cmlib/matchbrackets.js"></script>
+		<script src="cmlib/closetag.js"></script>
+		<script src="cmlib/matchtags.js"></script>
+		<script src="cmlib/xml-fold.js"></script>
+		<script src="cmlib/show-hint.js"></script>
+		<script type="text/javascript">
+            browserMode = "JavaFX";
+            htmlFileSuffix = "jfx";
+            singlePageApp = false;
+            var app = angular.module('app', ['ngMaterial']).config(function($mdThemingProvider) {
+                $mdThemingProvider.theme('default')
+                    .primaryPalette('light-blue')
+                    .accentPalette('blue-grey')
+                    .backgroundPalette('blue-grey')
+                    .warnPalette('red');
+            });
+        </script>
+<script type="text/javascript">
+var getClientProperties = function(){
+    var result = new Object();
+    
+    try{
+        result.userAgent = navigator.userAgent;
+        if ("WebBrowser" == browserMode){
+            result.screenAvailableWidthInPixels = window.screen.availWidth;
+            result.screenAvailableHeightInPixels = window.screen.availHeight;
+            result.screenWidthInPixels = window.screen.width;
+            result.screenHeightInPixels= window.screen.height;
+        } else {
+            result.screenAvailableWidthInPixels = webView.getAvailWidth();
+            result.screenAvailableHeightInPixels = webView.getAvailHeight();
+            result.screenWidthInPixels = webView.getScreenWidth();
+            result.screenHeightInPixels= webView.getScreenHeight();
+        }
+        result.windowInnerWidthInPixels = window.innerWidth;
+        result.windowInnerHeightInPixels= window.innerHeight;
+        
+        result.pixelHeightPerCM = document.getElementById("box1cm").offsetHeight;
+        result.pixelWidthPerCM = document.getElementById("box1cm").offsetWidth;
+        result.pixelHeightPerInch = result.pixelHeightPerCM  * 0.393701;
+        result.pixelWidthPerInch = result.pixelWidthPerCM * 0.393701;
+        
+        result.screenWidthInCM = result.screenWidthInPixels / result.pixelWidthPerCM;
+        result.screenHeightInCM = result.screenHeightInPixels / result.pixelHeightPerCM;
+        result.screenWidthInInch = result.screenWidthInCM * 0.393701;
+        result.screenHeightInInch = result.screenHeightInCM * 0.393701;
+        
+        var a = result.screenWidthInInch;
+        var b = result.screenHeightInInch;
+        
+        result.screenDiagonalInInch = Math.sqrt((a * a) + (b * b));
+        
+        // console.log(JSON.stringify(result));
+        
+    } catch (err){
+        result.errorMessage = err.message + ";" + JSON.stringify(err);
+    }
+    return JSON.stringify(result);
+}
+        </script>
+		<script src="overviewSmall_part1.js"></script>
+
+
+		        <div id="box1cm" style="width: 1cm; height: 1cm; position: absolute; left: -100%; top: -100%;"></div>
+<div layout="row" layout-wrap="" layout-align="space-between center">
+			<div flex="100">
+				<span>
+					<span ng-show="overviewSmall_info_propertyVisible" style="white-space: pre-wrap;">{{overviewSmall_info_propertyText}}</span>
+				</span>
+			</div>
+			<div flex="100">
+				<span>
+					<button class="fliesenUIButton fliesenUIPrimary" ng-click="overviewSmall_widgetButtonNewButtonClicked();" ng-show="overviewSmall_newButton_propertyVisible">{{overviewSmall_newButton_propertyText}}</button>
+					<button class="fliesenUIButton" ng-click="overviewSmall_widgetButtonExportButtonClicked();" ng-show="overviewSmall_exportButton_propertyVisible">{{overviewSmall_exportButton_propertyText}}</button>
+				</span>
+			</div>
+			<div flex="100">
+				<span>
+					<md-input-container class="md-block">
+						<label>{{overviewSmall_searchNameTextField_propertyLabel}}</label>
+						<input ng-model="overviewSmall_searchNameTextField_propertyText" style="width:99%;" ng-show="overviewSmall_searchNameTextField_propertyVisible"/>
+					</md-input-container>
+				</span>
+			</div>
+			<div flex="100">
+				<span>
+					<button class="fliesenUIButton" ng-click="overviewSmall_widgetButtonSearchButtonClicked();" ng-show="overviewSmall_searchButton_propertyVisible">{{overviewSmall_searchButton_propertyText}}</button>
+				</span>
+			</div>
+			<div flex="100" ng-show="overviewSmall_tableBar_propertyVisible">
+				<span>
+					<table style="width:100%">
+						<tr layout="row" layout-wrap="" style="background-color:#3f51b5; color:white">
+							<th style="width:90%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">Contact</th>
+						</tr>
+					</table>
+					<div style="width:100%; ">
+						<table style="width:100%">
+							<tr ng-repeat="i in contacts.items" ng-mouseleave="rowHover=false;rowBackgroundColor='white';" ng-mouseover="rowHover=true;rowBackgroundColor='#f3f3f3';" ng-click="overviewSmall_tableContactsTableRowClicked($index, $event)" style="border-color:#999999;border-bottom-style: solid;border-width: 1px; background-color:{{rowBackgroundColor}}" layout="row" layout-wrap="" ng-init="rowBackgroundColor='white';">
+								<td style="width:90%;word-wrap: break-word;min-height:60px; padding-left:15px; padding-top:15px;">
+									<img ng-src="img/{{imageAssetIDToName[i.typeImageAsset]}}" width="20px"/>
+									<span style="white-space: pre-wrap;">{{ i.firstname }}</span>
+									<span style="white-space: pre-wrap;">{{ i.lastname }}</span>
+									<span style="white-space: pre-wrap;">{{ i.mobile }}</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</span>
+			</div>
+			<div flex="100" ng-show="overviewSmall_selectedItemBar_propertyVisible">
+				<span>
+					<span ng-show="overviewSmall_actionItemInfo_propertyVisible" style="white-space: pre-wrap;">{{overviewSmall_actionItemInfo_propertyText}}</span>
+				</span>
+			</div>
+			<div flex="100" ng-show="overviewSmall_itemActionBar_propertyVisible">
+				<span>
+					<button class="fliesenUIButton fliesenUIPrimary" ng-click="overviewSmall_widgetButtonEditButtonClicked();" ng-show="overviewSmall_editButton_propertyVisible">{{overviewSmall_editButton_propertyText}}</button>
+					<button class="fliesenUIButton" ng-click="overviewSmall_widgetButtonDeleteButtonClicked();" ng-show="overviewSmall_deleteButton_propertyVisible">{{overviewSmall_deleteButton_propertyText}}</button>
+					<button class="fliesenUIButton" ng-click="overviewSmall_widgetButtonCancelButtonClicked();" ng-show="overviewSmall_cancelButton_propertyVisible">{{overviewSmall_cancelButton_propertyText}}</button>
+				</span>
+			</div>
+		</div>
+
+		
+		<script src="overviewSmall_part2.js"></script>
+	</body>
+</html>
