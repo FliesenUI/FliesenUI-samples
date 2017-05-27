@@ -1,0 +1,47 @@
+
+
+<md-dialog aria-label="{{listChooserTitle}}" style="width: 80%;height: 80%;">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{listChooserTitle}}</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+	    <span ng-show="listChooserShowFilter" > 
+			<md-input-container class="md-block" flex-gt-sm>
+				<label>Search</label>
+				<input ng-model="listChooserFilter" style="width:99%">
+			  </md-input-container>
+		</span>
+		<table style="width:100%; overflow-y: scroll;">
+			<tr ng-repeat="i in listChooserItems | filter : {'label' : listChooserFilter}" 
+			    ng-click="listChooser_rowClicked($event, i.id, i)" 
+			    style="border-color:#999999;border-bottom-style: solid;border-width: 1px; background-color:{{rowBackgroundColor}}" 
+			    layout="row" 
+			    layout-wrap="" 
+			    ng-init="rowBackgroundColor='white';" 
+			    ng-mouseleave="rowHover=false;rowBackgroundColor='white';"
+			    ng-mouseover="rowHover=true;rowBackgroundColor='#f3f3f3';">
+			    <td ng-if="listChooserMultiselect && i.selected"  style="min-height:60px; padding-left:15px; padding-top:15px;"><img src="img/_checkbox_checked.png"   width="20"/></td>
+			    <td ng-if="listChooserMultiselect && !i.selected" style="min-height:60px; padding-left:15px; padding-top:15px;"><img src="img/_checkbox_unchecked.png" width="20"/></td>
+			    <td ng-if="listChooserShowIcons" style="min-height:60px; padding-left:15px; padding-top:15px;"><img ng-src="img/{{imageAssetIDToName[i.imageAssetID]}}" width="40px" height="40px"/></td>
+				<td style="word-wrap: break-word;min-height:60px; padding-left:15px; padding-top:15px;">{{i.label}}</td>
+			</tr>
+		</table>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="cancel();">
+       {{listChooserCancelText}}
+      </md-button>
+      <md-button ng-click="listChooser_okClicked();hide();" ng-visible="listChooserMultiselect">
+        {{listChooserOKText}}
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+

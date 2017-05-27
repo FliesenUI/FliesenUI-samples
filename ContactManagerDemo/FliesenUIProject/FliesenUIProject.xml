@@ -8,7 +8,8 @@
     themePrimaryPalette="light-blue" 
     themeAccentPalette="blue-grey" 
     themeBackgroundPalette="blue-grey" 
-    themeWarnPalette="red" 
+    themeWarnPalette="red"
+    stringResourceDir="..\AndroidProject\app\src\main\res"
 >
 
     <output flavor="Java" sourceDirPath="..\\JavaProject\\gen_src" />
@@ -21,4 +22,10 @@
     	<screen screenID="detailsLarge" />
         <screen screenID="detailsSmall" />
     </sharedReplyInterface>
+    
+<!-- 
+    
+
+
+--> 
 </FliesenUIProject>

@@ -8,6 +8,20 @@
 		<link rel="stylesheet" href="cmlib/codemirror.css">
 		<link rel="stylesheet" href="cmlib/show-hint.css">
 		<link rel="stylesheet" href="lib/flui.css">
+		<script type="text/javascript">
+    console.log("Page loaded: " + new Date());
+    history.pushState(null, null, window.location.pathname);
+        window.addEventListener('popstate', function (e) {
+            history.pushState(null, null, window.location.pathname);
+    	       backButtonPressed();
+        }, false);
+
+    backButtonPressed = function(){
+        currentScreenID = "helloWorld";
+        eval(currentScreenID + "$backButtonPressed();");
+        console.log("called funtion BackButtonPressed. currentScreenID = '" + currentScreenID + "'");
+    }
+</script>
 	</head>
 	<body ng-app="app" ng-controller="helloWorld_Ctrl" id="screenHelloWorldPanel" style="margin-left:20px;margin-right:20px">
 		<script src="lib/angular.min.js"></script>
@@ -15,6 +29,8 @@
 		<script src="lib/angular-aria.min.js"></script>
 		<script src="lib/angular-messages.min.js"></script>
 		<script src="lib/angular-material.min.js"></script>
+		<script src="lib/showdown.min.js"></script>
+		<script src="lib/strings.js"></script>
 		<script src="cmlib/codemirror.js"></script>
 		<script src="cmlib/xml.js"></script>
 		<script src="cmlib/active-line.js"></script>
@@ -23,6 +39,7 @@
 		<script src="cmlib/matchtags.js"></script>
 		<script src="cmlib/xml-fold.js"></script>
 		<script src="cmlib/show-hint.js"></script>
+	    <script src="lib/flui-util.js"></script>
 		<script type="text/javascript">
             browserMode = "WebBrowser";
             htmlFileSuffix = "web";
@@ -41,6 +58,7 @@ var getClientProperties = function(){
     
     try{
         result.userAgent = navigator.userAgent;
+        result.language = navigator.language;
         if ("WebBrowser" == browserMode){
             result.screenAvailableWidthInPixels = window.screen.availWidth;
             result.screenAvailableHeightInPixels = window.screen.availHeight;
@@ -77,6 +95,18 @@ var getClientProperties = function(){
     }
     return JSON.stringify(result);
 }
+
+
+
+currentLanguage = "DEFAULT";
+
+getText = function(stringID){
+    var result = STRINGS[currentLanguage + ":" + stringID];
+    if (result === undefined){
+        result = STRINGS["DEFAULT:" + stringID];
+    }
+    return result;
+}
         </script>
 		<script src="helloWorld_part1.js"></script>
 
@@ -85,14 +115,14 @@ var getClientProperties = function(){
 <div layout="row" layout-wrap="" layout-align="space-between center">
 			<div flex="100">
 				<span>
-					<h1 ng-show="helloWorld_titleLabel_propertyVisible">{{helloWorld_titleLabel_propertyText}}</h1>
+					<h1 ng-show="helloWorld_titleLabel_propertyVisible" style="white-space: pre-wrap;">{{helloWorld_titleLabel_propertyText}}</h1>
 				</span>
 			</div>
 			<div flex="80">
 				<span>
 					<md-input-container class="md-block">
 						<label>{{helloWorld_nameTextField_propertyLabel}}</label>
-						<input ng-model="helloWorld_nameTextField_propertyText" style="width:99%;" ng-show="helloWorld_nameTextField_propertyVisible" md-select-on-focus=""/>
+						<input ng-model="helloWorld_nameTextField_propertyText" style="width:99%; {{helloWorld_nameTextField_propertyBackgroundColor}}" ng-show="helloWorld_nameTextField_propertyVisible"/>
 					</md-input-container>
 				</span>
 			</div>
@@ -103,7 +133,7 @@ var getClientProperties = function(){
 			</div>
 			<div flex="100">
 				<span>
-					<span ng-show="helloWorld_greetingLabel_propertyVisible">{{helloWorld_greetingLabel_propertyText}}</span>
+					<span ng-show="helloWorld_greetingLabel_propertyVisible" style="white-space: pre-wrap;">{{helloWorld_greetingLabel_propertyText}}</span>
 				</span>
 			</div>
 		</div>

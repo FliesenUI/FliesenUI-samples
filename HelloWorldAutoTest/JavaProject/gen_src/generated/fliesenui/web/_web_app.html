@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="lib/angular-material.min.css">
+        <link rel="stylesheet" href="cmlib/codemirror.css">
+        <link rel="stylesheet" href="cmlib/show-hint.css">
+        <link rel="stylesheet" href="lib/flui.css">
+        <script type="text/javascript">
+    console.log("Page loaded: " + new Date());
+    history.pushState(null, null, window.location.pathname);
+        window.addEventListener('popstate', function (e) {
+            history.pushState(null, null, window.location.pathname);
+    	       backButtonPressed();
+        }, false);
+
+    backButtonPressed = function(){
+        eval(currentScreenID + "$backButtonPressed();");
+        console.log("called funtion BackButtonPressed. currentScreenID = '" + currentScreenID + "'");
+    }
+</script>
+    </head>
+    <body ng-app="app">
+        <script src="lib/angular.min.js"></script>
+        <script src="lib/angular-animate.min.js"></script>
+        <script src="lib/angular-aria.min.js"></script>
+        <script src="lib/angular-messages.min.js"></script>
+        <script src="lib/angular-material.min.js"></script>
+        <script src="lib/showdown.min.js"></script>
+        <script src="lib/strings.js"></script>
+        <script src="cmlib/codemirror.js"></script>
+        <script src="cmlib/xml.js"></script>
+        <script src="cmlib/active-line.js"></script>
+        <script src="cmlib/matchbrackets.js"></script>
+        <script src="cmlib/closetag.js"></script>
+        <script src="cmlib/matchtags.js"></script>
+        <script src="cmlib/xml-fold.js"></script>
+        <script src="cmlib/show-hint.js"></script>
+        <script type="text/javascript">
+            browserMode = "WebBrowser";
+            htmlFileSuffix = "web";
+            singlePageApp = true;
+            var app = angular.module('app', ['ngMaterial']).config(function($mdThemingProvider) {
+                $mdThemingProvider.theme('default')
+                    .primaryPalette('light-blue')
+                    .accentPalette('blue-grey')
+                    .backgroundPalette('blue-grey')
+                    .warnPalette('red');
+            });
+        </script>
+        <script type="text/javascript">
+            var openScreenSinglePageApp = function(screenToOpen, openParameter){
+                //: close all screens
+                scope = angular.element(document.getElementById('screenHelloWorldPanel')).scope();
+                scope.$apply(function(){
+                    scope.visible = false;
+                });
+            
+                //: set initial values
+                if (screenToOpen == 'helloWorld') {
+                    helloWorld$setInitialValues();
+                }
+            
+                //: set open parameters (if applicable)
+                if ((typeof openParameter != "undefined") && (openParameter != null)){
+                }
+            
+                //: open screen
+                setTimeout(function() {
+                    scope.$digest();
+                    if (screenToOpen == 'helloWorld') {
+                        scope = angular.element(document.getElementById('screenHelloWorldPanel')).scope();
+                        scope.$apply(function(){
+                            scope.visible = true;
+                        });
+                        currentScreenID = "helloWorld";
+                        helloWorld$executeOnLoadRequest();
+                    }
+                }, 0);
+            
+            }
+            
+            var getClientProperties = function(){
+                var result = new Object();
+                
+                try{
+                    result.userAgent = navigator.userAgent;
+                    result.language = navigator.language;
+                    if ("WebBrowser" == browserMode){
+                        result.screenAvailableWidthInPixels = window.screen.availWidth;
+                        result.screenAvailableHeightInPixels = window.screen.availHeight;
+                        result.screenWidthInPixels = window.screen.width;
+                        result.screenHeightInPixels= window.screen.height;
+                    } else {
+                        result.screenAvailableWidthInPixels = webView.getAvailWidth();
+                        result.screenAvailableHeightInPixels = webView.getAvailHeight();
+                        result.screenWidthInPixels = webView.getScreenWidth();
+                        result.screenHeightInPixels= webView.getScreenHeight();
+                    }
+                    result.windowInnerWidthInPixels = window.innerWidth;
+                    result.windowInnerHeightInPixels= window.innerHeight;
+                    
+                    result.pixelHeightPerCM = document.getElementById("box1cm").offsetHeight;
+                    result.pixelWidthPerCM = document.getElementById("box1cm").offsetWidth;
+                    result.pixelHeightPerInch = result.pixelHeightPerCM  * 0.393701;
+                    result.pixelWidthPerInch = result.pixelWidthPerCM * 0.393701;
+                    
+                    result.screenWidthInCM = result.screenWidthInPixels / result.pixelWidthPerCM;
+                    result.screenHeightInCM = result.screenHeightInPixels / result.pixelHeightPerCM;
+                    result.screenWidthInInch = result.screenWidthInCM * 0.393701;
+                    result.screenHeightInInch = result.screenHeightInCM * 0.393701;
+                    
+                    var a = result.screenWidthInInch;
+                    var b = result.screenHeightInInch;
+                    
+                    result.screenDiagonalInInch = Math.sqrt((a * a) + (b * b));
+                    
+                    // console.log(JSON.stringify(result));
+                    
+                } catch (err){
+                    result.errorMessage = err.message + ";" + JSON.stringify(err);
+                }
+                return JSON.stringify(result);
+            }
+            
+
+            currentLanguage = "DEFAULT";
+            
+            getText = function(stringID){
+                var result = STRINGS[currentLanguage + ":" + stringID];
+                if (result === undefined){
+                    result = STRINGS["DEFAULT:" + stringID];
+                }
+                return result;
+            }
+            
+        </script>
+        <div id="box1cm" style="width: 1cm; height: 1cm; position: absolute; left: -100%; top: -100%;"></div>
+        <div>
+        <div ng-controller="helloWorld_Ctrl" id="screenHelloWorldPanel" style="position:absolute;width: 98%;margin-left:20px;margin-right:20px;" ng-show="visible" ng-cloak="">
+            <!-- ######################## Beginning: HTML code of Screen 'helloWorld' ################################# -->
+            <script src="helloWorld_part1.js"></script>
+            <div layout="row" layout-wrap="" layout-align="space-between center">
+        			<div flex="100">
+        				<span>
+        					<h1 ng-show="helloWorld_titleLabel_propertyVisible" style="white-space: pre-wrap;">{{helloWorld_titleLabel_propertyText}}</h1>
+        				</span>
+        			</div>
+        			<div flex="80">
+        				<span>
+        					<md-input-container class="md-block">
+        						<label>{{helloWorld_nameTextField_propertyLabel}}</label>
+        						<input ng-model="helloWorld_nameTextField_propertyText" style="width:99%; {{helloWorld_nameTextField_propertyBackgroundColor}}" ng-show="helloWorld_nameTextField_propertyVisible"/>
+        					</md-input-container>
+        				</span>
+        			</div>
+        			<div flex="20">
+        				<span>
+        					<md-button class="md-raised md-primary" ng-click="helloWorld_widgetButtonGreetButtonClicked();" ng-show="helloWorld_greetButton_propertyVisible">{{helloWorld_greetButton_propertyText}}</md-button>
+        				</span>
+        			</div>
+        			<div flex="100">
+        				<span>
+        					<span ng-show="helloWorld_greetingLabel_propertyVisible" style="white-space: pre-wrap;">{{helloWorld_greetingLabel_propertyText}}</span>
+        				</span>
+        			</div>
+        		</div>
+        
+            <script src="helloWorld_part2.js"></script>
+            <!-- ######################## End: HTML code of Screen 'helloWorld' ################################# -->
+        </div>
+        </div>
+        <script type="text/javascript">
+            angular.element(document).ready(function () {
+                console.log('page loading completed');
+                openScreenSinglePageApp("helloWorld", null);
+            });
+        </script>
+    </body>
+</html>

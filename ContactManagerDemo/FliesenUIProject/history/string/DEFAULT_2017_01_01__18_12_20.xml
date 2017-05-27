@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">FLUI Demo</string>
+    <string name="contact_manager_demo">Contact Manager Demo</string>
+    <string name="contact_manager_demo_small">Contact Manager Demo (Small Screen)</string>
+    <string name="test">This is a test string.</string>
+    <string name="type">Type</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="mobile">Mobile</string>
+    <string name="actions">Actions</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="new_contact">New Contact</string>
+    <string name="export_data">Export data</string>
+    <string name="search_name">Search name</string>
+    <string name="search">Search</string>
+    <string name="contact">Contact</string>
+    <string name="cancel">Cancel</string>
+    
+    
+    <string name="wongÖÖ ">Cancel</string>
+</resources>

@@ -6,7 +6,10 @@ public enum ImageAsset {
         COLLEAGUE("colleague", "colleague.svg")
       , COMPANY("company", "company.svg")
       , FAMILY("family", "family.svg")
-      , FRIEND("friend", "friend.svg");
+      , FRIEND("friend", "friend.svg")
+      , LANGUAGE_DE("languageDE", "languageDE.png")
+      , LANGUAGE_EN("languageEN", "languageEN.svg")
+      , MUSIC("music", "music.png");
 
         private String id;
         private String filename;

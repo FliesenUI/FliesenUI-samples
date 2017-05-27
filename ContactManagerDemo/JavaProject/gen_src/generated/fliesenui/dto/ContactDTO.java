@@ -1,5 +1,7 @@
 package generated.fliesenui.dto;
 
+import java.util.List;
+
 public class ContactDTO {
     private String id;
     private String typeID;
@@ -15,6 +17,7 @@ public class ContactDTO {
     private String city;
     private String postalCode;
     private String webSite;
+    private List<String> preferredMusic;
 
     public String getId(){
         return id;
@@ -126,6 +129,14 @@ public class ContactDTO {
 
     public void setWebSite(String webSite){
         this.webSite = webSite;
+    }
+
+    public List<String> getPreferredMusic(){
+        return preferredMusic;
+    }
+
+    public void setPreferredMusic(List<String> preferredMusic){
+        this.preferredMusic = preferredMusic;
     }
 
 }

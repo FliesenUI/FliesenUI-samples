@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen title="My Screen" >
+    <dto id="contacts" type="contactList" /> 
+	<container orientation="row">
+		<bar>
+			<cell size="80">
+				<label id="info" text="$contact_manager_demo" style="large"/>
+			</cell>
+			<cell size="20">
+				<imageButton id="languageEnglishButton" imageAssetID="languageEN" imageWidth="30"/>
+                <imageButton id="languageGermanButton" imageAssetID="languageDE"  imageWidth="30"/>
+			</cell>
+		</bar>
+		<bar>
+            
+            <cell size="100">
+				<button id="newButton" text="New Contact" primary="true"/>
+				<button id="exportButton" text="Export data"/>
+			</cell>
+		</bar>
+		<bar>
+            <cell size="30">
+				<textField id="searchNameTextField" labelText="Search name" text="" />
+			</cell>
+			<cell size="70">
+				<button id="searchButton" text="Search">
+                    <eventParameter value="searchNameTextField.text" />
+                </button>
+			</cell>
+		</bar>
+        <bar>
+            <cell size="100">
+                <table id="contactsTable" dto="contacts.items" idDTOField="id" style="normal" contentHeight="300">
+                    <column size="10" text="$type">
+                        <tableImage imageAssetIDDTOField="typeImageAsset" imageWidth="30"/>
+                    </column>
+                    <column size="20" text="$firstname">
+                        <tableLabel textDTOField="firstname" />
+                    </column>
+                    <column size="20" text="$lastname">
+                        <tableLabel textDTOField="lastname" />
+                    </column>
+                    <column size="30" text="$mobile">
+                        <tableLabel textDTOField="mobile" />
+                    </column>
+                    <column size="20" text="$actions">
+                        <tableButton id="editButton"  text="$edit" />
+                        <tableButton id="deleteButton"  text="$delete" />
+                    </column>
+                </table>
+            </cell>
+        </bar>
+    </container>
+</screen>

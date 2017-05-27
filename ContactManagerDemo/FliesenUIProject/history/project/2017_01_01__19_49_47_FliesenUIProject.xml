@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FliesenUIProject 
+    formatVersion="1"
+    title="My Project" 
+    startScreenID="overviewLarge"
+    margin="20" 
+    darkTheme="false" 
+    themePrimaryPalette="light-blue" 
+    themeAccentPalette="blue-grey" 
+    themeBackgroundPalette="blue-grey" 
+    themeWarnPalette="red"
+    stringResourceDir="..\AndroidProject\app\src\main\res"
+>
+
+    <output flavor="Java" sourceDirPath="..\\JavaProject\\gen_src" />
+	<output androidProjectPath="..\AndroidProject" flavor="Android"/>
+    <sharedReplyInterface id="overview" >
+    	<screen screenID="overviewLarge" />
+        <screen screenID="overviewSmall" />
+    </sharedReplyInterface>
+    <sharedReplyInterface id="details" >
+    	<screen screenID="detailsLarge" />
+        <screen screenID="detailsSmall" />
+    </sharedReplyInterface>
+</FliesenUIProject>

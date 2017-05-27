@@ -7,6 +7,19 @@
         <link rel="stylesheet" href="cmlib/codemirror.css">
         <link rel="stylesheet" href="cmlib/show-hint.css">
         <link rel="stylesheet" href="lib/flui.css">
+        <script type="text/javascript">
+    console.log("Page loaded: " + new Date());
+    history.pushState(null, null, window.location.pathname);
+        window.addEventListener('popstate', function (e) {
+            history.pushState(null, null, window.location.pathname);
+    	       backButtonPressed();
+        }, false);
+
+    backButtonPressed = function(){
+        eval(currentScreenID + "$backButtonPressed();");
+        console.log("called funtion BackButtonPressed. currentScreenID = '" + currentScreenID + "'");
+    }
+</script>
     </head>
     <body ng-app="app">
         <script src="lib/angular.min.js"></script>
@@ -15,6 +28,7 @@
         <script src="lib/angular-messages.min.js"></script>
         <script src="lib/angular-material.min.js"></script>
         <script src="lib/showdown.min.js"></script>
+        <script src="lib/strings.js"></script>
         <script src="cmlib/codemirror.js"></script>
         <script src="cmlib/xml.js"></script>
         <script src="cmlib/active-line.js"></script>
@@ -23,6 +37,7 @@
         <script src="cmlib/matchtags.js"></script>
         <script src="cmlib/xml-fold.js"></script>
         <script src="cmlib/show-hint.js"></script>
+        <script src="lib/flui-util.js"></script>
         <script type="text/javascript">
             browserMode = "JavaFX";
             htmlFileSuffix = "jfx";
@@ -110,35 +125,42 @@
                 }
             
                 //: open screen
-                if (screenToOpen == 'detailsLarge') {
-                    scope = angular.element(document.getElementById('screenDetailsLargePanel')).scope();
-                    scope.$apply(function(){
-                        scope.visible = true;
-                    });
-                    detailsLarge$executeOnLoadRequest();
-                }
-                if (screenToOpen == 'detailsSmall') {
-                    scope = angular.element(document.getElementById('screenDetailsSmallPanel')).scope();
-                    scope.$apply(function(){
-                        scope.visible = true;
-                    });
-                    detailsSmall$executeOnLoadRequest();
-                }
-                if (screenToOpen == 'overviewLarge') {
-                    scope = angular.element(document.getElementById('screenOverviewLargePanel')).scope();
-                    scope.$apply(function(){
-                        scope.visible = true;
-                    });
-                    overviewLarge$executeOnLoadRequest();
-                }
-                if (screenToOpen == 'overviewSmall') {
-                    scope = angular.element(document.getElementById('screenOverviewSmallPanel')).scope();
-                    scope.$apply(function(){
-                        scope.visible = true;
-                    });
-                    overviewSmall$executeOnLoadRequest();
-                }
-                    
+                setTimeout(function() {
+                    scope.$digest();
+                    if (screenToOpen == 'detailsLarge') {
+                        scope = angular.element(document.getElementById('screenDetailsLargePanel')).scope();
+                        scope.$apply(function(){
+                            scope.visible = true;
+                        });
+                        currentScreenID = "detailsLarge";
+                        detailsLarge$executeOnLoadRequest();
+                    }
+                    if (screenToOpen == 'detailsSmall') {
+                        scope = angular.element(document.getElementById('screenDetailsSmallPanel')).scope();
+                        scope.$apply(function(){
+                            scope.visible = true;
+                        });
+                        currentScreenID = "detailsSmall";
+                        detailsSmall$executeOnLoadRequest();
+                    }
+                    if (screenToOpen == 'overviewLarge') {
+                        scope = angular.element(document.getElementById('screenOverviewLargePanel')).scope();
+                        scope.$apply(function(){
+                            scope.visible = true;
+                        });
+                        currentScreenID = "overviewLarge";
+                        overviewLarge$executeOnLoadRequest();
+                    }
+                    if (screenToOpen == 'overviewSmall') {
+                        scope = angular.element(document.getElementById('screenOverviewSmallPanel')).scope();
+                        scope.$apply(function(){
+                            scope.visible = true;
+                        });
+                        currentScreenID = "overviewSmall";
+                        overviewSmall$executeOnLoadRequest();
+                    }
+                }, 0);
+            
             }
             
             var getClientProperties = function(){
@@ -146,6 +168,7 @@
                 
                 try{
                     result.userAgent = navigator.userAgent;
+                    result.language = navigator.language;
                     if ("WebBrowser" == browserMode){
                         result.screenAvailableWidthInPixels = window.screen.availWidth;
                         result.screenAvailableHeightInPixels = window.screen.availHeight;
@@ -183,6 +206,17 @@
                 return JSON.stringify(result);
             }
             
+
+            currentLanguage = "DEFAULT";
+            
+            getText = function(stringID){
+                var result = STRINGS[currentLanguage + ":" + stringID];
+                if (result === undefined){
+                    result = STRINGS["DEFAULT:" + stringID];
+                }
+                return result;
+            }
+            
         </script>
         <div id="box1cm" style="width: 1cm; height: 1cm; position: absolute; left: -100%; top: -100%;"></div>
         <div>
@@ -210,7 +244,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsLarge_firstnameTextField_propertyLabel}}</label>
-        						<input ng-model="detailsLarge_firstnameTextField_propertyText" style="width:99%;" ng-show="detailsLarge_firstnameTextField_propertyVisible"/>
+        						<input ng-model="detailsLarge_firstnameTextField_propertyText" style="width:99%; {{detailsLarge_firstnameTextField_propertyBackgroundColor}}" ng-show="detailsLarge_firstnameTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -218,7 +252,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsLarge_lastnameTextField_propertyLabel}}</label>
-        						<input ng-model="detailsLarge_lastnameTextField_propertyText" style="width:99%;" ng-show="detailsLarge_lastnameTextField_propertyVisible"/>
+        						<input ng-model="detailsLarge_lastnameTextField_propertyText" style="width:99%; {{detailsLarge_lastnameTextField_propertyBackgroundColor}}" ng-show="detailsLarge_lastnameTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -241,7 +275,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsLarge_phoneTextField_propertyLabel}}</label>
-        						<input ng-model="detailsLarge_phoneTextField_propertyText" style="width:99%;" ng-show="detailsLarge_phoneTextField_propertyVisible"/>
+        						<input ng-model="detailsLarge_phoneTextField_propertyText" style="width:99%; {{detailsLarge_phoneTextField_propertyBackgroundColor}}" ng-show="detailsLarge_phoneTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -249,7 +283,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsLarge_mobileTextField_propertyLabel}}</label>
-        						<input ng-model="detailsLarge_mobileTextField_propertyText" style="width:99%;" ng-show="detailsLarge_mobileTextField_propertyVisible"/>
+        						<input ng-model="detailsLarge_mobileTextField_propertyText" style="width:99%; {{detailsLarge_mobileTextField_propertyBackgroundColor}}" ng-show="detailsLarge_mobileTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -260,7 +294,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsLarge_streetTextField_propertyLabel}}</label>
-        						<input ng-model="detailsLarge_streetTextField_propertyText" style="width:99%;" ng-show="detailsLarge_streetTextField_propertyVisible"/>
+        						<input ng-model="detailsLarge_streetTextField_propertyText" style="width:99%; {{detailsLarge_streetTextField_propertyBackgroundColor}}" ng-show="detailsLarge_streetTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -268,7 +302,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsLarge_cityTextField_propertyLabel}}</label>
-        						<input ng-model="detailsLarge_cityTextField_propertyText" style="width:99%;" ng-show="detailsLarge_cityTextField_propertyVisible"/>
+        						<input ng-model="detailsLarge_cityTextField_propertyText" style="width:99%; {{detailsLarge_cityTextField_propertyBackgroundColor}}" ng-show="detailsLarge_cityTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -276,7 +310,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsLarge_postalCodeTextField_propertyLabel}}</label>
-        						<input ng-model="detailsLarge_postalCodeTextField_propertyText" style="width:99%;" ng-show="detailsLarge_postalCodeTextField_propertyVisible"/>
+        						<input ng-model="detailsLarge_postalCodeTextField_propertyText" style="width:99%; {{detailsLarge_postalCodeTextField_propertyBackgroundColor}}" ng-show="detailsLarge_postalCodeTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -284,7 +318,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsLarge_countryTextField_propertyLabel}}</label>
-        						<input ng-model="detailsLarge_countryTextField_propertyText" style="width:99%;" ng-show="detailsLarge_countryTextField_propertyVisible"/>
+        						<input ng-model="detailsLarge_countryTextField_propertyText" style="width:99%; {{detailsLarge_countryTextField_propertyBackgroundColor}}" ng-show="detailsLarge_countryTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -292,7 +326,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsLarge_stateTextField_propertyLabel}}</label>
-        						<input ng-model="detailsLarge_stateTextField_propertyText" style="width:99%;" ng-show="detailsLarge_stateTextField_propertyVisible"/>
+        						<input ng-model="detailsLarge_stateTextField_propertyText" style="width:99%; {{detailsLarge_stateTextField_propertyBackgroundColor}}" ng-show="detailsLarge_stateTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -300,13 +334,28 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsLarge_webSiteTextField_propertyLabel}}</label>
-        						<input ng-model="detailsLarge_webSiteTextField_propertyText" style="width:99%;" ng-show="detailsLarge_webSiteTextField_propertyVisible"/>
+        						<input ng-model="detailsLarge_webSiteTextField_propertyText" style="width:99%; {{detailsLarge_webSiteTextField_propertyBackgroundColor}}" ng-show="detailsLarge_webSiteTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
         			<div flex="20">
         				<span>
         					<button class="fliesenUIButton" ng-click="detailsLarge_widgetButtonOpenWebSiteButtonClicked();" ng-show="detailsLarge_openWebSiteButton_propertyVisible">{{detailsLarge_openWebSiteButton_propertyText}}</button>
+        				</span>
+        			</div>
+        			<div flex="20">
+        				<span>
+        					<span ng-show="detailsLarge_preferredMusicTitleLabel_propertyVisible" style="white-space: pre-wrap;">{{detailsLarge_preferredMusicTitleLabel_propertyText}}</span>
+        				</span>
+        			</div>
+        			<div flex="60">
+        				<span>
+        					<span ng-show="detailsLarge_preferredMusicContentLabel_propertyVisible" style="white-space: pre-wrap;">{{detailsLarge_preferredMusicContentLabel_propertyText}}</span>
+        				</span>
+        			</div>
+        			<div flex="20">
+        				<span>
+        					<button class="fliesenUIButton" ng-click="detailsLarge_widgetButtonSetPreferredMusicButtonClicked();" ng-show="detailsLarge_setPreferredMusicButton_propertyVisible">{{detailsLarge_setPreferredMusicButton_propertyText}}</button>
         				</span>
         			</div>
         			<div flex="100">
@@ -351,7 +400,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsSmall_firstnameTextField_propertyLabel}}</label>
-        						<input ng-model="detailsSmall_firstnameTextField_propertyText" style="width:99%;" ng-show="detailsSmall_firstnameTextField_propertyVisible"/>
+        						<input ng-model="detailsSmall_firstnameTextField_propertyText" style="width:99%; {{detailsSmall_firstnameTextField_propertyBackgroundColor}}" ng-show="detailsSmall_firstnameTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -359,7 +408,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsSmall_lastnameTextField_propertyLabel}}</label>
-        						<input ng-model="detailsSmall_lastnameTextField_propertyText" style="width:99%;" ng-show="detailsSmall_lastnameTextField_propertyVisible"/>
+        						<input ng-model="detailsSmall_lastnameTextField_propertyText" style="width:99%; {{detailsSmall_lastnameTextField_propertyBackgroundColor}}" ng-show="detailsSmall_lastnameTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -367,7 +416,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsSmall_phoneTextField_propertyLabel}}</label>
-        						<input ng-model="detailsSmall_phoneTextField_propertyText" style="width:99%;" ng-show="detailsSmall_phoneTextField_propertyVisible"/>
+        						<input ng-model="detailsSmall_phoneTextField_propertyText" style="width:99%; {{detailsSmall_phoneTextField_propertyBackgroundColor}}" ng-show="detailsSmall_phoneTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -375,7 +424,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsSmall_mobileTextField_propertyLabel}}</label>
-        						<input ng-model="detailsSmall_mobileTextField_propertyText" style="width:99%;" ng-show="detailsSmall_mobileTextField_propertyVisible"/>
+        						<input ng-model="detailsSmall_mobileTextField_propertyText" style="width:99%; {{detailsSmall_mobileTextField_propertyBackgroundColor}}" ng-show="detailsSmall_mobileTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -383,7 +432,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsSmall_streetTextField_propertyLabel}}</label>
-        						<input ng-model="detailsSmall_streetTextField_propertyText" style="width:99%;" ng-show="detailsSmall_streetTextField_propertyVisible"/>
+        						<input ng-model="detailsSmall_streetTextField_propertyText" style="width:99%; {{detailsSmall_streetTextField_propertyBackgroundColor}}" ng-show="detailsSmall_streetTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -391,7 +440,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsSmall_cityTextField_propertyLabel}}</label>
-        						<input ng-model="detailsSmall_cityTextField_propertyText" style="width:99%;" ng-show="detailsSmall_cityTextField_propertyVisible"/>
+        						<input ng-model="detailsSmall_cityTextField_propertyText" style="width:99%; {{detailsSmall_cityTextField_propertyBackgroundColor}}" ng-show="detailsSmall_cityTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -399,7 +448,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsSmall_postalCodeTextField_propertyLabel}}</label>
-        						<input ng-model="detailsSmall_postalCodeTextField_propertyText" style="width:99%;" ng-show="detailsSmall_postalCodeTextField_propertyVisible"/>
+        						<input ng-model="detailsSmall_postalCodeTextField_propertyText" style="width:99%; {{detailsSmall_postalCodeTextField_propertyBackgroundColor}}" ng-show="detailsSmall_postalCodeTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -407,7 +456,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsSmall_countryTextField_propertyLabel}}</label>
-        						<input ng-model="detailsSmall_countryTextField_propertyText" style="width:99%;" ng-show="detailsSmall_countryTextField_propertyVisible"/>
+        						<input ng-model="detailsSmall_countryTextField_propertyText" style="width:99%; {{detailsSmall_countryTextField_propertyBackgroundColor}}" ng-show="detailsSmall_countryTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -415,7 +464,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsSmall_stateTextField_propertyLabel}}</label>
-        						<input ng-model="detailsSmall_stateTextField_propertyText" style="width:99%;" ng-show="detailsSmall_stateTextField_propertyVisible"/>
+        						<input ng-model="detailsSmall_stateTextField_propertyText" style="width:99%; {{detailsSmall_stateTextField_propertyBackgroundColor}}" ng-show="detailsSmall_stateTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -423,13 +472,28 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{detailsSmall_webSiteTextField_propertyLabel}}</label>
-        						<input ng-model="detailsSmall_webSiteTextField_propertyText" style="width:99%;" ng-show="detailsSmall_webSiteTextField_propertyVisible"/>
+        						<input ng-model="detailsSmall_webSiteTextField_propertyText" style="width:99%; {{detailsSmall_webSiteTextField_propertyBackgroundColor}}" ng-show="detailsSmall_webSiteTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
         			<div flex="20">
         				<span>
         					<button class="fliesenUIButton" ng-click="detailsSmall_widgetButtonOpenWebSiteButtonClicked();" ng-show="detailsSmall_openWebSiteButton_propertyVisible">{{detailsSmall_openWebSiteButton_propertyText}}</button>
+        				</span>
+        			</div>
+        			<div flex="20">
+        				<span>
+        					<span ng-show="detailsSmall_preferredMusicTitleLabel_propertyVisible" style="white-space: pre-wrap;">{{detailsSmall_preferredMusicTitleLabel_propertyText}}</span>
+        				</span>
+        			</div>
+        			<div flex="60">
+        				<span>
+        					<span ng-show="detailsSmall_preferredMusicContentLabel_propertyVisible" style="white-space: pre-wrap;">{{detailsSmall_preferredMusicContentLabel_propertyText}}</span>
+        				</span>
+        			</div>
+        			<div flex="20">
+        				<span>
+        					<button class="fliesenUIButton" ng-click="detailsSmall_widgetButtonSetPreferredMusicButtonClicked();" ng-show="detailsSmall_setPreferredMusicButton_propertyVisible">{{detailsSmall_setPreferredMusicButton_propertyText}}</button>
         				</span>
         			</div>
         			<div flex="100">
@@ -448,9 +512,19 @@
             <!-- ######################## Beginning: HTML code of Screen 'overviewLarge' ################################# -->
             <script src="overviewLarge_part1.js"></script>
             <div layout="row" layout-wrap="" layout-align="space-between center">
-        			<div flex="100">
+        			<div flex="80">
         				<span>
         					<h1 ng-show="overviewLarge_info_propertyVisible" style="white-space: pre-wrap;">{{overviewLarge_info_propertyText}}</h1>
+        				</span>
+        			</div>
+        			<div flex="20">
+        				<span>
+        					<button class="fliesenUIImageButton" ng-click="overviewLarge_widgetButtonLanguageEnglishButtonClicked();" ng-show="overviewLarge_languageEnglishButton_propertyVisible">
+        						<img ng-src="img/{{overviewLarge_languageEnglishButton_propertyImageSource}}" width="30px" height="15px"/>
+        					</button>
+        					<button class="fliesenUIImageButton" ng-click="overviewLarge_widgetButtonLanguageGermanButtonClicked();" ng-show="overviewLarge_languageGermanButton_propertyVisible">
+        						<img ng-src="img/{{overviewLarge_languageGermanButton_propertyImageSource}}" width="30px" height="15px"/>
+        					</button>
         				</span>
         			</div>
         			<div flex="100">
@@ -463,7 +537,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{overviewLarge_searchNameTextField_propertyLabel}}</label>
-        						<input ng-model="overviewLarge_searchNameTextField_propertyText" style="width:99%;" ng-show="overviewLarge_searchNameTextField_propertyVisible"/>
+        						<input ng-model="overviewLarge_searchNameTextField_propertyText" style="width:99%; {{overviewLarge_searchNameTextField_propertyBackgroundColor}}" ng-show="overviewLarge_searchNameTextField_propertyVisible" ng-keyup="$event.keyCode == 13 && overviewLarge_widgetButtonSearchButtonClicked();"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -476,16 +550,16 @@
         				<span>
         					<table style="width:100%">
         						<tr layout="row" layout-wrap="" style="background-color:#3f51b5; color:white">
-        							<th style="width:9%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">Type</th>
-        							<th style="width:18%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">Firstname</th>
-        							<th style="width:18%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">Lastname</th>
-        							<th style="width:27%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">Mobile</th>
-        							<th style="width:18%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">Actions</th>
+        							<th style="width:9%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">{{overviewLarge_contactsTableColumn0Text}}</th>
+        							<th style="width:18%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">{{overviewLarge_contactsTableColumn1Text}}</th>
+        							<th style="width:18%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">{{overviewLarge_contactsTableColumn2Text}}</th>
+        							<th style="width:27%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">{{overviewLarge_contactsTableColumn3Text}}</th>
+        							<th style="width:18%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">{{overviewLarge_contactsTableColumn4Text}}</th>
         						</tr>
         					</table>
         					<div style="width:100%; overflow-y: scroll; height: 300px;">
         						<table style="width:100%">
-        							<tr ng-repeat="i in contacts.items" ng-mouseleave="rowHover=false;rowBackgroundColor='white';" ng-mouseover="rowHover=true;rowBackgroundColor='#f3f3f3';" ng-click="overviewLarge_tableContactsTableRowClicked($index, $event)" style="border-color:#999999;border-bottom-style: solid;border-width: 1px; background-color:{{rowBackgroundColor}}" layout="row" layout-wrap="" ng-init="rowBackgroundColor='white';">
+        							<tr ng-repeat="i in contacts.items | overviewLarge_tableContactsTableFilter:overviewLarge_contactsTableFilterText" ng-mouseleave="rowHover=false;rowBackgroundColor='white';" ng-mouseover="rowHover=true;rowBackgroundColor='#f3f3f3';" ng-click="overviewLarge_tableContactsTableRowClicked($index, $event)" style="border-color:#999999;border-bottom-style: solid;border-width: 1px; background-color:{{rowBackgroundColor}}" layout="row" layout-wrap="" ng-init="rowBackgroundColor='white';">
         								<td style="width:9%;word-wrap: break-word;min-height:60px; padding-left:15px; padding-top:15px;">
         									<img ng-src="img/{{imageAssetIDToName[i.typeImageAsset]}}" width="30px"/>
         								</td>
@@ -499,8 +573,8 @@
         									<span style="white-space: pre-wrap;">{{ i.mobile }}</span>
         								</td>
         								<td style="width:18%;word-wrap: break-word;min-height:60px; padding-left:15px; padding-top:15px;">
-        									<button class="fliesenUINormalSizeTableButton" ng-show="rowHover" ng-click="overviewLarge_tableContactsTableButtonEditButtonClicked($index, $event)">Edit</button>
-        									<button class="fliesenUINormalSizeTableButton" ng-show="rowHover" ng-click="overviewLarge_tableContactsTableButtonDeleteButtonClicked($index, $event)">Delete</button>
+        									<button class="fliesenUINormalSizeTableButton" ng-click="overviewLarge_tableContactsTableButtonEditButtonClicked($index, $event)" ng-show="rowHover">{{overviewLarge_contactsTableWidgetEditButtonText}}</button>
+        									<button class="fliesenUINormalSizeTableButton" ng-click="overviewLarge_tableContactsTableButtonDeleteButtonClicked($index, $event)" ng-show="rowHover">{{overviewLarge_contactsTableWidgetDeleteButtonText}}</button>
         								</td>
         							</tr>
         						</table>
@@ -516,9 +590,19 @@
             <!-- ######################## Beginning: HTML code of Screen 'overviewSmall' ################################# -->
             <script src="overviewSmall_part1.js"></script>
             <div layout="row" layout-wrap="" layout-align="space-between center">
-        			<div flex="100">
+        			<div flex="80">
         				<span>
-        					<span ng-show="overviewSmall_info_propertyVisible" style="white-space: pre-wrap;">{{overviewSmall_info_propertyText}}</span>
+        					<h1 ng-show="overviewSmall_info_propertyVisible" style="white-space: pre-wrap;">{{overviewSmall_info_propertyText}}</h1>
+        				</span>
+        			</div>
+        			<div flex="20">
+        				<span>
+        					<button class="fliesenUIImageButton" ng-click="overviewSmall_widgetButtonLanguageEnglishButtonClicked();" ng-show="overviewSmall_languageEnglishButton_propertyVisible">
+        						<img ng-src="img/{{overviewSmall_languageEnglishButton_propertyImageSource}}" width="30px" height="15px"/>
+        					</button>
+        					<button class="fliesenUIImageButton" ng-click="overviewSmall_widgetButtonLanguageGermanButtonClicked();" ng-show="overviewSmall_languageGermanButton_propertyVisible">
+        						<img ng-src="img/{{overviewSmall_languageGermanButton_propertyImageSource}}" width="30px" height="15px"/>
+        					</button>
         				</span>
         			</div>
         			<div flex="100">
@@ -531,7 +615,7 @@
         				<span>
         					<md-input-container class="md-block">
         						<label>{{overviewSmall_searchNameTextField_propertyLabel}}</label>
-        						<input ng-model="overviewSmall_searchNameTextField_propertyText" style="width:99%;" ng-show="overviewSmall_searchNameTextField_propertyVisible"/>
+        						<input ng-model="overviewSmall_searchNameTextField_propertyText" style="width:99%; {{overviewSmall_searchNameTextField_propertyBackgroundColor}}" ng-show="overviewSmall_searchNameTextField_propertyVisible"/>
         					</md-input-container>
         				</span>
         			</div>
@@ -544,12 +628,12 @@
         				<span>
         					<table style="width:100%">
         						<tr layout="row" layout-wrap="" style="background-color:#3f51b5; color:white">
-        							<th style="width:90%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">Contact</th>
+        							<th style="width:90%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">{{overviewSmall_contactsTableColumn0Text}}</th>
         						</tr>
         					</table>
         					<div style="width:100%; ">
         						<table style="width:100%">
-        							<tr ng-repeat="i in contacts.items" ng-mouseleave="rowHover=false;rowBackgroundColor='white';" ng-mouseover="rowHover=true;rowBackgroundColor='#f3f3f3';" ng-click="overviewSmall_tableContactsTableRowClicked($index, $event)" style="border-color:#999999;border-bottom-style: solid;border-width: 1px; background-color:{{rowBackgroundColor}}" layout="row" layout-wrap="" ng-init="rowBackgroundColor='white';">
+        							<tr ng-repeat="i in contacts.items | overviewSmall_tableContactsTableFilter:overviewSmall_contactsTableFilterText" ng-mouseleave="rowHover=false;rowBackgroundColor='white';" ng-mouseover="rowHover=true;rowBackgroundColor='#f3f3f3';" ng-click="overviewSmall_tableContactsTableRowClicked($index, $event)" style="border-color:#999999;border-bottom-style: solid;border-width: 1px; background-color:{{rowBackgroundColor}}" layout="row" layout-wrap="" ng-init="rowBackgroundColor='white';">
         								<td style="width:90%;word-wrap: break-word;min-height:60px; padding-left:15px; padding-top:15px;">
         									<img ng-src="img/{{imageAssetIDToName[i.typeImageAsset]}}" width="20px"/>
         									<span style="white-space: pre-wrap;">{{ i.firstname }}</span>

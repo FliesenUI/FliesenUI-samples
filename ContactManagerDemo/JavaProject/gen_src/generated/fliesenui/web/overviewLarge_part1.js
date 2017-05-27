@@ -2,7 +2,91 @@
 var overviewLarge$controllerReady = false;
 var overviewLarge$logDebugBuffer = "";
 var overviewLarge$parameterDTO;
+var overviewLarge$tableContactsTableTopItemIndex = null;
+var overviewLarge$tableContactsTableFilteredIDs = null;
 
+overviewLarge_tableContactsTableFilterTextOnKeyDown = function (event) {
+    if (event.keyCode == 13){
+        var scope = angular.element(document.getElementById('screenOverviewLargePanel')).scope();
+        if (overviewLarge$tableContactsTableTopItemIndex != null){
+            scope.overviewLarge_tableContactsTableRowClicked(0, event);
+        }
+        return;
+    }
+
+    if ((event.keyCode != 32) || (!event.ctrlKey)){
+        return;
+    }
+    event.preventDefault();
+    var inputField = document.getElementById("overviewLarge_tableContactsTableFilterTextInputField");
+    var currentText = inputField.value;
+    var cursorPos = inputField.selectionStart;
+    var scope = angular.element(document.getElementById('screenOverviewLargePanel')).scope();
+    var columnNames = [scope.overviewLarge_contactsTableColumn0Text
+                     , scope.overviewLarge_contactsTableColumn1Text
+                     , scope.overviewLarge_contactsTableColumn2Text
+                     , scope.overviewLarge_contactsTableColumn3Text
+                     , scope.overviewLarge_contactsTableColumn4Text];
+    try{
+        var updatedTextAndCursor = updateTextAndCursorToNextColumn(currentText, cursorPos, columnNames);
+
+        inputField.value = updatedTextAndCursor.text;
+        inputField.selectionStart = updatedTextAndCursor.cursorPos;
+        inputField.selectionEnd = updatedTextAndCursor.cursorPos;
+
+        scope["overviewLarge_contactsTableFilterText"] = updatedTextAndCursor.text;
+        setTimeout(function() {scope.$digest();}, 0);
+    } catch (e){
+        console.log("error: " + e + ", " + JSON.stringify(e));
+    }
+}
+app.filter('overviewLarge_tableContactsTableFilter', function () {
+    return function (dataArray, filterTextRaw) {
+        if (!dataArray) return;
+        /* when term is cleared, return full array*/
+        if (!filterTextRaw) {
+            overviewLarge$tableContactsTableTopItemIndex = null;
+            overviewLarge$tableContactsTableFilteredIDs = null;
+            return dataArray
+        }
+        var filterText = filterTextRaw.trim().toLowerCase();
+        if (filterText.length == 0){
+            overviewLarge$tableContactsTableTopItemIndex = null;
+            overviewLarge$tableContactsTableFilteredIDs = null;
+            return dataArray
+        }
+        var scope = angular.element(document.getElementById('screenOverviewLargePanel')).scope();
+        var columnNames = [scope.overviewLarge_contactsTableColumn0Text
+                         , scope.overviewLarge_contactsTableColumn1Text
+                         , scope.overviewLarge_contactsTableColumn2Text
+                         , scope.overviewLarge_contactsTableColumn3Text
+                         , scope.overviewLarge_contactsTableColumn4Text];
+        var searchTermsMap = createSearchTermsMap(filterText, columnNames);
+
+        var result = dataArray.filter(function(item){
+            existingItems = new Object();
+            existingItems["c0"] = "";
+            existingItems["c1"] = item.firstname;
+            existingItems["c2"] = item.lastname;
+            existingItems["c3"] = item.mobile;
+            existingItems["c4"] = "";
+
+            if (filterBySearchTerms(existingItems, searchTermsMap)){
+                return true;
+            } else {
+                return false;
+            }
+        });
+        if ((result != null) && (result.length != 0)){
+            overviewLarge$tableContactsTableTopItemIndex = findIndex(dataArray, result[0].id, "id");
+            overviewLarge$tableContactsTableFilteredIDs = createListFromProperty(result, "id");
+        } else {
+            overviewLarge$tableContactsTableTopItemIndex = null;
+            id = null;
+        }
+        return result;
+    }
+});
 app.controller("overviewLarge_Ctrl", function($scope, $mdToast, $mdDialog, $http) {
     overviewLarge$setInitialValues();
     $scope.http = $http;
@@ -90,6 +174,142 @@ app.controller("overviewLarge_Ctrl", function($scope, $mdToast, $mdDialog, $http
         });
     };
 
+    $scope.showListChooser = function(parameter){
+    	$scope.listChooserReferenceID = parameter.referenceID;
+    	$scope.listChooserTitle = parameter.title;
+    	$scope.listChooserMultiselect = parameter.multiSelect;
+    	$scope.listChooserShowIcons = parameter.showIcons;
+    	$scope.listChooserOKText = parameter.okText;
+    	$scope.listChooserCancelText = parameter.cancelText;
+    	$scope.listChooserItems = parameter.items;
+    	$scope.listChooserShowFilter = parameter.showFilter;
+        $scope.listChooserFilter = "";
+    	
+        $mdDialog.show({
+            controller: ListChooserDialogController,
+            parent: angular.element(document.body),
+            scope: $scope,
+            preserveScope: true, 
+            clickOutsideToClose:true,
+            template:
+			     '<md-dialog aria-label="{{listChooserTitle}}" style="width: 80%;height: 80%;">'
+               + '  <form ng-cloak>'
+               + '    <md-toolbar>'
+               + '      <div class="md-toolbar-tools">'
+               + '        <h2>{{listChooserTitle}}</h2>'
+               + '      </div>'
+               + '    </md-toolbar>'
+               + '    <md-dialog-content>'
+               + '      <div class="md-dialog-content">'
+               + '	    <span ng-show="listChooserShowFilter" > '
+               + '			<md-input-container class="md-block" flex-gt-sm>'
+               + '				<label>Search</label>'
+               + '				<input ng-model="listChooserFilter" style="width:99%">'
+               + '			  </md-input-container>'
+               + '		</span>'
+               + '		<table style="width:100%; overflow-y: scroll;">'
+               + '			<tr ng-repeat="i in listChooserItems | filter : {\'label\' : listChooserFilter}" '
+               + '			    ng-click="listChooser_rowClicked($event, i.id, i)" '
+               + '			    style="border-color:#999999;border-bottom-style: solid;border-width: 1px; background-color:{{rowBackgroundColor}}" '
+               + '			    layout="row" '
+               + '			    layout-wrap="" '
+               + '			    ng-init="rowBackgroundColor=\'white\';" '
+               + '			    ng-mouseleave="rowHover=false;rowBackgroundColor=\'white\';"'
+               + '			    ng-mouseover="rowHover=true;rowBackgroundColor=\'#f3f3f3\';">'
+               + '			    <td ng-if="listChooserMultiselect && i.selected"  style="min-height:60px; padding-left:15px; padding-top:15px;"><img src="img/_checkbox_checked.png"   width="20"/></td>'
+               + '			    <td ng-if="listChooserMultiselect && !i.selected" style="min-height:60px; padding-left:15px; padding-top:15px;"><img src="img/_checkbox_unchecked.png" width="20"/></td>'
+               + '			    <td ng-if="listChooserShowIcons" style="min-height:60px; padding-left:15px; padding-top:15px;"><img ng-src="img/{{imageAssetIDToName[i.imageAssetID]}}" width="40px" height="40px"/></td>'
+               + '				<td style="word-wrap: break-word;min-height:60px; padding-left:15px; padding-top:15px;">{{i.label}}</td>'
+               + '			</tr>'
+               + '		</table>'
+               + '      </div>'
+               + '    </md-dialog-content>'
+               + ''
+               + '    <md-dialog-actions layout="row">'
+               + '      <span flex></span>'
+               + '      <md-button ng-click="cancel();">'
+               + '       {{listChooserCancelText}}'
+               + '      </md-button>'
+               + '      <md-button ng-click="listChooser_okClicked();hide();" ng-visible="listChooserMultiselect">'
+               + '        {{listChooserOKText}}'
+               + '      </md-button>'
+               + '    </md-dialog-actions>'
+               + '  </form>'
+               + '</md-dialog>'
+        })
+        .then(function(answer) {
+        }, function() {
+              $scope.listChooser_cancelled();
+        });
+    }
+      
+    function ListChooserDialogController($scope, $mdDialog) {
+        $scope.hide = function() {
+    	    $mdDialog.hide();
+    	};
+    	$scope.cancel = function() {
+    	    $mdDialog.cancel();
+    	};
+        $scope.answer = function(answer) {
+    	    $mdDialog.hide(answer);
+    	};
+    	    
+    	$scope.listChooser_rowClicked = function (event, itemID, item) {
+    	    if (!event.defaultPrevented) {
+    	        console.log("clicked row with itemID = " + itemID + ", old selected = " + item.selected);
+                if ($scope.listChooserMultiselect){
+    	            item.selected = !item.selected;
+    	        	console.log("new selected = " + item.selected);
+    	        } else if (!$scope.listChooserMultiselect){
+    	            //:clear old selection
+    	        	for (i = 0; i < $scope.listChooserItems.length; i++){
+    	        	    $scope.listChooserItems[i].selected = false;
+    	            }
+    	            //: select item
+        	        item.selected = !item.selected;
+        	        	  
+        	        $scope.listChooser_okClicked();        		  
+    	        	$mdDialog.hide("");
+    	        }
+    	    }
+        };
+    } 
+      
+    $scope.listChooser_okClicked = function () {
+        console.log("clicked ok");
+        var selectedIDs = [];
+	       for (i = 0; i < $scope.listChooserItems.length; i++){
+            var item = $scope.listChooserItems[i];
+            if (item.selected){
+//			    console.log("selected id: " + item.id);
+            selectedIDs.push(item.id);
+            }
+        }
+        console.log("selected ids: " + selectedIDs);
+        var request = overviewLarge$createRequest("onListChooserResult");
+        request.parameters["referenceID"] = $scope.listChooserReferenceID;
+        request.parameters["selectedIDs"] = selectedIDs;
+        overviewLarge$executeRequest(request);
+    }
+
+    $scope.listChooser_cancelled = function () {
+	    console.log("list chooser: cancelled");
+        var request = overviewLarge$createRequest("onListChooserResult");
+        request.parameters["referenceID"] = $scope.listChooserReferenceID;
+        request.parameters["selectedIDs"] = null;
+        overviewLarge$executeRequest(request);
+    }
+      
+
+    $scope.overviewLarge_widgetButtonLanguageEnglishButtonClicked = function () {
+        var request = overviewLarge$createRequest("widgetButtonLanguageEnglishButtonClicked");
+        overviewLarge$executeRequest(request);
+    }
+
+    $scope.overviewLarge_widgetButtonLanguageGermanButtonClicked = function () {
+        var request = overviewLarge$createRequest("widgetButtonLanguageGermanButtonClicked");
+        overviewLarge$executeRequest(request);
+    }
 
     $scope.overviewLarge_widgetButtonNewButtonClicked = function () {
         var request = overviewLarge$createRequest("widgetButtonNewButtonClicked");
@@ -107,22 +327,45 @@ app.controller("overviewLarge_Ctrl", function($scope, $mdToast, $mdDialog, $http
         overviewLarge$executeRequest(request);
     }
 
+    $scope.overviewLarge_tableContactsTableOnInfoButtonClicked = function () {
+        var message = new Object();
+        message.typeID = 101;
+        message.title = "Quick Filter Info";
+        message.text = "Type any text to filter. Add preciding '-' to filter out.  Add column name and ':' like 'myColumn:x' to filter in a column.  ";
+        message.text += "Use quotes (\") for spaces in column name or texts.  Press enter to select(click) first item in table.  ";
+        message.text += "Press ctrl+space for auto-complete of column names or next column name.";
+
+        $scope.showMessage(message);
+    }
+
     $scope.overviewLarge_tableContactsTableButtonEditButtonClicked = function (index, event) {
         event.preventDefault();
         var request = overviewLarge$createRequest("onContactsTableEditButtonClicked");
-        request.parameters["rowID"] = $scope.contacts.items[index].id;
+        if (overviewLarge$tableContactsTableFilteredIDs != null){
+            request.parameters["rowID"] = overviewLarge$tableContactsTableFilteredIDs[index];
+        } else {
+            request.parameters["rowID"] = $scope.contacts.items[index].id;
+        }
         overviewLarge$executeRequest(request);
     }
     $scope.overviewLarge_tableContactsTableButtonDeleteButtonClicked = function (index, event) {
         event.preventDefault();
         var request = overviewLarge$createRequest("onContactsTableDeleteButtonClicked");
-        request.parameters["rowID"] = $scope.contacts.items[index].id;
+        if (overviewLarge$tableContactsTableFilteredIDs != null){
+            request.parameters["rowID"] = overviewLarge$tableContactsTableFilteredIDs[index];
+        } else {
+            request.parameters["rowID"] = $scope.contacts.items[index].id;
+        }
         overviewLarge$executeRequest(request);
     }
     $scope.overviewLarge_tableContactsTableRowClicked = function (index, event) {
         if (!event.defaultPrevented) {
             var request = overviewLarge$createRequest("onContactsTableRowClicked");
-            request.parameters["rowID"] = $scope.contacts.items[index].id;
+            if (overviewLarge$tableContactsTableFilteredIDs != null){
+                request.parameters["rowID"] = overviewLarge$tableContactsTableFilteredIDs[index];
+            } else {
+                request.parameters["rowID"] = $scope.contacts.items[index].id;
+            }
             overviewLarge$executeRequest(request);
         }
     }
@@ -142,17 +385,29 @@ app.controller("overviewLarge_Ctrl", function($scope, $mdToast, $mdDialog, $http
 
 var overviewLarge$setInitialValues = function(){
     var scope = angular.element(document.getElementById('screenOverviewLargePanel')).scope();
-    scope.overviewLarge_info_propertyText = "Contact Manager Demo";
+    scope.overviewLarge_info_propertyText = getText("contact_manager_demo");
     scope.overviewLarge_info_propertyVisible = true;
-    scope.overviewLarge_newButton_propertyText = "New Contact";
+    scope.overviewLarge_languageEnglishButton_propertyVisible = true;
+    scope.overviewLarge_languageGermanButton_propertyVisible = true;
+    scope.overviewLarge_newButton_propertyText = getText("new_contact");
     scope.overviewLarge_newButton_propertyVisible = true;
-    scope.overviewLarge_exportButton_propertyText = "Export data";
+    scope.overviewLarge_exportButton_propertyText = getText("export_data");
     scope.overviewLarge_exportButton_propertyVisible = true;
     scope.overviewLarge_searchNameTextField_propertyText = "";
-    scope.overviewLarge_searchNameTextField_propertyLabel = "Search name";
+    scope.overviewLarge_searchNameTextField_propertyLabel = getText("search_name");
+    scope.overviewLarge_searchNameTextField_propertyBackgroundColor = "";
     scope.overviewLarge_searchNameTextField_propertyVisible = true;
-    scope.overviewLarge_searchButton_propertyText = "Search";
+    scope.overviewLarge_searchButton_propertyText = getText("search");
     scope.overviewLarge_searchButton_propertyVisible = true;
+    scope.overviewLarge_languageEnglishButton_propertyImageSource = "languageEN.svg";
+    scope.overviewLarge_languageGermanButton_propertyImageSource = "languageDE.png";
+    scope.overviewLarge_contactsTableColumn0Text = getText("type");
+    scope.overviewLarge_contactsTableColumn1Text = getText("firstname");
+    scope.overviewLarge_contactsTableColumn2Text = getText("lastname");
+    scope.overviewLarge_contactsTableColumn3Text = getText("mobile");
+    scope.overviewLarge_contactsTableColumn4Text = getText("actions");
+    scope.overviewLarge_contactsTableWidgetEditButtonText = getText("edit");
+    scope.overviewLarge_contactsTableWidgetDeleteButtonText = getText("delete");
 }
 
 var overviewLarge$createImageAssetIDToNameMap = function(){
@@ -161,6 +416,9 @@ var overviewLarge$createImageAssetIDToNameMap = function(){
     result["company"] = "company.svg";
     result["family"] = "family.svg";
     result["friend"] = "friend.svg";
+    result["languageDE"] = "languageDE.png";
+    result["languageEN"] = "languageEN.svg";
+    result["music"] = "music.png";
     return result;
 }
 
@@ -206,6 +464,7 @@ overviewLarge$executeOnLoadWhenControllerIsReady = function(){
 overviewLarge$createRequest = function(actionName){
     request = new Object();
     request.action = actionName;
+    request.currentLanguage = currentLanguage;
     request.screenID = "overviewLarge";
     request.parameters = new Object();
     return request;
@@ -283,6 +542,17 @@ overviewLarge$initDTOTypeContactForPreview = function(index){
     result.city = "Mycity" + "(" + index + ")";
     result.postalCode = "1234" + "(" + index + ")";
     result.webSite = "http://www.wikipedia.com" + "(" + index + ")";
+    result.preferredMusic = [];
+    result.preferredMusic[0] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[1] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[2] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[3] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[4] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[5] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[6] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[7] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[8] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[9] = "(preview string preferredMusic)" + "(" + index + ")";
     return result;
 };
 overviewLarge$initDTOTypeContactListForPreview = function(index){
@@ -364,8 +634,18 @@ var overviewLarge$openScreenMultiPageApp = function(screenToOpen, openParameter)
     window.open(screenToOpenURL, "_self");
 }
 
+overviewLarge$backButtonPressed = function(){
+    console.log("Screen overviewLarge: Back pressed.");
+};
+
+overviewLarge$updateViews = function(){
+};
+
 overviewLarge$processReply = function(jsonString){
     var reply = JSON.parse(jsonString);
+    if (typeof reply.languageToSet != "undefined") {
+        currentLanguage = reply.languageToSet;
+    }
     var scope = angular.element(document.getElementById('screenOverviewLargePanel')).scope();
     for (i = 0, len = reply.dtosToSet.length; i < len; i++) {
         var dtoValue = reply.dtoValues[reply.dtosToSet[i]];
@@ -427,6 +707,13 @@ overviewLarge$processReply = function(jsonString){
         this[textEditorName].showHint({hint:function(){return hintValue;}});
     }
 
+    for (key in reply.tableCheckedRowIDs){
+        scope[key] = new Object();
+        for (i in reply.tableCheckedRowIDs[key]){
+            scope[key][reply.tableCheckedRowIDs[key][i]] = true;
+        }
+    }
+
     var screenToOpen = reply.screenToOpen;
     if (typeof screenToOpen != "undefined") {
         overviewLarge$openScreen(screenToOpen, reply.openParameter);
@@ -462,6 +749,9 @@ overviewLarge$processReply = function(jsonString){
     if (typeof confirmDialogParameters != "undefined") {
         scope.showConfirm(confirmDialogParameters.referenceID, confirmDialogParameters.title, confirmDialogParameters.textContent, confirmDialogParameters.okText, confirmDialogParameters.cancelText);
     }
-    setTimeout(function() {scope.$digest();}, 0);
+    if (typeof reply.listChooserParameters != "undefined") {
+        scope.showListChooser(reply.listChooserParameters);
+    }
+    setTimeout(function() {scope.$digest();overviewLarge$updateViews();}, 0);
 
 };

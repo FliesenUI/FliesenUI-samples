@@ -1,0 +1,1405 @@
+{
+  "requests": [
+    {
+      "screenID": "overviewLarge",
+      "action": "onLoaded",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "_ClientProperties": "{\"userAgent\":\"Mozilla/5.0 (Windows NT 6.3) AppleWebKit/538.19 (KHTML, like Gecko) JavaFX/8.0 Safari/538.19\",\"language\":\"en\",\"screenAvailableWidthInPixels\":1280,\"screenAvailableHeightInPixels\":760,\"screenWidthInPixels\":1280,\"screenHeightInPixels\":800,\"windowInnerWidthInPixels\":1000,\"windowInnerHeightInPixels\":700,\"pixelHeightPerCM\":38,\"pixelWidthPerCM\":38,\"pixelHeightPerInch\":14.960638000000001,\"pixelWidthPerInch\":14.960638000000001,\"screenWidthInCM\":33.68421052631579,\"screenHeightInCM\":21.05263157894737,\"screenWidthInInch\":13.261507368421052,\"screenHeightInInch\":8.28844210526316,\"screenDiagonalInInch\":15.63860128703923}"
+      }
+    },
+    {
+      "screenID": "overviewLarge",
+      "action": "widgetButtonSearchButtonClicked",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "searchNameTextFieldText": "ary"
+      }
+    },
+    {
+      "screenID": "overviewLarge",
+      "action": "widgetButtonSearchButtonClicked",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "searchNameTextFieldText": ""
+      }
+    },
+    {
+      "screenID": "overviewLarge",
+      "action": "widgetButtonNewButtonClicked",
+      "currentLanguage": "DEFAULT",
+      "parameters": {}
+    },
+    {
+      "screenID": "detailsLarge",
+      "action": "onLoaded",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "_ClientProperties": "{\"userAgent\":\"Mozilla/5.0 (Windows NT 6.3) AppleWebKit/538.19 (KHTML, like Gecko) JavaFX/8.0 Safari/538.19\",\"language\":\"en\",\"windowInnerWidthInPixels\":1000,\"windowInnerHeightInPixels\":700,\"pixelHeightPerCM\":38,\"pixelWidthPerCM\":38,\"pixelHeightPerInch\":14.960638000000001,\"pixelWidthPerInch\":14.960638000000001,\"screenWidthInCM\":null,\"screenHeightInCM\":null,\"screenWidthInInch\":null,\"screenHeightInInch\":null,\"screenDiagonalInInch\":null}",
+        "contact": "{\"firstname\":\"first\",\"lastname\":\"last\",\"phone\":\"phone\",\"mobile\":\"mobile\",\"street\":\"street\",\"city\":\"city\",\"postalCode\":\"postalCode\",\"country\":\"country\",\"state\":\"state\",\"webSite\":\"web site\"}"
+      }
+    },
+    {
+      "screenID": "detailsLarge",
+      "action": "onTypeSelectBoxChanged",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "rowID": "col"
+      }
+    },
+    {
+      "screenID": "detailsLarge",
+      "action": "widgetButtonSaveButtonClicked",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "contact": "{\"firstname\":\"first1\",\"lastname\":\"last1\",\"phone\":\"phone1\",\"mobile\":\"mobile1\",\"street\":\"street1\",\"city\":\"city1\",\"postalCode\":\"postalCode1\",\"country\":\"country1\",\"state\":\"state1\",\"webSite\":\"web site1\"}",
+        "typeSelectBoxSelectedID": "col"
+      }
+    },
+    {
+      "screenID": "overviewLarge",
+      "action": "onLoaded",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "_ClientProperties": "{\"userAgent\":\"Mozilla/5.0 (Windows NT 6.3) AppleWebKit/538.19 (KHTML, like Gecko) JavaFX/8.0 Safari/538.19\",\"language\":\"en\",\"windowInnerWidthInPixels\":1000,\"windowInnerHeightInPixels\":700,\"pixelHeightPerCM\":38,\"pixelWidthPerCM\":38,\"pixelHeightPerInch\":14.960638000000001,\"pixelWidthPerInch\":14.960638000000001,\"screenWidthInCM\":null,\"screenHeightInCM\":null,\"screenWidthInInch\":null,\"screenHeightInInch\":null,\"screenDiagonalInInch\":null}"
+      }
+    },
+    {
+      "screenID": "overviewSmall",
+      "action": "onLoaded",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "_ClientProperties": "{\"userAgent\":\"Mozilla/5.0 (Windows NT 6.3) AppleWebKit/538.19 (KHTML, like Gecko) JavaFX/8.0 Safari/538.19\",\"language\":\"en\",\"windowInnerWidthInPixels\":1000,\"windowInnerHeightInPixels\":700,\"pixelHeightPerCM\":38,\"pixelWidthPerCM\":38,\"pixelHeightPerInch\":14.960638000000001,\"pixelWidthPerInch\":14.960638000000001,\"screenWidthInCM\":null,\"screenHeightInCM\":null,\"screenWidthInInch\":null,\"screenHeightInInch\":null,\"screenDiagonalInInch\":null}"
+      }
+    },
+    {
+      "screenID": "overviewSmall",
+      "action": "onContactsTableRowClicked",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "rowID": "2"
+      }
+    },
+    {
+      "screenID": "overviewSmall",
+      "action": "widgetButtonEditButtonClicked",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "selectedContact": "{\"id\":\"2\",\"typeID\":\"fri\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"friend\",\"firstname\":\"Ronald\",\"lastname\":\"Lee\",\"phone\":\"+1 453 2346\",\"mobile\":\"+1 456 1666\",\"street\":\"Long Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Rock\",\"Pop\"]}"
+      }
+    },
+    {
+      "screenID": "detailsSmall",
+      "action": "onLoaded",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "_ClientProperties": "{\"userAgent\":\"Mozilla/5.0 (Windows NT 6.3) AppleWebKit/538.19 (KHTML, like Gecko) JavaFX/8.0 Safari/538.19\",\"language\":\"en\",\"windowInnerWidthInPixels\":1000,\"windowInnerHeightInPixels\":700,\"pixelHeightPerCM\":38,\"pixelWidthPerCM\":38,\"pixelHeightPerInch\":14.960638000000001,\"pixelWidthPerInch\":14.960638000000001,\"screenWidthInCM\":null,\"screenHeightInCM\":null,\"screenWidthInInch\":null,\"screenHeightInInch\":null,\"screenDiagonalInInch\":null}",
+        "contact": "{\"id\":\"2\",\"typeID\":\"fri\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"friend\",\"firstname\":\"Ronald\",\"lastname\":\"Lee\",\"phone\":\"+1 453 2346\",\"mobile\":\"+1 456 1666\",\"street\":\"Long Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Rock\",\"Pop\"]}"
+      }
+    },
+    {
+      "screenID": "detailsSmall",
+      "action": "widgetButtonSetPreferredMusicButtonClicked",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "contact": "{\"id\":\"2\",\"typeID\":\"fri\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"friend\",\"firstname\":\"Ronald\",\"lastname\":\"Lee\",\"phone\":\"+1 453 2346\",\"mobile\":\"+1 456 1666\",\"street\":\"Long Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Rock\",\"Pop\"]}"
+      }
+    },
+    {
+      "screenID": "detailsSmall",
+      "action": "onListChooserResult",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "referenceID": "2",
+        "selectedIDs": [
+          "Rock",
+          "Electro"
+        ]
+      }
+    },
+    {
+      "screenID": "detailsSmall",
+      "action": "widgetButtonSaveButtonClicked",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "contact": "{\"id\":\"2\",\"typeID\":\"fri\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"friend\",\"firstname\":\"Ronald\",\"lastname\":\"Lee\",\"phone\":\"+1 453 2346\",\"mobile\":\"+1 456 1666\",\"street\":\"Long Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"12345\",\"webSite\":\"\",\"preferredMusic\":[\"Rock\",\"Electro\"]}",
+        "typeSelectBoxSelectedID": "fri"
+      }
+    },
+    {
+      "screenID": "overviewSmall",
+      "action": "onLoaded",
+      "currentLanguage": "DEFAULT",
+      "parameters": {
+        "_ClientProperties": "{\"userAgent\":\"Mozilla/5.0 (Windows NT 6.3) AppleWebKit/538.19 (KHTML, like Gecko) JavaFX/8.0 Safari/538.19\",\"language\":\"en\",\"windowInnerWidthInPixels\":1000,\"windowInnerHeightInPixels\":700,\"pixelHeightPerCM\":38,\"pixelWidthPerCM\":38,\"pixelHeightPerInch\":14.960638000000001,\"pixelWidthPerInch\":14.960638000000001,\"screenWidthInCM\":null,\"screenHeightInCM\":null,\"screenWidthInInch\":null,\"screenHeightInInch\":null,\"screenDiagonalInInch\":null}"
+      }
+    }
+  ],
+  "replies": [
+    {
+      "dtosToSet": [
+        "contacts"
+      ],
+      "variablesToSet": [],
+      "objectsToSetValue": [],
+      "variableValues": {},
+      "dtoValues": {
+        "contacts": {
+          "items": [
+            {
+              "id": "0",
+              "typeID": "fam",
+              "profileImage": "star.png",
+              "typeImageAsset": "family",
+              "firstname": "Mary",
+              "lastname": "Smith",
+              "phone": "+1 123 0000",
+              "mobile": "+1 456 1234",
+              "street": "My Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Classic",
+                "Jazz"
+              ]
+            },
+            {
+              "id": "1",
+              "typeID": "fam",
+              "profileImage": "triangle.png",
+              "typeImageAsset": "family",
+              "firstname": "Tom",
+              "lastname": "Smith",
+              "phone": "+1 123 0000",
+              "mobile": "+1 456 1222",
+              "street": "My Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Classic",
+                "Jazz"
+              ]
+            },
+            {
+              "id": "2",
+              "typeID": "fri",
+              "profileImage": "default.png",
+              "typeImageAsset": "friend",
+              "firstname": "Ronald",
+              "lastname": "Lee",
+              "phone": "+1 453 2346",
+              "mobile": "+1 456 1666",
+              "street": "Long Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Rock",
+                "Electro"
+              ]
+            },
+            {
+              "id": "3",
+              "typeID": "com",
+              "profileImage": "painted-globe.jpg",
+              "typeImageAsset": "company",
+              "firstname": "",
+              "lastname": "Wiki Corp",
+              "phone": "+1 300 34342",
+              "mobile": "+1 342 3554",
+              "street": "New Street",
+              "country": "Web-Land",
+              "state": "Web-State",
+              "city": "Webcity",
+              "postalCode": "1234",
+              "webSite": "http://www.wikipedia.org",
+              "preferredMusic": [
+                "Classic",
+                "Jazz"
+              ]
+            },
+            {
+              "id": "4",
+              "typeID": "col",
+              "profileImage": "default.png",
+              "typeImageAsset": "colleague",
+              "firstname": "John",
+              "lastname": "Miller",
+              "phone": "+1 300 1111",
+              "mobile": "+1 456 444",
+              "street": "Some Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Pop",
+                "Electro"
+              ]
+            },
+            {
+              "id": "5",
+              "typeID": "col",
+              "profileImage": "default.png",
+              "typeImageAsset": "colleague",
+              "firstname": "Robert",
+              "lastname": "Meyer",
+              "phone": "+1 300 2222",
+              "mobile": "+1 456 555",
+              "street": "New Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "3456",
+              "webSite": "",
+              "preferredMusic": [
+                "Pop",
+                "Electro"
+              ]
+            },
+            {
+              "id": "6",
+              "typeID": "fam",
+              "profileImage": "default.png",
+              "typeImageAsset": "family",
+              "firstname": "Bob",
+              "lastname": "Smith",
+              "phone": "+1 123 0000",
+              "mobile": "+1 456 1333",
+              "street": "My Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Pop",
+                "Electro"
+              ]
+            }
+          ]
+        }
+      },
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "SET_DTO",
+          "code": "setContactsDTO(",
+          "parameters": [
+            "{\"items\":[{\"id\":\"0\",\"typeID\":\"fam\",\"profileImage\":\"star.png\",\"typeImageAsset\":\"family\",\"firstname\":\"Mary\",\"lastname\":\"Smith\",\"phone\":\"+1 123 0000\",\"mobile\":\"+1 456 1234\",\"street\":\"My Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Classic\",\"Jazz\"]},{\"id\":\"1\",\"typeID\":\"fam\",\"profileImage\":\"triangle.png\",\"typeImageAsset\":\"family\",\"firstname\":\"Tom\",\"lastname\":\"Smith\",\"phone\":\"+1 123 0000\",\"mobile\":\"+1 456 1222\",\"street\":\"My Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Classic\",\"Jazz\"]},{\"id\":\"2\",\"typeID\":\"fri\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"friend\",\"firstname\":\"Ronald\",\"lastname\":\"Lee\",\"phone\":\"+1 453 2346\",\"mobile\":\"+1 456 1666\",\"street\":\"Long Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Rock\",\"Pop\"]},{\"id\":\"3\",\"typeID\":\"com\",\"profileImage\":\"painted-globe.jpg\",\"typeImageAsset\":\"company\",\"firstname\":\"\",\"lastname\":\"Wiki Corp\",\"phone\":\"+1 300 34342\",\"mobile\":\"+1 342 3554\",\"street\":\"New Street\",\"country\":\"Web-Land\",\"state\":\"Web-State\",\"city\":\"Webcity\",\"postalCode\":\"1234\",\"webSite\":\"http://www.wikipedia.org\",\"preferredMusic\":[\"Classic\",\"Jazz\"]},{\"id\":\"4\",\"typeID\":\"col\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"colleague\",\"firstname\":\"John\",\"lastname\":\"Miller\",\"phone\":\"+1 300 1111\",\"mobile\":\"+1 456 444\",\"street\":\"Some Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Pop\",\"Electro\"]},{\"id\":\"5\",\"typeID\":\"col\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"colleague\",\"firstname\":\"Robert\",\"lastname\":\"Meyer\",\"phone\":\"+1 300 2222\",\"mobile\":\"+1 456 555\",\"street\":\"New Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"3456\",\"webSite\":\"\",\"preferredMusic\":[\"Pop\",\"Electro\"]},{\"id\":\"6\",\"typeID\":\"fam\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"family\",\"firstname\":\"Bob\",\"lastname\":\"Smith\",\"phone\":\"+1 123 0000\",\"mobile\":\"+1 456 1333\",\"street\":\"My Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Pop\",\"Electro\"]}]}",
+            "ContactListDTO"
+          ]
+        }
+      ]
+    },
+    {
+      "dtosToSet": [
+        "contacts"
+      ],
+      "variablesToSet": [],
+      "objectsToSetValue": [],
+      "variableValues": {},
+      "dtoValues": {
+        "contacts": {
+          "items": [
+            {
+              "id": "0",
+              "typeID": "fam",
+              "profileImage": "star.png",
+              "typeImageAsset": "family",
+              "firstname": "Mary",
+              "lastname": "Smith",
+              "phone": "+1 123 0000",
+              "mobile": "+1 456 1234",
+              "street": "My Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Classic",
+                "Jazz"
+              ]
+            }
+          ]
+        }
+      },
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "SET_DTO",
+          "code": "setContactsDTO(",
+          "parameters": [
+            "{\"items\":[{\"id\":\"0\",\"typeID\":\"fam\",\"profileImage\":\"star.png\",\"typeImageAsset\":\"family\",\"firstname\":\"Mary\",\"lastname\":\"Smith\",\"phone\":\"+1 123 0000\",\"mobile\":\"+1 456 1234\",\"street\":\"My Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Classic\",\"Jazz\"]}]}",
+            "ContactListDTO"
+          ]
+        }
+      ]
+    },
+    {
+      "dtosToSet": [
+        "contacts"
+      ],
+      "variablesToSet": [],
+      "objectsToSetValue": [],
+      "variableValues": {},
+      "dtoValues": {
+        "contacts": {
+          "items": [
+            {
+              "id": "0",
+              "typeID": "fam",
+              "profileImage": "star.png",
+              "typeImageAsset": "family",
+              "firstname": "Mary",
+              "lastname": "Smith",
+              "phone": "+1 123 0000",
+              "mobile": "+1 456 1234",
+              "street": "My Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Classic",
+                "Jazz"
+              ]
+            },
+            {
+              "id": "1",
+              "typeID": "fam",
+              "profileImage": "triangle.png",
+              "typeImageAsset": "family",
+              "firstname": "Tom",
+              "lastname": "Smith",
+              "phone": "+1 123 0000",
+              "mobile": "+1 456 1222",
+              "street": "My Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Classic",
+                "Jazz"
+              ]
+            },
+            {
+              "id": "2",
+              "typeID": "fri",
+              "profileImage": "default.png",
+              "typeImageAsset": "friend",
+              "firstname": "Ronald",
+              "lastname": "Lee",
+              "phone": "+1 453 2346",
+              "mobile": "+1 456 1666",
+              "street": "Long Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Rock",
+                "Electro"
+              ]
+            },
+            {
+              "id": "3",
+              "typeID": "com",
+              "profileImage": "painted-globe.jpg",
+              "typeImageAsset": "company",
+              "firstname": "",
+              "lastname": "Wiki Corp",
+              "phone": "+1 300 34342",
+              "mobile": "+1 342 3554",
+              "street": "New Street",
+              "country": "Web-Land",
+              "state": "Web-State",
+              "city": "Webcity",
+              "postalCode": "1234",
+              "webSite": "http://www.wikipedia.org",
+              "preferredMusic": [
+                "Classic",
+                "Jazz"
+              ]
+            },
+            {
+              "id": "4",
+              "typeID": "col",
+              "profileImage": "default.png",
+              "typeImageAsset": "colleague",
+              "firstname": "John",
+              "lastname": "Miller",
+              "phone": "+1 300 1111",
+              "mobile": "+1 456 444",
+              "street": "Some Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Pop",
+                "Electro"
+              ]
+            },
+            {
+              "id": "5",
+              "typeID": "col",
+              "profileImage": "default.png",
+              "typeImageAsset": "colleague",
+              "firstname": "Robert",
+              "lastname": "Meyer",
+              "phone": "+1 300 2222",
+              "mobile": "+1 456 555",
+              "street": "New Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "3456",
+              "webSite": "",
+              "preferredMusic": [
+                "Pop",
+                "Electro"
+              ]
+            },
+            {
+              "id": "6",
+              "typeID": "fam",
+              "profileImage": "default.png",
+              "typeImageAsset": "family",
+              "firstname": "Bob",
+              "lastname": "Smith",
+              "phone": "+1 123 0000",
+              "mobile": "+1 456 1333",
+              "street": "My Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Pop",
+                "Electro"
+              ]
+            }
+          ]
+        }
+      },
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "SET_DTO",
+          "code": "setContactsDTO(",
+          "parameters": [
+            "{\"items\":[{\"id\":\"0\",\"typeID\":\"fam\",\"profileImage\":\"star.png\",\"typeImageAsset\":\"family\",\"firstname\":\"Mary\",\"lastname\":\"Smith\",\"phone\":\"+1 123 0000\",\"mobile\":\"+1 456 1234\",\"street\":\"My Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Classic\",\"Jazz\"]},{\"id\":\"1\",\"typeID\":\"fam\",\"profileImage\":\"triangle.png\",\"typeImageAsset\":\"family\",\"firstname\":\"Tom\",\"lastname\":\"Smith\",\"phone\":\"+1 123 0000\",\"mobile\":\"+1 456 1222\",\"street\":\"My Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Classic\",\"Jazz\"]},{\"id\":\"2\",\"typeID\":\"fri\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"friend\",\"firstname\":\"Ronald\",\"lastname\":\"Lee\",\"phone\":\"+1 453 2346\",\"mobile\":\"+1 456 1666\",\"street\":\"Long Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Rock\",\"Pop\"]},{\"id\":\"3\",\"typeID\":\"com\",\"profileImage\":\"painted-globe.jpg\",\"typeImageAsset\":\"company\",\"firstname\":\"\",\"lastname\":\"Wiki Corp\",\"phone\":\"+1 300 34342\",\"mobile\":\"+1 342 3554\",\"street\":\"New Street\",\"country\":\"Web-Land\",\"state\":\"Web-State\",\"city\":\"Webcity\",\"postalCode\":\"1234\",\"webSite\":\"http://www.wikipedia.org\",\"preferredMusic\":[\"Classic\",\"Jazz\"]},{\"id\":\"4\",\"typeID\":\"col\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"colleague\",\"firstname\":\"John\",\"lastname\":\"Miller\",\"phone\":\"+1 300 1111\",\"mobile\":\"+1 456 444\",\"street\":\"Some Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Pop\",\"Electro\"]},{\"id\":\"5\",\"typeID\":\"col\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"colleague\",\"firstname\":\"Robert\",\"lastname\":\"Meyer\",\"phone\":\"+1 300 2222\",\"mobile\":\"+1 456 555\",\"street\":\"New Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"3456\",\"webSite\":\"\",\"preferredMusic\":[\"Pop\",\"Electro\"]},{\"id\":\"6\",\"typeID\":\"fam\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"family\",\"firstname\":\"Bob\",\"lastname\":\"Smith\",\"phone\":\"+1 123 0000\",\"mobile\":\"+1 456 1333\",\"street\":\"My Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Pop\",\"Electro\"]}]}",
+            "ContactListDTO"
+          ]
+        }
+      ]
+    },
+    {
+      "dtosToSet": [],
+      "variablesToSet": [],
+      "objectsToSetValue": [],
+      "variableValues": {},
+      "dtoValues": {},
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "screenToOpen": "detailsLarge",
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "OPEN_SCREEN",
+          "code": "openScreenDetailsLarge(",
+          "parameters": [
+            "null",
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "dtosToSet": [
+        "types"
+      ],
+      "variablesToSet": [
+        "detailsLarge_preferredMusicContentLabel_propertyText",
+        "detailsLarge_profileImageFileUpload_propertyVisible"
+      ],
+      "objectsToSetValue": [],
+      "variableValues": {
+        "detailsLarge_preferredMusicContentLabel_propertyText": "none",
+        "detailsLarge_profileImageFileUpload_propertyVisible": true
+      },
+      "dtoValues": {
+        "types": {
+          "items": [
+            {
+              "id": "col",
+              "label": "Colleague",
+              "imageAssetID": "colleague"
+            },
+            {
+              "id": "com",
+              "label": "Company",
+              "imageAssetID": "company"
+            },
+            {
+              "id": "fam",
+              "label": "Family",
+              "imageAssetID": "family"
+            },
+            {
+              "id": "fri",
+              "label": "Friend",
+              "imageAssetID": "friend"
+            }
+          ]
+        }
+      },
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "DEFAULT",
+          "code": "setProfileImageFileUploadVisible(true);",
+          "parameters": []
+        },
+        {
+          "actionType": "SET_DTO",
+          "code": "setTypesDTO(",
+          "parameters": [
+            "{\"items\":[{\"id\":\"col\",\"label\":\"Colleague\",\"imageAssetID\":\"colleague\"},{\"id\":\"com\",\"label\":\"Company\",\"imageAssetID\":\"company\"},{\"id\":\"fam\",\"label\":\"Family\",\"imageAssetID\":\"family\"},{\"id\":\"fri\",\"label\":\"Friend\",\"imageAssetID\":\"friend\"}]}",
+            "ContactTypeListDTO"
+          ]
+        },
+        {
+          "actionType": "DEFAULT",
+          "code": "setTypeSelectBoxSelectedID(null);",
+          "parameters": []
+        },
+        {
+          "actionType": "DEFAULT",
+          "code": "setPreferredMusicContentLabelText(\"none\");",
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "dtosToSet": [],
+      "variablesToSet": [],
+      "objectsToSetValue": [],
+      "variableValues": {},
+      "dtoValues": {},
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "currentLanguage": "DEFAULT",
+      "recordedActions": []
+    },
+    {
+      "dtosToSet": [],
+      "variablesToSet": [],
+      "objectsToSetValue": [],
+      "variableValues": {},
+      "dtoValues": {},
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "screenToOpen": "overviewLarge",
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "OPEN_SCREEN",
+          "code": "openScreenOverviewLarge(",
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "dtosToSet": [],
+      "variablesToSet": [],
+      "objectsToSetValue": [],
+      "variableValues": {},
+      "dtoValues": {},
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "screenToOpen": "overviewSmall",
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "OPEN_SCREEN",
+          "code": "openScreenOverviewSmall(",
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "dtosToSet": [
+        "contacts"
+      ],
+      "variablesToSet": [],
+      "objectsToSetValue": [],
+      "variableValues": {},
+      "dtoValues": {
+        "contacts": {
+          "items": [
+            {
+              "id": "0",
+              "typeID": "fam",
+              "profileImage": "star.png",
+              "typeImageAsset": "family",
+              "firstname": "Mary",
+              "lastname": "Smith",
+              "phone": "+1 123 0000",
+              "mobile": "+1 456 1234",
+              "street": "My Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Classic",
+                "Jazz"
+              ]
+            },
+            {
+              "id": "1",
+              "typeID": "fam",
+              "profileImage": "triangle.png",
+              "typeImageAsset": "family",
+              "firstname": "Tom",
+              "lastname": "Smith",
+              "phone": "+1 123 0000",
+              "mobile": "+1 456 1222",
+              "street": "My Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Classic",
+                "Jazz"
+              ]
+            },
+            {
+              "id": "2",
+              "typeID": "fri",
+              "profileImage": "default.png",
+              "typeImageAsset": "friend",
+              "firstname": "Ronald",
+              "lastname": "Lee",
+              "phone": "+1 453 2346",
+              "mobile": "+1 456 1666",
+              "street": "Long Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Rock",
+                "Electro"
+              ]
+            },
+            {
+              "id": "3",
+              "typeID": "com",
+              "profileImage": "painted-globe.jpg",
+              "typeImageAsset": "company",
+              "firstname": "",
+              "lastname": "Wiki Corp",
+              "phone": "+1 300 34342",
+              "mobile": "+1 342 3554",
+              "street": "New Street",
+              "country": "Web-Land",
+              "state": "Web-State",
+              "city": "Webcity",
+              "postalCode": "1234",
+              "webSite": "http://www.wikipedia.org",
+              "preferredMusic": [
+                "Classic",
+                "Jazz"
+              ]
+            },
+            {
+              "id": "4",
+              "typeID": "col",
+              "profileImage": "default.png",
+              "typeImageAsset": "colleague",
+              "firstname": "John",
+              "lastname": "Miller",
+              "phone": "+1 300 1111",
+              "mobile": "+1 456 444",
+              "street": "Some Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Pop",
+                "Electro"
+              ]
+            },
+            {
+              "id": "5",
+              "typeID": "col",
+              "profileImage": "default.png",
+              "typeImageAsset": "colleague",
+              "firstname": "Robert",
+              "lastname": "Meyer",
+              "phone": "+1 300 2222",
+              "mobile": "+1 456 555",
+              "street": "New Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "3456",
+              "webSite": "",
+              "preferredMusic": [
+                "Pop",
+                "Electro"
+              ]
+            },
+            {
+              "id": "6",
+              "typeID": "fam",
+              "profileImage": "default.png",
+              "typeImageAsset": "family",
+              "firstname": "Bob",
+              "lastname": "Smith",
+              "phone": "+1 123 0000",
+              "mobile": "+1 456 1333",
+              "street": "My Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Pop",
+                "Electro"
+              ]
+            },
+            {
+              "id": "7",
+              "typeID": "col",
+              "profileImage": "",
+              "typeImageAsset": "colleague",
+              "firstname": "first1",
+              "lastname": "last1",
+              "phone": "phone1",
+              "mobile": "mobile1",
+              "street": "street1",
+              "country": "country1",
+              "state": "state1",
+              "city": "city1",
+              "postalCode": "postalCode1",
+              "webSite": "web site1"
+            }
+          ]
+        }
+      },
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "SET_DTO",
+          "code": "setContactsDTO(",
+          "parameters": [
+            "{\"items\":[{\"id\":\"0\",\"typeID\":\"fam\",\"profileImage\":\"star.png\",\"typeImageAsset\":\"family\",\"firstname\":\"Mary\",\"lastname\":\"Smith\",\"phone\":\"+1 123 0000\",\"mobile\":\"+1 456 1234\",\"street\":\"My Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Classic\",\"Jazz\"]},{\"id\":\"1\",\"typeID\":\"fam\",\"profileImage\":\"triangle.png\",\"typeImageAsset\":\"family\",\"firstname\":\"Tom\",\"lastname\":\"Smith\",\"phone\":\"+1 123 0000\",\"mobile\":\"+1 456 1222\",\"street\":\"My Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Classic\",\"Jazz\"]},{\"id\":\"2\",\"typeID\":\"fri\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"friend\",\"firstname\":\"Ronald\",\"lastname\":\"Lee\",\"phone\":\"+1 453 2346\",\"mobile\":\"+1 456 1666\",\"street\":\"Long Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Rock\",\"Pop\"]},{\"id\":\"3\",\"typeID\":\"com\",\"profileImage\":\"painted-globe.jpg\",\"typeImageAsset\":\"company\",\"firstname\":\"\",\"lastname\":\"Wiki Corp\",\"phone\":\"+1 300 34342\",\"mobile\":\"+1 342 3554\",\"street\":\"New Street\",\"country\":\"Web-Land\",\"state\":\"Web-State\",\"city\":\"Webcity\",\"postalCode\":\"1234\",\"webSite\":\"http://www.wikipedia.org\",\"preferredMusic\":[\"Classic\",\"Jazz\"]},{\"id\":\"4\",\"typeID\":\"col\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"colleague\",\"firstname\":\"John\",\"lastname\":\"Miller\",\"phone\":\"+1 300 1111\",\"mobile\":\"+1 456 444\",\"street\":\"Some Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Pop\",\"Electro\"]},{\"id\":\"5\",\"typeID\":\"col\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"colleague\",\"firstname\":\"Robert\",\"lastname\":\"Meyer\",\"phone\":\"+1 300 2222\",\"mobile\":\"+1 456 555\",\"street\":\"New Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"3456\",\"webSite\":\"\",\"preferredMusic\":[\"Pop\",\"Electro\"]},{\"id\":\"6\",\"typeID\":\"fam\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"family\",\"firstname\":\"Bob\",\"lastname\":\"Smith\",\"phone\":\"+1 123 0000\",\"mobile\":\"+1 456 1333\",\"street\":\"My Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Pop\",\"Electro\"]},{\"id\":\"7\",\"typeID\":\"col\",\"profileImage\":\"\",\"typeImageAsset\":\"colleague\",\"firstname\":\"first1\",\"lastname\":\"last1\",\"phone\":\"phone1\",\"mobile\":\"mobile1\",\"street\":\"street1\",\"country\":\"country1\",\"state\":\"state1\",\"city\":\"city1\",\"postalCode\":\"postalCode1\",\"webSite\":\"web site1\"}]}",
+            "ContactListDTO"
+          ]
+        }
+      ]
+    },
+    {
+      "dtosToSet": [
+        "selectedContact"
+      ],
+      "variablesToSet": [
+        "overviewSmall_actionItemInfo_propertyText",
+        "overviewSmall_itemActionBar_propertyVisible",
+        "overviewSmall_selectedItemBar_propertyVisible",
+        "overviewSmall_tableBar_propertyVisible"
+      ],
+      "objectsToSetValue": [],
+      "variableValues": {
+        "overviewSmall_actionItemInfo_propertyText": "Choose action for contact \u0027Ronald Lee\u0027",
+        "overviewSmall_itemActionBar_propertyVisible": true,
+        "overviewSmall_selectedItemBar_propertyVisible": true,
+        "overviewSmall_tableBar_propertyVisible": false
+      },
+      "dtoValues": {
+        "selectedContact": {
+          "id": "2",
+          "typeID": "fri",
+          "profileImage": "default.png",
+          "typeImageAsset": "friend",
+          "firstname": "Ronald",
+          "lastname": "Lee",
+          "phone": "+1 453 2346",
+          "mobile": "+1 456 1666",
+          "street": "Long Street",
+          "country": "USA",
+          "state": "Mystate",
+          "city": "Mycity",
+          "postalCode": "1234",
+          "webSite": "",
+          "preferredMusic": [
+            "Rock",
+            "Electro"
+          ]
+        }
+      },
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "SET_DTO",
+          "code": "setSelectedContactDTO(",
+          "parameters": [
+            "{\"id\":\"2\",\"typeID\":\"fri\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"friend\",\"firstname\":\"Ronald\",\"lastname\":\"Lee\",\"phone\":\"+1 453 2346\",\"mobile\":\"+1 456 1666\",\"street\":\"Long Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Rock\",\"Pop\"]}",
+            "ContactDTO"
+          ]
+        },
+        {
+          "actionType": "DEFAULT",
+          "code": "setActionItemInfoText(\"Choose action for contact \u0027Ronald Lee\u0027\");",
+          "parameters": []
+        },
+        {
+          "actionType": "DEFAULT",
+          "code": "setTableBarVisible(false);",
+          "parameters": []
+        },
+        {
+          "actionType": "DEFAULT",
+          "code": "setItemActionBarVisible(true);",
+          "parameters": []
+        },
+        {
+          "actionType": "DEFAULT",
+          "code": "setSelectedItemBarVisible(true);",
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "dtosToSet": [],
+      "variablesToSet": [],
+      "objectsToSetValue": [],
+      "variableValues": {},
+      "dtoValues": {},
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "screenToOpen": "detailsSmall",
+      "openParameter": {
+        "id": "2",
+        "typeID": "fri",
+        "profileImage": "default.png",
+        "typeImageAsset": "friend",
+        "firstname": "Ronald",
+        "lastname": "Lee",
+        "phone": "+1 453 2346",
+        "mobile": "+1 456 1666",
+        "street": "Long Street",
+        "country": "USA",
+        "state": "Mystate",
+        "city": "Mycity",
+        "postalCode": "1234",
+        "webSite": "",
+        "preferredMusic": [
+          "Rock",
+          "Pop"
+        ]
+      },
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "OPEN_SCREEN",
+          "code": "openScreenDetailsSmall(",
+          "parameters": [
+            "{\"id\":\"2\",\"typeID\":\"fri\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"friend\",\"firstname\":\"Ronald\",\"lastname\":\"Lee\",\"phone\":\"+1 453 2346\",\"mobile\":\"+1 456 1666\",\"street\":\"Long Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Rock\",\"Pop\"]}",
+            "ContactDTO"
+          ]
+        }
+      ]
+    },
+    {
+      "dtosToSet": [
+        "types"
+      ],
+      "variablesToSet": [
+        "detailsSmall_preferredMusicContentLabel_propertyText",
+        "detailsSmall_profileImageFileUpload_propertyVisible"
+      ],
+      "objectsToSetValue": [],
+      "variableValues": {
+        "detailsSmall_preferredMusicContentLabel_propertyText": "Rock, Pop",
+        "detailsSmall_profileImageFileUpload_propertyVisible": true
+      },
+      "dtoValues": {
+        "types": {
+          "items": [
+            {
+              "id": "col",
+              "label": "Colleague",
+              "imageAssetID": "colleague"
+            },
+            {
+              "id": "com",
+              "label": "Company",
+              "imageAssetID": "company"
+            },
+            {
+              "id": "fam",
+              "label": "Family",
+              "imageAssetID": "family"
+            },
+            {
+              "id": "fri",
+              "label": "Friend",
+              "imageAssetID": "friend"
+            }
+          ]
+        }
+      },
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {
+        "detailsSmall_typeSelectBox_selectedItem": "fri"
+      },
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "DEFAULT",
+          "code": "setProfileImageFileUploadVisible(true);",
+          "parameters": []
+        },
+        {
+          "actionType": "SET_DTO",
+          "code": "setTypesDTO(",
+          "parameters": [
+            "{\"items\":[{\"id\":\"col\",\"label\":\"Colleague\",\"imageAssetID\":\"colleague\"},{\"id\":\"com\",\"label\":\"Company\",\"imageAssetID\":\"company\"},{\"id\":\"fam\",\"label\":\"Family\",\"imageAssetID\":\"family\"},{\"id\":\"fri\",\"label\":\"Friend\",\"imageAssetID\":\"friend\"}]}",
+            "ContactTypeListDTO"
+          ]
+        },
+        {
+          "actionType": "DEFAULT",
+          "code": "setTypeSelectBoxSelectedID(\"fri\");",
+          "parameters": []
+        },
+        {
+          "actionType": "DEFAULT",
+          "code": "setPreferredMusicContentLabelText(\"Rock, Pop\");",
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "dtosToSet": [],
+      "variablesToSet": [],
+      "objectsToSetValue": [],
+      "variableValues": {},
+      "dtoValues": {},
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "listChooserParameters": {
+        "referenceID": "2",
+        "title": "Preferred Music",
+        "multiSelect": true,
+        "showIcons": true,
+        "okText": "OK",
+        "cancelText": "Cancel",
+        "showFilter": false,
+        "items": [
+          {
+            "id": "Classic",
+            "label": "Classic",
+            "imageAssetID": "music",
+            "selected": false
+          },
+          {
+            "id": "Jazz",
+            "label": "Jazz",
+            "imageAssetID": "music",
+            "selected": false
+          },
+          {
+            "id": "Rock",
+            "label": "Rock",
+            "imageAssetID": "music",
+            "selected": true
+          },
+          {
+            "id": "Pop",
+            "label": "Pop",
+            "imageAssetID": "music",
+            "selected": true
+          },
+          {
+            "id": "Electro",
+            "label": "Electro",
+            "imageAssetID": "music",
+            "selected": false
+          }
+        ]
+      },
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "SHOW_LIST_CHOOSER_IMGS",
+          "code": "showListChooser(\"2\", true, false, \"Preferred Music\", \"OK\", \"Cancel\", ",
+          "parameters": [
+            "{\"items\":[{\"id\":\"Classic\",\"label\":\"Classic\",\"imageAssetID\":\"music\"},{\"id\":\"Jazz\",\"label\":\"Jazz\",\"imageAssetID\":\"music\"},{\"id\":\"Rock\",\"label\":\"Rock\",\"imageAssetID\":\"music\"},{\"id\":\"Pop\",\"label\":\"Pop\",\"imageAssetID\":\"music\"},{\"id\":\"Electro\",\"label\":\"Electro\",\"imageAssetID\":\"music\"}]}",
+            [
+              "Rock",
+              "Pop"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "dtosToSet": [
+        "contact"
+      ],
+      "variablesToSet": [
+        "detailsSmall_preferredMusicContentLabel_propertyText"
+      ],
+      "objectsToSetValue": [],
+      "variableValues": {
+        "detailsSmall_preferredMusicContentLabel_propertyText": "Rock, Electro"
+      },
+      "dtoValues": {
+        "contact": {
+          "id": "2",
+          "typeID": "fri",
+          "profileImage": "default.png",
+          "typeImageAsset": "friend",
+          "firstname": "Ronald",
+          "lastname": "Lee",
+          "phone": "+1 453 2346",
+          "mobile": "+1 456 1666",
+          "street": "Long Street",
+          "country": "USA",
+          "state": "Mystate",
+          "city": "Mycity",
+          "postalCode": "1234",
+          "webSite": "",
+          "preferredMusic": [
+            "Rock",
+            "Electro"
+          ]
+        }
+      },
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "SET_DTO",
+          "code": "setContactDTO(",
+          "parameters": [
+            "{\"id\":\"2\",\"typeID\":\"fri\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"friend\",\"firstname\":\"Ronald\",\"lastname\":\"Lee\",\"phone\":\"+1 453 2346\",\"mobile\":\"+1 456 1666\",\"street\":\"Long Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Rock\",\"Electro\"]}",
+            "ContactDTO"
+          ]
+        },
+        {
+          "actionType": "DEFAULT",
+          "code": "setPreferredMusicContentLabelText(\"Rock, Electro\");",
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "dtosToSet": [],
+      "variablesToSet": [],
+      "objectsToSetValue": [],
+      "variableValues": {},
+      "dtoValues": {},
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "screenToOpen": "overviewSmall",
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "OPEN_SCREEN",
+          "code": "openScreenOverviewSmall(",
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "dtosToSet": [
+        "contacts"
+      ],
+      "variablesToSet": [],
+      "objectsToSetValue": [],
+      "variableValues": {},
+      "dtoValues": {
+        "contacts": {
+          "items": [
+            {
+              "id": "0",
+              "typeID": "fam",
+              "profileImage": "star.png",
+              "typeImageAsset": "family",
+              "firstname": "Mary",
+              "lastname": "Smith",
+              "phone": "+1 123 0000",
+              "mobile": "+1 456 1234",
+              "street": "My Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Classic",
+                "Jazz"
+              ]
+            },
+            {
+              "id": "1",
+              "typeID": "fam",
+              "profileImage": "triangle.png",
+              "typeImageAsset": "family",
+              "firstname": "Tom",
+              "lastname": "Smith",
+              "phone": "+1 123 0000",
+              "mobile": "+1 456 1222",
+              "street": "My Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Classic",
+                "Jazz"
+              ]
+            },
+            {
+              "id": "2",
+              "typeID": "fri",
+              "profileImage": "default.png",
+              "typeImageAsset": "friend",
+              "firstname": "Ronald",
+              "lastname": "Lee",
+              "phone": "+1 453 2346",
+              "mobile": "+1 456 1666",
+              "street": "Long Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "12345",
+              "webSite": "",
+              "preferredMusic": [
+                "Rock",
+                "Electro"
+              ]
+            },
+            {
+              "id": "3",
+              "typeID": "com",
+              "profileImage": "painted-globe.jpg",
+              "typeImageAsset": "company",
+              "firstname": "",
+              "lastname": "Wiki Corp",
+              "phone": "+1 300 34342",
+              "mobile": "+1 342 3554",
+              "street": "New Street",
+              "country": "Web-Land",
+              "state": "Web-State",
+              "city": "Webcity",
+              "postalCode": "1234",
+              "webSite": "http://www.wikipedia.org",
+              "preferredMusic": [
+                "Classic",
+                "Jazz"
+              ]
+            },
+            {
+              "id": "4",
+              "typeID": "col",
+              "profileImage": "default.png",
+              "typeImageAsset": "colleague",
+              "firstname": "John",
+              "lastname": "Miller",
+              "phone": "+1 300 1111",
+              "mobile": "+1 456 444",
+              "street": "Some Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Pop",
+                "Electro"
+              ]
+            },
+            {
+              "id": "5",
+              "typeID": "col",
+              "profileImage": "default.png",
+              "typeImageAsset": "colleague",
+              "firstname": "Robert",
+              "lastname": "Meyer",
+              "phone": "+1 300 2222",
+              "mobile": "+1 456 555",
+              "street": "New Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "3456",
+              "webSite": "",
+              "preferredMusic": [
+                "Pop",
+                "Electro"
+              ]
+            },
+            {
+              "id": "6",
+              "typeID": "fam",
+              "profileImage": "default.png",
+              "typeImageAsset": "family",
+              "firstname": "Bob",
+              "lastname": "Smith",
+              "phone": "+1 123 0000",
+              "mobile": "+1 456 1333",
+              "street": "My Street",
+              "country": "USA",
+              "state": "Mystate",
+              "city": "Mycity",
+              "postalCode": "1234",
+              "webSite": "",
+              "preferredMusic": [
+                "Pop",
+                "Electro"
+              ]
+            },
+            {
+              "id": "7",
+              "typeID": "col",
+              "profileImage": "",
+              "typeImageAsset": "colleague",
+              "firstname": "first1",
+              "lastname": "last1",
+              "phone": "phone1",
+              "mobile": "mobile1",
+              "street": "street1",
+              "country": "country1",
+              "state": "state1",
+              "city": "city1",
+              "postalCode": "postalCode1",
+              "webSite": "web site1"
+            }
+          ]
+        }
+      },
+      "objectSetValueValues": {},
+      "selectBoxSelectedIDs": {},
+      "markdownViewTexts": {},
+      "textHighlighting": {},
+      "cursorPosValues": {},
+      "contextAssists": {},
+      "currentLanguage": "DEFAULT",
+      "recordedActions": [
+        {
+          "actionType": "SET_DTO",
+          "code": "setContactsDTO(",
+          "parameters": [
+            "{\"items\":[{\"id\":\"0\",\"typeID\":\"fam\",\"profileImage\":\"star.png\",\"typeImageAsset\":\"family\",\"firstname\":\"Mary\",\"lastname\":\"Smith\",\"phone\":\"+1 123 0000\",\"mobile\":\"+1 456 1234\",\"street\":\"My Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Classic\",\"Jazz\"]},{\"id\":\"1\",\"typeID\":\"fam\",\"profileImage\":\"triangle.png\",\"typeImageAsset\":\"family\",\"firstname\":\"Tom\",\"lastname\":\"Smith\",\"phone\":\"+1 123 0000\",\"mobile\":\"+1 456 1222\",\"street\":\"My Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Classic\",\"Jazz\"]},{\"id\":\"2\",\"typeID\":\"fri\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"friend\",\"firstname\":\"Ronald\",\"lastname\":\"Lee\",\"phone\":\"+1 453 2346\",\"mobile\":\"+1 456 1666\",\"street\":\"Long Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"12345\",\"webSite\":\"\",\"preferredMusic\":[\"Rock\",\"Electro\"]},{\"id\":\"3\",\"typeID\":\"com\",\"profileImage\":\"painted-globe.jpg\",\"typeImageAsset\":\"company\",\"firstname\":\"\",\"lastname\":\"Wiki Corp\",\"phone\":\"+1 300 34342\",\"mobile\":\"+1 342 3554\",\"street\":\"New Street\",\"country\":\"Web-Land\",\"state\":\"Web-State\",\"city\":\"Webcity\",\"postalCode\":\"1234\",\"webSite\":\"http://www.wikipedia.org\",\"preferredMusic\":[\"Classic\",\"Jazz\"]},{\"id\":\"4\",\"typeID\":\"col\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"colleague\",\"firstname\":\"John\",\"lastname\":\"Miller\",\"phone\":\"+1 300 1111\",\"mobile\":\"+1 456 444\",\"street\":\"Some Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Pop\",\"Electro\"]},{\"id\":\"5\",\"typeID\":\"col\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"colleague\",\"firstname\":\"Robert\",\"lastname\":\"Meyer\",\"phone\":\"+1 300 2222\",\"mobile\":\"+1 456 555\",\"street\":\"New Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"3456\",\"webSite\":\"\",\"preferredMusic\":[\"Pop\",\"Electro\"]},{\"id\":\"6\",\"typeID\":\"fam\",\"profileImage\":\"default.png\",\"typeImageAsset\":\"family\",\"firstname\":\"Bob\",\"lastname\":\"Smith\",\"phone\":\"+1 123 0000\",\"mobile\":\"+1 456 1333\",\"street\":\"My Street\",\"country\":\"USA\",\"state\":\"Mystate\",\"city\":\"Mycity\",\"postalCode\":\"1234\",\"webSite\":\"\",\"preferredMusic\":[\"Pop\",\"Electro\"]},{\"id\":\"7\",\"typeID\":\"col\",\"profileImage\":\"\",\"typeImageAsset\":\"colleague\",\"firstname\":\"first1\",\"lastname\":\"last1\",\"phone\":\"phone1\",\"mobile\":\"mobile1\",\"street\":\"street1\",\"country\":\"country1\",\"state\":\"state1\",\"city\":\"city1\",\"postalCode\":\"postalCode1\",\"webSite\":\"web site1\"}]}",
+            "ContactListDTO"
+          ]
+        }
+      ]
+    }
+  ]
+}

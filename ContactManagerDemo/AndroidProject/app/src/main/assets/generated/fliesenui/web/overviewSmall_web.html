@@ -8,6 +8,20 @@
 		<link rel="stylesheet" href="cmlib/codemirror.css">
 		<link rel="stylesheet" href="cmlib/show-hint.css">
 		<link rel="stylesheet" href="lib/flui.css">
+		<script type="text/javascript">
+    console.log("Page loaded: " + new Date());
+    history.pushState(null, null, window.location.pathname);
+        window.addEventListener('popstate', function (e) {
+            history.pushState(null, null, window.location.pathname);
+    	       backButtonPressed();
+        }, false);
+
+    backButtonPressed = function(){
+        currentScreenID = "overviewSmall";
+        eval(currentScreenID + "$backButtonPressed();");
+        console.log("called funtion BackButtonPressed. currentScreenID = '" + currentScreenID + "'");
+    }
+</script>
 	</head>
 	<body ng-app="app" ng-controller="overviewSmall_Ctrl" id="screenOverviewSmallPanel" style="margin-left:20px;margin-right:20px">
 		<script src="lib/angular.min.js"></script>
@@ -16,6 +30,7 @@
 		<script src="lib/angular-messages.min.js"></script>
 		<script src="lib/angular-material.min.js"></script>
 		<script src="lib/showdown.min.js"></script>
+		<script src="lib/strings.js"></script>
 		<script src="cmlib/codemirror.js"></script>
 		<script src="cmlib/xml.js"></script>
 		<script src="cmlib/active-line.js"></script>
@@ -24,6 +39,7 @@
 		<script src="cmlib/matchtags.js"></script>
 		<script src="cmlib/xml-fold.js"></script>
 		<script src="cmlib/show-hint.js"></script>
+	    <script src="lib/flui-util.js"></script>
 		<script type="text/javascript">
             browserMode = "WebBrowser";
             htmlFileSuffix = "web";
@@ -42,6 +58,7 @@ var getClientProperties = function(){
     
     try{
         result.userAgent = navigator.userAgent;
+        result.language = navigator.language;
         if ("WebBrowser" == browserMode){
             result.screenAvailableWidthInPixels = window.screen.availWidth;
             result.screenAvailableHeightInPixels = window.screen.availHeight;
@@ -78,15 +95,37 @@ var getClientProperties = function(){
     }
     return JSON.stringify(result);
 }
+
+
+
+currentLanguage = "DEFAULT";
+
+getText = function(stringID){
+    var result = STRINGS[currentLanguage + ":" + stringID];
+    if (result === undefined){
+        result = STRINGS["DEFAULT:" + stringID];
+    }
+    return result;
+}
         </script>
 		<script src="overviewSmall_part1.js"></script>
 
 
 		        <div id="box1cm" style="width: 1cm; height: 1cm; position: absolute; left: -100%; top: -100%;"></div>
 <div layout="row" layout-wrap="" layout-align="space-between center">
-			<div flex="100">
+			<div flex="80">
 				<span>
-					<span ng-show="overviewSmall_info_propertyVisible" style="white-space: pre-wrap;">{{overviewSmall_info_propertyText}}</span>
+					<h1 ng-show="overviewSmall_info_propertyVisible" style="white-space: pre-wrap;">{{overviewSmall_info_propertyText}}</h1>
+				</span>
+			</div>
+			<div flex="20">
+				<span>
+					<md-button class="md-raised md-icon-button" ng-click="overviewSmall_widgetButtonLanguageEnglishButtonClicked();" ng-show="overviewSmall_languageEnglishButton_propertyVisible">
+						<img ng-src="img/{{overviewSmall_languageEnglishButton_propertyImageSource}}" width="30px" height="15px"/>
+					</md-button>
+					<md-button class="md-raised md-icon-button" ng-click="overviewSmall_widgetButtonLanguageGermanButtonClicked();" ng-show="overviewSmall_languageGermanButton_propertyVisible">
+						<img ng-src="img/{{overviewSmall_languageGermanButton_propertyImageSource}}" width="30px" height="15px"/>
+					</md-button>
 				</span>
 			</div>
 			<div flex="100">
@@ -99,7 +138,7 @@ var getClientProperties = function(){
 				<span>
 					<md-input-container class="md-block">
 						<label>{{overviewSmall_searchNameTextField_propertyLabel}}</label>
-						<input ng-model="overviewSmall_searchNameTextField_propertyText" style="width:99%;" ng-show="overviewSmall_searchNameTextField_propertyVisible"/>
+						<input ng-model="overviewSmall_searchNameTextField_propertyText" style="width:99%; {{overviewSmall_searchNameTextField_propertyBackgroundColor}}" ng-show="overviewSmall_searchNameTextField_propertyVisible"/>
 					</md-input-container>
 				</span>
 			</div>
@@ -112,12 +151,12 @@ var getClientProperties = function(){
 				<span>
 					<table style="width:100%">
 						<tr layout="row" layout-wrap="" style="background-color:#3f51b5; color:white">
-							<th style="width:90%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">Contact</th>
+							<th style="width:90%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">{{overviewSmall_contactsTableColumn0Text}}</th>
 						</tr>
 					</table>
 					<div style="width:100%; ">
 						<table style="width:100%">
-							<tr ng-repeat="i in contacts.items" ng-mouseleave="rowHover=false;rowBackgroundColor='white';" ng-mouseover="rowHover=true;rowBackgroundColor='#f3f3f3';" ng-click="overviewSmall_tableContactsTableRowClicked($index, $event)" style="border-color:#999999;border-bottom-style: solid;border-width: 1px; background-color:{{rowBackgroundColor}}" layout="row" layout-wrap="" ng-init="rowBackgroundColor='white';">
+							<tr ng-repeat="i in contacts.items | overviewSmall_tableContactsTableFilter:overviewSmall_contactsTableFilterText" ng-mouseleave="rowHover=false;rowBackgroundColor='white';" ng-mouseover="rowHover=true;rowBackgroundColor='#f3f3f3';" ng-click="overviewSmall_tableContactsTableRowClicked($index, $event)" style="border-color:#999999;border-bottom-style: solid;border-width: 1px; background-color:{{rowBackgroundColor}}" layout="row" layout-wrap="" ng-init="rowBackgroundColor='white';">
 								<td style="width:90%;word-wrap: break-word;min-height:60px; padding-left:15px; padding-top:15px;">
 									<img ng-src="img/{{imageAssetIDToName[i.typeImageAsset]}}" width="20px"/>
 									<span style="white-space: pre-wrap;">{{ i.firstname }}</span>

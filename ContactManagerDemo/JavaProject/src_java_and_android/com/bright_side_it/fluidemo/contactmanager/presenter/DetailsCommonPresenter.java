@@ -3,10 +3,14 @@ package com.bright_side_it.fluidemo.contactmanager.presenter;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.bright_side_it.fluidemo.contactmanager.dao.DummyDataDAO;
 
 import generated.fliesenui.core.FLUIClientPropertiesDTO;
+import generated.fliesenui.core.FLUIImageAssets.ImageAsset;
+import generated.fliesenui.core.IDLabelImageAssetList;
 import generated.fliesenui.dto.ContactDTO;
 import generated.fliesenui.screen.DetailsSharedReply;
 
@@ -27,6 +31,21 @@ public class DetailsCommonPresenter {
 		} else {
 			reply.setTypeSelectBoxSelectedID(null);
 		}
+		reply.setPreferredMusicContentLabelText(createMusicInfoText(contact.getPreferredMusic()));
+	}
+
+	private String createMusicInfoText(List<String> preferredMusic) {
+		if ((preferredMusic == null) || (preferredMusic.isEmpty())){
+			return "none";
+		}
+		String result = "";
+		for (String i: preferredMusic){
+			if (result.length() > 0) {
+				result += ", "; 
+			}
+			result += i;
+		}
+		return result;
 	}
 
 	public void onOpenWebSiteButtonClicked(DetailsSharedReply reply, ContactDTO contact) {
@@ -65,6 +84,25 @@ public class DetailsCommonPresenter {
 		//: update contact DTO with new profile image id
 		reply.setContactDTO(new DummyDataDAO().getContact(contact.getId()));
 		reply.setInfoToast("Profile image updated");
+	}
+
+	public void onSetPreferredMusicButtonClicked(DetailsSharedReply reply, ContactDTO contact) {
+		IDLabelImageAssetList items = new IDLabelImageAssetList();
+		for (String i: DummyDataDAO.PREFERRED_MUISC_TYPES){
+			items.addItem(i, i, ImageAsset.MUSIC);
+		}
+		reply.showListChooser(contact.getId(), true, false, "Preferred Music", items, contact.getPreferredMusic());
+	}
+
+	public void onListChooserResult(DetailsSharedReply reply, String referenceID, List<String> selectedIDs) {
+		if (selectedIDs == null){
+			//: dialog was cancelled
+			return;
+		}
+		ContactDTO contact = new DummyDataDAO().getContact(referenceID);
+		contact.setPreferredMusic(new ArrayList<String>(selectedIDs));
+		reply.setContactDTO(contact);
+		reply.setPreferredMusicContentLabelText(createMusicInfoText(contact.getPreferredMusic()));
 	}
 
 

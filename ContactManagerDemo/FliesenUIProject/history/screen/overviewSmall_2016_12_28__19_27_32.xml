@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen title="My Screen" >
+    <dto id="contacts" type="contactList" />
+    <dto id="selectedContact" type="contact" />
+	<container orientation="row">
+		<bar>
+			<cell size="100">
+				<label id="info" text="$contact_manager_demo_small" style="normal"/>
+            </cell>
+		</bar>
+		<bar>
+            <cell size="100">
+				<button id="newButton" text="$new_contact" primary="true"/>
+				<button id="exportButton" text="$export_data"/>
+			</cell>
+		</bar>
+		<bar>
+            <cell size="100">
+				<textField id="searchNameTextField" labelText="$search_name" text="" />
+			</cell>
+        </bar>
+        <bar>
+			<cell size="100">
+				<button id="searchButton" text="$search">
+                    <eventParameter value="searchNameTextField.text" />
+                </button>
+			</cell>
+		</bar>
+        <bar id="tableBar">
+            <cell size="100">
+                <table id="contactsTable" dto="contacts.items" idDTOField="id" style="normal">
+                    <column size="100" text="$contact">
+                        <tableImage imageAssetIDDTOField="typeImageAsset" imageWidth="20"/>
+                        <tableLabel textDTOField="firstname" />
+                        <tableLabel textDTOField="lastname" />
+                        <tableLabel textDTOField="mobile" />
+                    </column>
+                </table>
+            </cell>
+        </bar>
+        <bar id="selectedItemBar" visible="false">
+            <cell size="100">
+				<label id="actionItemInfo" text="selectedItem"  />
+            </cell>
+        </bar>
+        <bar id="itemActionBar" visible="false">
+        	<cell size="100">
+				<button id="editButton" text="$edit" primary="true">
+                    <eventParameter value="selectedContact" />
+                </button>
+                <button id="deleteButton" text="$delete">
+                    <eventParameter value="selectedContact" />
+                </button>
+                <button id="cancelButton" text="$cancel"/>
+			</cell>
+        </bar>
+    </container>
+</screen>

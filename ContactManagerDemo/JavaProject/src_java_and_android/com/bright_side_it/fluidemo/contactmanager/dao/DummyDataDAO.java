@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,12 @@ public class DummyDataDAO {
 	private static int lastID;
 	private static final String DEFAULT_PROFILE_IMAGE = "default.png";
 	private static ProjectImageReader projectImageReader = createDefaultProjectImageReader();
+	private static final String MUSIC_TYPE_CLASSIC = "Classic";
+	private static final String MUSIC_TYPE_JAZZ = "Jazz";
+	private static final String MUSIC_TYPE_ROCK = "Rock";
+	private static final String MUSIC_TYPE_POP = "Pop";
+	private static final String MUSIC_TYPE_ELECTRO = "Electro";
+	public static List<String> PREFERRED_MUISC_TYPES = Arrays.asList(MUSIC_TYPE_CLASSIC, MUSIC_TYPE_JAZZ, MUSIC_TYPE_ROCK, MUSIC_TYPE_POP, MUSIC_TYPE_ELECTRO);
 
 	public static void setProjectImageReader(ProjectImageReader projectImageReader){
 		DummyDataDAO.projectImageReader = projectImageReader;
@@ -59,13 +66,18 @@ public class DummyDataDAO {
 		Map<String, ContactDTO> result = new TreeMap<>();
 		
 		List<ContactDTO> contactList = new ArrayList<>();
-		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "fam", "star.png", null, "Mary", "Smith", "+1 123 0000", "+1 456 1234", "My Street", "USA", "Mystate", "Mycity", "1234", ""));
-		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "fam", "triangle.png", null, "Tom", "Smith", "+1 123 0000", "+1 456 1222", "My Street", "USA", "Mystate", "Mycity", "1234", ""));
-		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "fri", DEFAULT_PROFILE_IMAGE, null, "Ronald", "Lee", "+1 453 2346", "+1 456 1666", "Long Street", "USA", "Mystate", "Mycity", "1234", ""));
-		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "com", "painted-globe.jpg", null, "", "Wiki Corp", "+1 300 34342", "+1 342 3554", "New Street", "Web-Land", "Web-State", "Webcity", "1234", "http://www.wikipedia.org"));
-		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "col", DEFAULT_PROFILE_IMAGE, null, "John", "Miller", "+1 300 1111", "+1 456 444", "Some Street", "USA", "Mystate", "Mycity", "1234", ""));
-		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "col", DEFAULT_PROFILE_IMAGE, null, "Robert", "Meyer", "+1 300 2222", "+1 456 555", "New Street", "USA", "Mystate", "Mycity", "3456", ""));
-		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "fam", DEFAULT_PROFILE_IMAGE, null, "Bob", "Smith", "+1 123 0000", "+1 456 1333", "My Street", "USA", "Mystate", "Mycity", "1234", ""));
+		
+		List<String> classicAndJazz = Arrays.asList(MUSIC_TYPE_CLASSIC, MUSIC_TYPE_JAZZ);
+		List<String> popAndElectro = Arrays.asList(MUSIC_TYPE_POP, MUSIC_TYPE_ELECTRO);
+		List<String> rockAndPop = Arrays.asList(MUSIC_TYPE_ROCK, MUSIC_TYPE_POP);
+		
+		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "fam", "star.png", null, "Mary", "Smith", "+1 123 0000", "+1 456 1234", "My Street", "USA", "Mystate", "Mycity", "1234", "", classicAndJazz));
+		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "fam", "triangle.png", null, "Tom", "Smith", "+1 123 0000", "+1 456 1222", "My Street", "USA", "Mystate", "Mycity", "1234", "", classicAndJazz));
+		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "fri", DEFAULT_PROFILE_IMAGE, null, "Ronald", "Lee", "+1 453 2346", "+1 456 1666", "Long Street", "USA", "Mystate", "Mycity", "1234", "", rockAndPop));
+		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "com", "painted-globe.jpg", null, "", "Wiki Corp", "+1 300 34342", "+1 342 3554", "New Street", "Web-Land", "Web-State", "Webcity", "1234", "http://www.wikipedia.org", classicAndJazz));
+		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "col", DEFAULT_PROFILE_IMAGE, null, "John", "Miller", "+1 300 1111", "+1 456 444", "Some Street", "USA", "Mystate", "Mycity", "1234", "", popAndElectro));
+		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "col", DEFAULT_PROFILE_IMAGE, null, "Robert", "Meyer", "+1 300 2222", "+1 456 555", "New Street", "USA", "Mystate", "Mycity", "3456", "", popAndElectro));
+		contactList.add(ContactDTOBuilder.construct("" + (lastID ++), "fam", DEFAULT_PROFILE_IMAGE, null, "Bob", "Smith", "+1 123 0000", "+1 456 1333", "My Street", "USA", "Mystate", "Mycity", "1234", "", popAndElectro));
 		
 		for (ContactDTO i: contactList){
 			updateTypeImage(i);
@@ -154,9 +166,6 @@ public class DummyDataDAO {
 			}
 		};
 	}
-
-
-	
 
 	public void updateContactProfileImage(ContactDTO contact, byte[] byteArray) {
 		log("updateContactProfileImage");

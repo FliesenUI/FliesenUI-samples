@@ -1,6 +1,7 @@
 package com.bright_side_it.fluidemo.contactmanager.presenter;
 
 import java.io.InputStream;
+import java.util.List;
 
 import generated.fliesenui.core.FLUIClientPropertiesDTO;
 import generated.fliesenui.dto.ContactDTO;
@@ -55,6 +56,21 @@ public class DetailsLargePresenter implements DetailsLargeListener {
 	@Override
 	public void onProfileImageFileUploadFileUploadFinished(DetailsLargeReply reply, ContactDTO contact) {
 		commonPresenter.onProfileImageFileUploadFileUploadFinished(reply, contact);
+	}
+
+	@Override
+	public void onBackPressed(DetailsLargeReply reply) {
+		reply.openScreenOverviewLarge();
+	}
+
+	@Override
+	public void onListChooserResult(DetailsLargeReply reply, String referenceID, List<String> selectedIDs) {
+		commonPresenter.onListChooserResult(reply, referenceID, selectedIDs);
+	}
+
+	@Override
+	public void onSetPreferredMusicButtonClicked(DetailsLargeReply reply, ContactDTO contact) {
+		commonPresenter.onSetPreferredMusicButtonClicked(reply, contact);
 	}
 
 }

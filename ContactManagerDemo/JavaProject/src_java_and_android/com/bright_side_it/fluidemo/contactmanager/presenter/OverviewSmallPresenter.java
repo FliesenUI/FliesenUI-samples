@@ -1,10 +1,14 @@
 package com.bright_side_it.fluidemo.contactmanager.presenter;
 
+import java.util.List;
+
 import com.bright_side_it.fluidemo.contactmanager.ContactManagerConstants;
 import com.bright_side_it.fluidemo.contactmanager.dao.DummyDataDAO;
 
 import generated.fliesenui.core.FLUIClientPropertiesDTO;
+import generated.fliesenui.core.FLUIString.StringLanguage;
 import generated.fliesenui.dto.ContactDTO;
+import generated.fliesenui.screen.OverviewLargeReply;
 import generated.fliesenui.screen.OverviewSmallListener;
 import generated.fliesenui.screen.OverviewSmallReply;
 
@@ -76,5 +80,22 @@ public class OverviewSmallPresenter implements OverviewSmallListener {
 		reply.setItemActionBarVisible(false);
 		reply.setSelectedItemBarVisible(false);
 	}
+
+	@Override
+	public void onListChooserResult(OverviewSmallReply reply, String referenceID, List<String> selectedIDs) {
+	}
+	
+	@Override
+	public void onLanguageEnglishButtonClicked(OverviewSmallReply reply) {
+		reply.setLanguage(StringLanguage.DEFAULT);
+		reply.openScreenOverviewSmall();
+	}
+
+	@Override
+	public void onLanguageGermanButtonClicked(OverviewSmallReply reply) {
+		reply.setLanguage(StringLanguage.DE);
+		reply.openScreenOverviewSmall();
+	}
+
 
 }

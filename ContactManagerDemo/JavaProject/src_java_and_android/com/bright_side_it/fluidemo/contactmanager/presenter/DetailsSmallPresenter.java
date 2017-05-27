@@ -1,6 +1,7 @@
 package com.bright_side_it.fluidemo.contactmanager.presenter;
 
 import java.io.InputStream;
+import java.util.List;
 
 import generated.fliesenui.core.FLUIClientPropertiesDTO;
 import generated.fliesenui.dto.ContactDTO;
@@ -55,6 +56,21 @@ public class DetailsSmallPresenter implements DetailsSmallListener {
 	@Override
 	public void onProfileImageFileUploadFileUploadFinished(DetailsSmallReply reply, ContactDTO contact) {
 		commonPresenter.onProfileImageFileUploadFileUploadFinished(reply, contact);
+	}
+
+	@Override
+	public void onBackPressed(DetailsSmallReply reply) {
+		reply.openScreenOverviewSmall();
+	}
+
+	@Override
+	public void onListChooserResult(DetailsSmallReply reply, String referenceID, List<String> selectedIDs) {
+		commonPresenter.onListChooserResult(reply, referenceID, selectedIDs);
+	}
+
+	@Override
+	public void onSetPreferredMusicButtonClicked(DetailsSmallReply reply, ContactDTO contact) {
+		commonPresenter.onSetPreferredMusicButtonClicked(reply, contact);
 	}
 
 }

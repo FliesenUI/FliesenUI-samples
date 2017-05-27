@@ -2,6 +2,7 @@
 <screen title="My Screen" parameterDTO="contact">
     <dto id="types" type="contactTypeList"/>
     <dto id="contact" type="contact" />
+    <listenToBackAction />
 	<container orientation="row">
 		<bar>
 			<cell size="100">
@@ -76,6 +77,19 @@
 			</cell>
 			<cell size="20">
                 <button id="openWebSiteButton" text="open">
+                    <eventParameter value="contact" />
+                </button>
+			</cell>
+		</bar>
+        <bar>
+			<cell size="20">
+				<label id="preferredMusicTitleLabel" text="Preferred Music:" />
+			</cell>
+			<cell size="60">
+				<label id="preferredMusicContentLabel" text="preferred music" />
+			</cell>
+			<cell size="20">
+                <button id="setPreferredMusicButton" text="Choose">
                     <eventParameter value="contact" />
                 </button>
 			</cell>

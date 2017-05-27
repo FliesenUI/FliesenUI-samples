@@ -8,13 +8,18 @@ import com.bright_side_it.fluidemoandroid.contactmanager.AndroidContactManagerBa
 import generated.fliesenui.core.FLUIAndroidWebView;
 
 public class AndroidAppActivity extends AppCompatActivity {
+	private FLUIAndroidWebView webView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		FLUIAndroidWebView webView = new FLUIAndroidWebView(this);
+		webView = new FLUIAndroidWebView(this);
 		webView.onCreate(this, new AndroidContactManagerBase().createScreenManager(this, true, true));
 		AndroidContactManagerBase.initDummyDataDAO(this);
 		setContentView(webView);
 	}
 
+	@Override
+	public void onBackPressed() {
+		webView.fireEventOnBackPressed();
+	}
 }

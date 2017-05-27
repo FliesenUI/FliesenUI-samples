@@ -1,7 +1,9 @@
 package generated.fliesenui.dto;
 
+import java.util.List;
+
 public class ContactDTOBuilder {
-    public static ContactDTO construct(String id, String typeID, String profileImage, String typeImageAsset, String firstname, String lastname, String phone, String mobile, String street, String country, String state, String city, String postalCode, String webSite){
+    public static ContactDTO construct(String id, String typeID, String profileImage, String typeImageAsset, String firstname, String lastname, String phone, String mobile, String street, String country, String state, String city, String postalCode, String webSite, List<String> preferredMusic){
         ContactDTO result = new ContactDTO();
         result.setId(id);
         result.setTypeID(typeID);
@@ -17,6 +19,7 @@ public class ContactDTOBuilder {
         result.setCity(city);
         result.setPostalCode(postalCode);
         result.setWebSite(webSite);
+        result.setPreferredMusic(preferredMusic);
         return result;
     }
 }

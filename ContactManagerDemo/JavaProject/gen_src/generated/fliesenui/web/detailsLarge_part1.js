@@ -90,9 +90,141 @@ app.controller("detailsLarge_Ctrl", function($scope, $mdToast, $mdDialog, $http)
         });
     };
 
+    $scope.showListChooser = function(parameter){
+    	$scope.listChooserReferenceID = parameter.referenceID;
+    	$scope.listChooserTitle = parameter.title;
+    	$scope.listChooserMultiselect = parameter.multiSelect;
+    	$scope.listChooserShowIcons = parameter.showIcons;
+    	$scope.listChooserOKText = parameter.okText;
+    	$scope.listChooserCancelText = parameter.cancelText;
+    	$scope.listChooserItems = parameter.items;
+    	$scope.listChooserShowFilter = parameter.showFilter;
+        $scope.listChooserFilter = "";
+    	
+        $mdDialog.show({
+            controller: ListChooserDialogController,
+            parent: angular.element(document.body),
+            scope: $scope,
+            preserveScope: true, 
+            clickOutsideToClose:true,
+            template:
+			     '<md-dialog aria-label="{{listChooserTitle}}" style="width: 80%;height: 80%;">'
+               + '  <form ng-cloak>'
+               + '    <md-toolbar>'
+               + '      <div class="md-toolbar-tools">'
+               + '        <h2>{{listChooserTitle}}</h2>'
+               + '      </div>'
+               + '    </md-toolbar>'
+               + '    <md-dialog-content>'
+               + '      <div class="md-dialog-content">'
+               + '	    <span ng-show="listChooserShowFilter" > '
+               + '			<md-input-container class="md-block" flex-gt-sm>'
+               + '				<label>Search</label>'
+               + '				<input ng-model="listChooserFilter" style="width:99%">'
+               + '			  </md-input-container>'
+               + '		</span>'
+               + '		<table style="width:100%; overflow-y: scroll;">'
+               + '			<tr ng-repeat="i in listChooserItems | filter : {\'label\' : listChooserFilter}" '
+               + '			    ng-click="listChooser_rowClicked($event, i.id, i)" '
+               + '			    style="border-color:#999999;border-bottom-style: solid;border-width: 1px; background-color:{{rowBackgroundColor}}" '
+               + '			    layout="row" '
+               + '			    layout-wrap="" '
+               + '			    ng-init="rowBackgroundColor=\'white\';" '
+               + '			    ng-mouseleave="rowHover=false;rowBackgroundColor=\'white\';"'
+               + '			    ng-mouseover="rowHover=true;rowBackgroundColor=\'#f3f3f3\';">'
+               + '			    <td ng-if="listChooserMultiselect && i.selected"  style="min-height:60px; padding-left:15px; padding-top:15px;"><img src="img/_checkbox_checked.png"   width="20"/></td>'
+               + '			    <td ng-if="listChooserMultiselect && !i.selected" style="min-height:60px; padding-left:15px; padding-top:15px;"><img src="img/_checkbox_unchecked.png" width="20"/></td>'
+               + '			    <td ng-if="listChooserShowIcons" style="min-height:60px; padding-left:15px; padding-top:15px;"><img ng-src="img/{{imageAssetIDToName[i.imageAssetID]}}" width="40px" height="40px"/></td>'
+               + '				<td style="word-wrap: break-word;min-height:60px; padding-left:15px; padding-top:15px;">{{i.label}}</td>'
+               + '			</tr>'
+               + '		</table>'
+               + '      </div>'
+               + '    </md-dialog-content>'
+               + ''
+               + '    <md-dialog-actions layout="row">'
+               + '      <span flex></span>'
+               + '      <md-button ng-click="cancel();">'
+               + '       {{listChooserCancelText}}'
+               + '      </md-button>'
+               + '      <md-button ng-click="listChooser_okClicked();hide();" ng-visible="listChooserMultiselect">'
+               + '        {{listChooserOKText}}'
+               + '      </md-button>'
+               + '    </md-dialog-actions>'
+               + '  </form>'
+               + '</md-dialog>'
+        })
+        .then(function(answer) {
+        }, function() {
+              $scope.listChooser_cancelled();
+        });
+    }
+      
+    function ListChooserDialogController($scope, $mdDialog) {
+        $scope.hide = function() {
+    	    $mdDialog.hide();
+    	};
+    	$scope.cancel = function() {
+    	    $mdDialog.cancel();
+    	};
+        $scope.answer = function(answer) {
+    	    $mdDialog.hide(answer);
+    	};
+    	    
+    	$scope.listChooser_rowClicked = function (event, itemID, item) {
+    	    if (!event.defaultPrevented) {
+    	        console.log("clicked row with itemID = " + itemID + ", old selected = " + item.selected);
+                if ($scope.listChooserMultiselect){
+    	            item.selected = !item.selected;
+    	        	console.log("new selected = " + item.selected);
+    	        } else if (!$scope.listChooserMultiselect){
+    	            //:clear old selection
+    	        	for (i = 0; i < $scope.listChooserItems.length; i++){
+    	        	    $scope.listChooserItems[i].selected = false;
+    	            }
+    	            //: select item
+        	        item.selected = !item.selected;
+        	        	  
+        	        $scope.listChooser_okClicked();        		  
+    	        	$mdDialog.hide("");
+    	        }
+    	    }
+        };
+    } 
+      
+    $scope.listChooser_okClicked = function () {
+        console.log("clicked ok");
+        var selectedIDs = [];
+	       for (i = 0; i < $scope.listChooserItems.length; i++){
+            var item = $scope.listChooserItems[i];
+            if (item.selected){
+//			    console.log("selected id: " + item.id);
+            selectedIDs.push(item.id);
+            }
+        }
+        console.log("selected ids: " + selectedIDs);
+        var request = detailsLarge$createRequest("onListChooserResult");
+        request.parameters["referenceID"] = $scope.listChooserReferenceID;
+        request.parameters["selectedIDs"] = selectedIDs;
+        detailsLarge$executeRequest(request);
+    }
+
+    $scope.listChooser_cancelled = function () {
+	    console.log("list chooser: cancelled");
+        var request = detailsLarge$createRequest("onListChooserResult");
+        request.parameters["referenceID"] = $scope.listChooserReferenceID;
+        request.parameters["selectedIDs"] = null;
+        detailsLarge$executeRequest(request);
+    }
+      
 
     $scope.detailsLarge_widgetButtonOpenWebSiteButtonClicked = function () {
         var request = detailsLarge$createRequest("widgetButtonOpenWebSiteButtonClicked");
+        request.parameters["contact"] = detailsLarge$getContact_dto();
+        detailsLarge$executeRequest(request);
+    }
+
+    $scope.detailsLarge_widgetButtonSetPreferredMusicButtonClicked = function () {
+        var request = detailsLarge$createRequest("widgetButtonSetPreferredMusicButtonClicked");
         request.parameters["contact"] = detailsLarge$getContact_dto();
         detailsLarge$executeRequest(request);
     }
@@ -168,39 +300,55 @@ var detailsLarge$setInitialValues = function(){
     scope.detailsLarge_null_propertyVisible = true;
     scope.detailsLarge_firstnameTextField_propertyText = "first";
     scope.detailsLarge_firstnameTextField_propertyLabel = "Firstname:";
+    scope.detailsLarge_firstnameTextField_propertyBackgroundColor = "";
     scope.detailsLarge_firstnameTextField_propertyVisible = true;
     scope.detailsLarge_lastnameTextField_propertyText = "last";
     scope.detailsLarge_lastnameTextField_propertyLabel = "Firstname:";
+    scope.detailsLarge_lastnameTextField_propertyBackgroundColor = "";
     scope.detailsLarge_lastnameTextField_propertyVisible = true;
     scope.detailsLarge_profileImageFileUpload_propertyText = "Upload profile image";
     scope.detailsLarge_profileImageFileUpload_propertyVisible = false;
     scope.detailsLarge_profileImage_propertyVisible = true;
     scope.detailsLarge_phoneTextField_propertyText = "phone";
     scope.detailsLarge_phoneTextField_propertyLabel = "Phone:";
+    scope.detailsLarge_phoneTextField_propertyBackgroundColor = "";
     scope.detailsLarge_phoneTextField_propertyVisible = true;
     scope.detailsLarge_mobileTextField_propertyText = "mobile";
     scope.detailsLarge_mobileTextField_propertyLabel = "Mobile:";
+    scope.detailsLarge_mobileTextField_propertyBackgroundColor = "";
     scope.detailsLarge_mobileTextField_propertyVisible = true;
     scope.detailsLarge_streetTextField_propertyText = "street";
     scope.detailsLarge_streetTextField_propertyLabel = "Street:";
+    scope.detailsLarge_streetTextField_propertyBackgroundColor = "";
     scope.detailsLarge_streetTextField_propertyVisible = true;
     scope.detailsLarge_cityTextField_propertyText = "city";
     scope.detailsLarge_cityTextField_propertyLabel = "City:";
+    scope.detailsLarge_cityTextField_propertyBackgroundColor = "";
     scope.detailsLarge_cityTextField_propertyVisible = true;
     scope.detailsLarge_postalCodeTextField_propertyText = "postalCode";
     scope.detailsLarge_postalCodeTextField_propertyLabel = "Postal Code:";
+    scope.detailsLarge_postalCodeTextField_propertyBackgroundColor = "";
     scope.detailsLarge_postalCodeTextField_propertyVisible = true;
     scope.detailsLarge_countryTextField_propertyText = "country";
     scope.detailsLarge_countryTextField_propertyLabel = "Country:";
+    scope.detailsLarge_countryTextField_propertyBackgroundColor = "";
     scope.detailsLarge_countryTextField_propertyVisible = true;
     scope.detailsLarge_stateTextField_propertyText = "state";
     scope.detailsLarge_stateTextField_propertyLabel = "State:";
+    scope.detailsLarge_stateTextField_propertyBackgroundColor = "";
     scope.detailsLarge_stateTextField_propertyVisible = true;
     scope.detailsLarge_webSiteTextField_propertyText = "web site";
     scope.detailsLarge_webSiteTextField_propertyLabel = "Web Site:";
+    scope.detailsLarge_webSiteTextField_propertyBackgroundColor = "";
     scope.detailsLarge_webSiteTextField_propertyVisible = true;
     scope.detailsLarge_openWebSiteButton_propertyText = "open";
     scope.detailsLarge_openWebSiteButton_propertyVisible = true;
+    scope.detailsLarge_preferredMusicTitleLabel_propertyText = "Preferred Music:";
+    scope.detailsLarge_preferredMusicTitleLabel_propertyVisible = true;
+    scope.detailsLarge_preferredMusicContentLabel_propertyText = "preferred music";
+    scope.detailsLarge_preferredMusicContentLabel_propertyVisible = true;
+    scope.detailsLarge_setPreferredMusicButton_propertyText = "Choose";
+    scope.detailsLarge_setPreferredMusicButton_propertyVisible = true;
     scope.detailsLarge_saveButton_propertyText = "save";
     scope.detailsLarge_saveButton_propertyVisible = true;
     scope.detailsLarge_cancelButton_propertyText = "cancel";
@@ -214,6 +362,9 @@ var detailsLarge$createImageAssetIDToNameMap = function(){
     result["company"] = "company.svg";
     result["family"] = "family.svg";
     result["friend"] = "friend.svg";
+    result["languageDE"] = "languageDE.png";
+    result["languageEN"] = "languageEN.svg";
+    result["music"] = "music.png";
     return result;
 }
 
@@ -260,6 +411,7 @@ detailsLarge$executeOnLoadWhenControllerIsReady = function(){
 detailsLarge$createRequest = function(actionName){
     request = new Object();
     request.action = actionName;
+    request.currentLanguage = currentLanguage;
     request.screenID = "detailsLarge";
     request.parameters = new Object();
     return request;
@@ -424,6 +576,30 @@ detailsLarge$getWebSiteTextField_widgetText = function(){
 };
 
 
+detailsLarge$setPreferredMusicTitleLabel_widgetText = function(text){
+    var scope = angular.element(document.getElementById('screenDetailsLargePanel')).scope();
+    scope.$apply(function(){
+        scope.detailsLarge_preferredMusicTitleLabel_propertyText = text;
+    });
+};
+detailsLarge$getPreferredMusicTitleLabel_widgetText = function(){
+    var scope = angular.element(document.getElementById('screenDetailsLargePanel')).scope();
+    return scope.detailsLarge_preferredMusicTitleLabel_propertyText;
+};
+
+
+detailsLarge$setPreferredMusicContentLabel_widgetText = function(text){
+    var scope = angular.element(document.getElementById('screenDetailsLargePanel')).scope();
+    scope.$apply(function(){
+        scope.detailsLarge_preferredMusicContentLabel_propertyText = text;
+    });
+};
+detailsLarge$getPreferredMusicContentLabel_widgetText = function(){
+    var scope = angular.element(document.getElementById('screenDetailsLargePanel')).scope();
+    return scope.detailsLarge_preferredMusicContentLabel_propertyText;
+};
+
+
 
 detailsLarge$setContact_dto = function(jsonString){
     var paramObject = JSON.parse(jsonString);
@@ -492,6 +668,17 @@ detailsLarge$initDTOTypeContactForPreview = function(index){
     result.city = "Mycity" + "(" + index + ")";
     result.postalCode = "1234" + "(" + index + ")";
     result.webSite = "http://www.wikipedia.com" + "(" + index + ")";
+    result.preferredMusic = [];
+    result.preferredMusic[0] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[1] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[2] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[3] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[4] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[5] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[6] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[7] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[8] = "(preview string preferredMusic)" + "(" + index + ")";
+    result.preferredMusic[9] = "(preview string preferredMusic)" + "(" + index + ")";
     return result;
 };
 detailsLarge$initDTOTypeContactListForPreview = function(index){
@@ -614,8 +801,21 @@ var detailsLarge$openScreenMultiPageApp = function(screenToOpen, openParameter){
     window.open(screenToOpenURL, "_self");
 }
 
+detailsLarge$backButtonPressed = function(){
+    console.log("Screen detailsLarge: Back pressed.");
+    var $scope = angular.element(document.getElementById('screenDetailsLargePanel')).scope();
+    var request = detailsLarge$createRequest("onBackPressed");
+    detailsLarge$executeRequest(request);
+};
+
+detailsLarge$updateViews = function(){
+};
+
 detailsLarge$processReply = function(jsonString){
     var reply = JSON.parse(jsonString);
+    if (typeof reply.languageToSet != "undefined") {
+        currentLanguage = reply.languageToSet;
+    }
     var scope = angular.element(document.getElementById('screenDetailsLargePanel')).scope();
     for (i = 0, len = reply.dtosToSet.length; i < len; i++) {
         var dtoValue = reply.dtoValues[reply.dtosToSet[i]];
@@ -691,6 +891,13 @@ detailsLarge$processReply = function(jsonString){
         this[textEditorName].showHint({hint:function(){return hintValue;}});
     }
 
+    for (key in reply.tableCheckedRowIDs){
+        scope[key] = new Object();
+        for (i in reply.tableCheckedRowIDs[key]){
+            scope[key][reply.tableCheckedRowIDs[key][i]] = true;
+        }
+    }
+
     var screenToOpen = reply.screenToOpen;
     if (typeof screenToOpen != "undefined") {
         detailsLarge$openScreen(screenToOpen, reply.openParameter);
@@ -726,6 +933,9 @@ detailsLarge$processReply = function(jsonString){
     if (typeof confirmDialogParameters != "undefined") {
         scope.showConfirm(confirmDialogParameters.referenceID, confirmDialogParameters.title, confirmDialogParameters.textContent, confirmDialogParameters.okText, confirmDialogParameters.cancelText);
     }
-    setTimeout(function() {scope.$digest();}, 0);
+    if (typeof reply.listChooserParameters != "undefined") {
+        scope.showListChooser(reply.listChooserParameters);
+    }
+    setTimeout(function() {scope.$digest();detailsLarge$updateViews();}, 0);
 
 };
