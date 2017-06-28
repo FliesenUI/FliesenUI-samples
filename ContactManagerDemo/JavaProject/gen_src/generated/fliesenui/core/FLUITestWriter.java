@@ -14,8 +14,10 @@ import java.io.OutputStream;
 
 import generated.fliesenui.dto.ContactDTO;
 import generated.fliesenui.dto.ContactListDTO;
+import generated.fliesenui.dto.ContactListListDTO;
 import generated.fliesenui.dto.ContactTypeDTO;
 import generated.fliesenui.dto.ContactTypeListDTO;
+import generated.fliesenui.dto.ContactTypeListListDTO;
 
 public class FLUITestWriter{
     private int dtoIndex = 0;
@@ -109,6 +111,27 @@ public class FLUITestWriter{
          return result;
     }
 
+    public StringBuilder createSetDTOContactListListDTO(String indent, String prefix, int loopDepth, String currentDTOName, ContactListListDTO dto){
+         StringBuilder result = new StringBuilder();
+         String dtoName;
+         String listName;
+         listName = "list" + getNextListIndex();
+         result.append("\n");
+         if (dto.getItems() != null){
+             result.append(indent + "List<ContactListDTO> " + listName + " = new ArrayList<ContactListDTO>();\n");
+             result.append(indent + prefix + ".setItems(" + listName + ");\n");
+             for (ContactListDTO i : dto.getItems()){
+                 dtoName = "dto" + getNextDTOIndex();
+                 result.append("\n");                 result.append(indent + "ContactListDTO " + dtoName + " = new ContactListDTO();\n");
+                 result.append(indent + listName + ".add(" + dtoName + ");\n");
+                 result.append(createSetDTOContactListDTO(indent, dtoName, loopDepth + 1, dtoName, i));
+                 result.append("\n");             }
+         } else {
+             result.append(indent + prefix + ".setItems(null);\n");
+         }
+         return result;
+    }
+
     public StringBuilder createSetDTOContactTypeDTO(String indent, String prefix, int loopDepth, String currentDTOName, ContactTypeDTO dto){
          StringBuilder result = new StringBuilder();
          String dtoName;
@@ -140,15 +163,40 @@ public class FLUITestWriter{
          return result;
     }
 
+    public StringBuilder createSetDTOContactTypeListListDTO(String indent, String prefix, int loopDepth, String currentDTOName, ContactTypeListListDTO dto){
+         StringBuilder result = new StringBuilder();
+         String dtoName;
+         String listName;
+         listName = "list" + getNextListIndex();
+         result.append("\n");
+         if (dto.getItems() != null){
+             result.append(indent + "List<ContactTypeListDTO> " + listName + " = new ArrayList<ContactTypeListDTO>();\n");
+             result.append(indent + prefix + ".setItems(" + listName + ");\n");
+             for (ContactTypeListDTO i : dto.getItems()){
+                 dtoName = "dto" + getNextDTOIndex();
+                 result.append("\n");                 result.append(indent + "ContactTypeListDTO " + dtoName + " = new ContactTypeListDTO();\n");
+                 result.append(indent + listName + ".add(" + dtoName + ");\n");
+                 result.append(createSetDTOContactTypeListDTO(indent, dtoName, loopDepth + 1, dtoName, i));
+                 result.append("\n");             }
+         } else {
+             result.append(indent + prefix + ".setItems(null);\n");
+         }
+         return result;
+    }
+
     public StringBuilder createSetDTOObjectCode(String indent, String prefix, int loopDepth, String currentDTOName, Object dto, String className){
         if (className.equals("ContactDTO")){
             return createSetDTOContactDTO(indent, prefix, loopDepth, currentDTOName, (ContactDTO) dto);
         } else if (className.equals("ContactListDTO")){
             return createSetDTOContactListDTO(indent, prefix, loopDepth, currentDTOName, (ContactListDTO) dto);
+        } else if (className.equals("ContactListListDTO")){
+            return createSetDTOContactListListDTO(indent, prefix, loopDepth, currentDTOName, (ContactListListDTO) dto);
         } else if (className.equals("ContactTypeDTO")){
             return createSetDTOContactTypeDTO(indent, prefix, loopDepth, currentDTOName, (ContactTypeDTO) dto);
         } else if (className.equals("ContactTypeListDTO")){
             return createSetDTOContactTypeListDTO(indent, prefix, loopDepth, currentDTOName, (ContactTypeListDTO) dto);
+        } else if (className.equals("ContactTypeListListDTO")){
+            return createSetDTOContactTypeListListDTO(indent, prefix, loopDepth, currentDTOName, (ContactTypeListListDTO) dto);
         }
         return null;
     }
@@ -157,10 +205,14 @@ public class FLUITestWriter{
             return new ContactDTO();
         } else if (className.equals("ContactListDTO")){
             return new ContactListDTO();
+        } else if (className.equals("ContactListListDTO")){
+            return new ContactListListDTO();
         } else if (className.equals("ContactTypeDTO")){
             return new ContactTypeDTO();
         } else if (className.equals("ContactTypeListDTO")){
             return new ContactTypeListDTO();
+        } else if (className.equals("ContactTypeListListDTO")){
+            return new ContactTypeListListDTO();
         }
         return null;
     }
@@ -722,8 +774,10 @@ public class FLUITestWriter{
         StringBuilder result = new StringBuilder();
         result.append("import generated.fliesenui.dto.ContactDTO;\n");
         result.append("import generated.fliesenui.dto.ContactListDTO;\n");
+        result.append("import generated.fliesenui.dto.ContactListListDTO;\n");
         result.append("import generated.fliesenui.dto.ContactTypeDTO;\n");
         result.append("import generated.fliesenui.dto.ContactTypeListDTO;\n");
+        result.append("import generated.fliesenui.dto.ContactTypeListListDTO;\n");
         result.append("import generated.fliesenui.screen.DetailsLargeRequest;\n");
         result.append("import generated.fliesenui.screen.DetailsLargeReply;\n");
         result.append("import generated.fliesenui.screen.DetailsSmallRequest;\n");

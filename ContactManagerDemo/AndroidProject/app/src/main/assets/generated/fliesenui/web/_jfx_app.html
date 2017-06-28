@@ -27,6 +27,7 @@
         <script src="lib/angular-aria.min.js"></script>
         <script src="lib/angular-messages.min.js"></script>
         <script src="lib/angular-material.min.js"></script>
+        <script src="lib/angular-sanitize.min.js"></script>
         <script src="lib/showdown.min.js"></script>
         <script src="lib/strings.js"></script>
         <script src="cmlib/codemirror.js"></script>
@@ -42,7 +43,7 @@
             browserMode = "JavaFX";
             htmlFileSuffix = "jfx";
             singlePageApp = true;
-            var app = angular.module('app', ['ngMaterial']).config(function($mdThemingProvider) {
+            var app = angular.module('app', ['ngMaterial', 'ngSanitize']).config(function($mdThemingProvider) {
                 $mdThemingProvider.theme('default')
                     .primaryPalette('light-blue')
                     .accentPalette('blue-grey')
@@ -69,6 +70,10 @@
                 scope.$apply(function(){
                     scope.visible = false;
                 });
+            
+                //: scroll to top
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
             
                 //: set initial values
                 if (screenToOpen == 'detailsLarge') {
@@ -223,7 +228,7 @@
         <div ng-controller="detailsLarge_Ctrl" id="screenDetailsLargePanel" style="position:absolute;width: 98%;margin-left:20px;margin-right:20px;" ng-show="visible" ng-cloak="">
             <!-- ######################## Beginning: HTML code of Screen 'detailsLarge' ################################# -->
             <script src="detailsLarge_part1.js"></script>
-            <div layout="row" layout-wrap="" layout-align="space-between center">
+            <div layout-wrap="" layout-align="space-between center" layout="row">
         			<div flex="100">
         				<span>
         					<h1 ng-show="detailsLarge_info_propertyVisible" style="white-space: pre-wrap;">{{detailsLarge_info_propertyText}}</h1>
@@ -372,7 +377,7 @@
         <div ng-controller="detailsSmall_Ctrl" id="screenDetailsSmallPanel" style="position:absolute;width: 98%;margin-left:20px;margin-right:20px;" ng-show="visible" ng-cloak="">
             <!-- ######################## Beginning: HTML code of Screen 'detailsSmall' ################################# -->
             <script src="detailsSmall_part1.js"></script>
-            <div layout="row" layout-wrap="" layout-align="space-between center">
+            <div layout-wrap="" layout-align="space-between center" layout="row">
         			<div flex="100">
         				<span>
         					<span ng-show="detailsSmall_info_propertyVisible" style="white-space: pre-wrap;">{{detailsSmall_info_propertyText}}</span>
@@ -511,7 +516,7 @@
         <div ng-controller="overviewLarge_Ctrl" id="screenOverviewLargePanel" style="position:absolute;width: 98%;margin-left:20px;margin-right:20px;" ng-show="visible" ng-cloak="">
             <!-- ######################## Beginning: HTML code of Screen 'overviewLarge' ################################# -->
             <script src="overviewLarge_part1.js"></script>
-            <div layout="row" layout-wrap="" layout-align="space-between center">
+            <div layout-wrap="" layout-align="space-between center" layout="row">
         			<div flex="80">
         				<span>
         					<h1 ng-show="overviewLarge_info_propertyVisible" style="white-space: pre-wrap;">{{overviewLarge_info_propertyText}}</h1>
@@ -549,7 +554,7 @@
         			<div flex="100">
         				<span>
         					<table style="width:100%">
-        						<tr layout="row" layout-wrap="" style="background-color:#3f51b5; color:white">
+        						<tr layout="row" layout-wrap="" style="background-color:#03a9f4; color:white">
         							<th style="width:9%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">{{overviewLarge_contactsTableColumn0Text}}</th>
         							<th style="width:18%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">{{overviewLarge_contactsTableColumn1Text}}</th>
         							<th style="width:18%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">{{overviewLarge_contactsTableColumn2Text}}</th>
@@ -589,7 +594,7 @@
         <div ng-controller="overviewSmall_Ctrl" id="screenOverviewSmallPanel" style="position:absolute;width: 98%;margin-left:20px;margin-right:20px;" ng-show="visible" ng-cloak="">
             <!-- ######################## Beginning: HTML code of Screen 'overviewSmall' ################################# -->
             <script src="overviewSmall_part1.js"></script>
-            <div layout="row" layout-wrap="" layout-align="space-between center">
+            <div layout-wrap="" layout-align="space-between center" layout="row">
         			<div flex="80">
         				<span>
         					<h1 ng-show="overviewSmall_info_propertyVisible" style="white-space: pre-wrap;">{{overviewSmall_info_propertyText}}</h1>
@@ -627,7 +632,7 @@
         			<div flex="100" ng-show="overviewSmall_tableBar_propertyVisible">
         				<span>
         					<table style="width:100%">
-        						<tr layout="row" layout-wrap="" style="background-color:#3f51b5; color:white">
+        						<tr layout="row" layout-wrap="" style="background-color:#03a9f4; color:white">
         							<th style="width:90%;word-wrap: break-word;min-height:40px; padding-left:15px; padding-top:15px; font-weight:bold; font-size:1.2em;">{{overviewSmall_contactsTableColumn0Text}}</th>
         						</tr>
         					</table>

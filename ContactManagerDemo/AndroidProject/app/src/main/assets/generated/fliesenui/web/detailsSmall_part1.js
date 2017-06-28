@@ -696,6 +696,21 @@ detailsSmall$initDTOTypeContactListForPreview = function(index){
     result.items[9] = detailsSmall$initDTOTypeContactForPreview(9);
     return result;
 };
+detailsSmall$initDTOTypeContactListListForPreview = function(index){
+    var result = new Object();
+    result.items = [];
+    result.items[0] = detailsSmall$initDTOTypeContactListForPreview(0);
+    result.items[1] = detailsSmall$initDTOTypeContactListForPreview(1);
+    result.items[2] = detailsSmall$initDTOTypeContactListForPreview(2);
+    result.items[3] = detailsSmall$initDTOTypeContactListForPreview(3);
+    result.items[4] = detailsSmall$initDTOTypeContactListForPreview(4);
+    result.items[5] = detailsSmall$initDTOTypeContactListForPreview(5);
+    result.items[6] = detailsSmall$initDTOTypeContactListForPreview(6);
+    result.items[7] = detailsSmall$initDTOTypeContactListForPreview(7);
+    result.items[8] = detailsSmall$initDTOTypeContactListForPreview(8);
+    result.items[9] = detailsSmall$initDTOTypeContactListForPreview(9);
+    return result;
+};
 detailsSmall$initDTOTypeContactTypeForPreview = function(index){
     var result = new Object();
     result.id = "1" + "(" + index + ")";
@@ -716,6 +731,21 @@ detailsSmall$initDTOTypeContactTypeListForPreview = function(index){
     result.items[7] = detailsSmall$initDTOTypeContactTypeForPreview(7);
     result.items[8] = detailsSmall$initDTOTypeContactTypeForPreview(8);
     result.items[9] = detailsSmall$initDTOTypeContactTypeForPreview(9);
+    return result;
+};
+detailsSmall$initDTOTypeContactTypeListListForPreview = function(index){
+    var result = new Object();
+    result.items = [];
+    result.items[0] = detailsSmall$initDTOTypeContactTypeListForPreview(0);
+    result.items[1] = detailsSmall$initDTOTypeContactTypeListForPreview(1);
+    result.items[2] = detailsSmall$initDTOTypeContactTypeListForPreview(2);
+    result.items[3] = detailsSmall$initDTOTypeContactTypeListForPreview(3);
+    result.items[4] = detailsSmall$initDTOTypeContactTypeListForPreview(4);
+    result.items[5] = detailsSmall$initDTOTypeContactTypeListForPreview(5);
+    result.items[6] = detailsSmall$initDTOTypeContactTypeListForPreview(6);
+    result.items[7] = detailsSmall$initDTOTypeContactTypeListForPreview(7);
+    result.items[8] = detailsSmall$initDTOTypeContactTypeListForPreview(8);
+    result.items[9] = detailsSmall$initDTOTypeContactTypeListForPreview(9);
     return result;
 };
 
