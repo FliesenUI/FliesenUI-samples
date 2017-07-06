@@ -9,9 +9,15 @@
 /*Generated! Do not modify!*/ import generated.fliesenui.core.FLUIAbstractReply;
 /*Generated! Do not modify!*/ import generated.fliesenui.core.FLUIString.StringLanguage;
 /*Generated! Do not modify!*/ import generated.fliesenui.core.FLUIUtil;
+/*Generated! Do not modify!*/ import generated.fliesenui.core.CallbackMethodCall;
 /*Generated! Do not modify!*/ import generated.fliesenui.core.FLUIClientPropertiesDTO;
 /*Generated! Do not modify!*/ 
+/*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactDTO;
 /*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactListDTO;
+/*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactListListDTO;
+/*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactTypeDTO;
+/*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactTypeListDTO;
+/*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactTypeListListDTO;
 /*Generated! Do not modify!*/ 
 /*Generated! Do not modify!*/ public class OverviewLargeView implements FLUIScreen {
 /*Generated! Do not modify!*/     private OverviewLargeListener listener;
@@ -49,14 +55,60 @@
 /*Generated! Do not modify!*/         } else if ("onLoaded".equals(action)) {
 /*Generated! Do not modify!*/             listener.onLoaded(reply, gson.fromJson((String)parameters.get("_ClientProperties"), FLUIClientPropertiesDTO.class));
 /*Generated! Do not modify!*/         } else if ("onInputDialogResult".equals(action)) {
-/*Generated! Do not modify!*/             listener.onInputDialogResult(reply, (String)parameters.get("referenceID"), (String)parameters.get("result"));
+/*Generated! Do not modify!*/             onStringInputDialogResult(reply, action, parameters);
 /*Generated! Do not modify!*/         } else if ("onConfirmDialogResult".equals(action)) {
-/*Generated! Do not modify!*/             listener.onConfirmDialogResult(reply, (String)parameters.get("referenceID"), (boolean)parameters.get("result"));
+/*Generated! Do not modify!*/             onConfirmDialogResult(reply, action, parameters);
 /*Generated! Do not modify!*/         } else if ("onListChooserResult".equals(action)) {
-/*Generated! Do not modify!*/             listener.onListChooserResult(reply, (String)parameters.get("referenceID"), (java.util.List<String>)parameters.get("selectedIDs"));
+/*Generated! Do not modify!*/             onListChooserDialogResult(reply, action, parameters);
 /*Generated! Do not modify!*/         }
 /*Generated! Do not modify!*/         return reply;
 /*Generated! Do not modify!*/     }
+/*Generated! Do not modify!*/ 
+/*Generated! Do not modify!*/     private void onConfirmDialogResult(OverviewLargeReply reply, String action, Map<String, Object> parameters) {
+/*Generated! Do not modify!*/         String callbackDataString = (String)parameters.get("callbackData");
+/*Generated! Do not modify!*/         String referenceID = (String)parameters.get("referenceID");
+/*Generated! Do not modify!*/         boolean result = (boolean)parameters.get("result");
+/*Generated! Do not modify!*/         if (callbackDataString == null){
+/*Generated! Do not modify!*/             listener.onConfirmDialogResult(reply, referenceID, result);
+/*Generated! Do not modify!*/             return;
+/*Generated! Do not modify!*/         }
+/*Generated! Do not modify!*/         Gson gson = new Gson();
+/*Generated! Do not modify!*/         CallbackMethodCall callback = gson.fromJson(callbackDataString, CallbackMethodCall.class);
+/*Generated! Do not modify!*/         Map<String, Object> callbackMethodParameters = callback.getParameterValues();
+/*Generated! Do not modify!*/         switch (callback.getCallbackMethodIndex()) {
+/*Generated! Do not modify!*/         }
+/*Generated! Do not modify!*/     }
+/*Generated! Do not modify!*/     
+/*Generated! Do not modify!*/     private void onStringInputDialogResult(OverviewLargeReply reply, String action, Map<String, Object> parameters) {
+/*Generated! Do not modify!*/         String callbackDataString = (String)parameters.get("callbackData");
+/*Generated! Do not modify!*/         String referenceID = (String)parameters.get("referenceID");
+/*Generated! Do not modify!*/         String result = (String)parameters.get("result");
+/*Generated! Do not modify!*/         if (callbackDataString == null){
+/*Generated! Do not modify!*/             listener.onInputDialogResult(reply, referenceID, result);
+/*Generated! Do not modify!*/             return;
+/*Generated! Do not modify!*/         }
+/*Generated! Do not modify!*/         Gson gson = new Gson();
+/*Generated! Do not modify!*/         CallbackMethodCall callback = gson.fromJson(callbackDataString, CallbackMethodCall.class);
+/*Generated! Do not modify!*/         Map<String, Object> callbackMethodParameters = callback.getParameterValues();
+/*Generated! Do not modify!*/         switch (callback.getCallbackMethodIndex()) {
+/*Generated! Do not modify!*/         }
+/*Generated! Do not modify!*/     }
+/*Generated! Do not modify!*/     
+/*Generated! Do not modify!*/     private void onListChooserDialogResult(OverviewLargeReply reply, String action, Map<String, Object> parameters) {
+/*Generated! Do not modify!*/         String callbackDataString = (String)parameters.get("callbackData");
+/*Generated! Do not modify!*/         String referenceID = (String)parameters.get("referenceID");
+/*Generated! Do not modify!*/         java.util.List<String> result = (java.util.List<String>)parameters.get("selectedIDs");
+/*Generated! Do not modify!*/         if (callbackDataString == null){
+/*Generated! Do not modify!*/             listener.onListChooserResult(reply, referenceID, result);
+/*Generated! Do not modify!*/             return;
+/*Generated! Do not modify!*/         }
+/*Generated! Do not modify!*/         Gson gson = new Gson();
+/*Generated! Do not modify!*/         CallbackMethodCall callback = gson.fromJson(callbackDataString, CallbackMethodCall.class);
+/*Generated! Do not modify!*/         Map<String, Object> callbackMethodParameters = callback.getParameterValues();
+/*Generated! Do not modify!*/         switch (callback.getCallbackMethodIndex()) {
+/*Generated! Do not modify!*/         }
+/*Generated! Do not modify!*/     }
+/*Generated! Do not modify!*/     
 /*Generated! Do not modify!*/ 
 /*Generated! Do not modify!*/     @Override
 /*Generated! Do not modify!*/     public String getID() {

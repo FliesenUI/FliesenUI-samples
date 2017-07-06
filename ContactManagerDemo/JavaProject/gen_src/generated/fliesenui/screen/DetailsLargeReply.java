@@ -3,6 +3,9 @@
 /*Generated! Do not modify!*/ import java.util.List;
 /*Generated! Do not modify!*/ import java.util.Collection;
 /*Generated! Do not modify!*/ import java.util.TreeSet;
+/*Generated! Do not modify!*/ import java.util.Set;
+/*Generated! Do not modify!*/ import java.util.ArrayList;
+/*Generated! Do not modify!*/ import java.util.HashSet;
 /*Generated! Do not modify!*/ 
 /*Generated! Do not modify!*/ import generated.fliesenui.core.FLUIAbstractReply;
 /*Generated! Do not modify!*/ import generated.fliesenui.core.FLUIUtil;
@@ -13,6 +16,12 @@
 /*Generated! Do not modify!*/ import generated.fliesenui.core.IDLabelImageAssetList;
 /*Generated! Do not modify!*/ import generated.fliesenui.core.IDLabelList;
 /*Generated! Do not modify!*/ import generated.fliesenui.core.FLUIReplyAction.ReplyActionType;
+/*Generated! Do not modify!*/ import generated.fliesenui.core.InputDialogParameters;
+/*Generated! Do not modify!*/ import generated.fliesenui.core.ConfirmDialogParameters;
+/*Generated! Do not modify!*/ import generated.fliesenui.core.ListChooserParameters;
+/*Generated! Do not modify!*/ import generated.fliesenui.core.IDLabel;
+/*Generated! Do not modify!*/ import generated.fliesenui.core.IDLabelImageAsset;
+/*Generated! Do not modify!*/ import generated.fliesenui.core.ListChooserItem;
 /*Generated! Do not modify!*/ import generated.fliesenui.core.FLUIImageAssets.ImageAsset;
 /*Generated! Do not modify!*/ 
 /*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactDTO;
@@ -556,5 +565,108 @@
 /*Generated! Do not modify!*/         }
 /*Generated! Do not modify!*/     }
 /*Generated! Do not modify!*/ 
+/*Generated! Do not modify!*/ 
+/*Generated! Do not modify!*/     public DetailsLargeStringInputDialogOptions showInputDialog(String referenceID, String title, String textContent, String label, String initialValueText, String okText, String cancelText) {
+/*Generated! Do not modify!*/         InputDialogParameters inputDialogParameters = new InputDialogParameters();
+/*Generated! Do not modify!*/         inputDialogParameters.setReferenceID(referenceID);
+/*Generated! Do not modify!*/         inputDialogParameters.setTitle(title);
+/*Generated! Do not modify!*/         inputDialogParameters.setTextContent(textContent);
+/*Generated! Do not modify!*/         inputDialogParameters.setLabel(label);
+/*Generated! Do not modify!*/         inputDialogParameters.setInitialValueText(initialValueText);
+/*Generated! Do not modify!*/         inputDialogParameters.setOkText(okText);
+/*Generated! Do not modify!*/         inputDialogParameters.setCancelText(cancelText);
+/*Generated! Do not modify!*/         replyDTO.setInputDialogParameters(inputDialogParameters);
+/*Generated! Do not modify!*/         if (recordMode){
+/*Generated! Do not modify!*/         	addRecordedAction("showInputDialog(" + escapeString(referenceID) + ", " + escapeString(title) + ", " + escapeString(textContent) 
+/*Generated! Do not modify!*/         			+ ", " + escapeString(label) + ", " + escapeString(initialValueText) + ", " + escapeString(okText) 
+/*Generated! Do not modify!*/         			+ ", " + escapeString(cancelText)+ ");");
+/*Generated! Do not modify!*/         }
+/*Generated! Do not modify!*/         return new DetailsLargeStringInputDialogOptions(this, inputDialogParameters);
+/*Generated! Do not modify!*/     }
+/*Generated! Do not modify!*/ 
+/*Generated! Do not modify!*/     public DetailsLargeConfirmDialogOptions showConfirmDialog(String referenceID, String title, String textContent, String okText, String cancelText) {
+/*Generated! Do not modify!*/         ConfirmDialogParameters confirmDialogParameters = new ConfirmDialogParameters();
+/*Generated! Do not modify!*/         confirmDialogParameters.setReferenceID(referenceID);
+/*Generated! Do not modify!*/         confirmDialogParameters.setTitle(title);
+/*Generated! Do not modify!*/         confirmDialogParameters.setTextContent(textContent);
+/*Generated! Do not modify!*/         confirmDialogParameters.setOkText(okText);
+/*Generated! Do not modify!*/         confirmDialogParameters.setCancelText(cancelText);
+/*Generated! Do not modify!*/         replyDTO.setConfirmDialogParameters(confirmDialogParameters);
+/*Generated! Do not modify!*/         if (recordMode){
+/*Generated! Do not modify!*/             addRecordedAction("showConfirmDialog(" + escapeString(referenceID) + ", " + escapeString(title) + ", " + escapeString(textContent) 
+/*Generated! Do not modify!*/         			+ ", " + escapeString(okText) + ", " + escapeString(cancelText)+ ");");
+/*Generated! Do not modify!*/         }
+/*Generated! Do not modify!*/         return new DetailsLargeConfirmDialogOptions(this, confirmDialogParameters);
+/*Generated! Do not modify!*/     }
+/*Generated! Do not modify!*/ 
+/*Generated! Do not modify!*/     public DetailsLargeListChoosrDialogOptions showListChooser(String referenceID, boolean multiSelect, boolean showFilter, String title, IDLabelImageAssetList items, Collection<String> selectedIDs){
+/*Generated! Do not modify!*/         return showListChooser(referenceID, multiSelect, showFilter, title, DEFAULT_OK_TEXT, DEFAULT_CANCEL_TEXT, items, selectedIDs);
+/*Generated! Do not modify!*/     }
+/*Generated! Do not modify!*/     
+/*Generated! Do not modify!*/     public DetailsLargeListChoosrDialogOptions showListChooser(String referenceID, boolean multiSelect, boolean showFilter, String title, IDLabelList items, Collection<String> selectedIDs){
+/*Generated! Do not modify!*/         return showListChooser(referenceID, multiSelect, showFilter, title, DEFAULT_OK_TEXT, DEFAULT_CANCEL_TEXT, items, selectedIDs);
+/*Generated! Do not modify!*/     }
+/*Generated! Do not modify!*/     
+/*Generated! Do not modify!*/     public DetailsLargeListChoosrDialogOptions showListChooser(String referenceID, boolean multiSelect, boolean showFilter, String title, String okText, String cancelText, IDLabelImageAssetList items, Collection<String> selectedIDs){
+/*Generated! Do not modify!*/     	ListChooserParameters parameters = createListChooserParameters(referenceID, multiSelect, showFilter, title, okText, cancelText);
+/*Generated! Do not modify!*/     	Set<String> selectedIDsSet = new HashSet<String>();
+/*Generated! Do not modify!*/     	if (selectedIDs != null){
+/*Generated! Do not modify!*/     		selectedIDsSet = new HashSet<String>(selectedIDs);
+/*Generated! Do not modify!*/     	}
+/*Generated! Do not modify!*/     	List<ListChooserItem> chooserItems = new ArrayList<ListChooserItem>();
+/*Generated! Do not modify!*/     	for (IDLabelImageAsset i: items.getItems()){
+/*Generated! Do not modify!*/     		chooserItems.add(createItem(i.getID(), i.getLabel(), i.getImageAssetID(), selectedIDsSet.contains(i.getID())));
+/*Generated! Do not modify!*/     	}
+/*Generated! Do not modify!*/     	parameters.setShowIcons(true);
+/*Generated! Do not modify!*/     	parameters.setItems(chooserItems);
+/*Generated! Do not modify!*/     	replyDTO.setListChooserParameters(parameters);
+/*Generated! Do not modify!*/     	
+/*Generated! Do not modify!*/         if (recordMode){
+/*Generated! Do not modify!*/             addRecordedAction(ReplyActionType.SHOW_LIST_CHOOSER_IMGS, "showListChooser(" + escapeString(referenceID) + ", " + multiSelect + ", " + showFilter + ", " + escapeString(title) 
+/*Generated! Do not modify!*/         			+ ", " + escapeString(okText) + ", " + escapeString(cancelText) + ", ", gson.toJson(items), selectedIDs);
+/*Generated! Do not modify!*/         }
+/*Generated! Do not modify!*/ 
+/*Generated! Do not modify!*/         return new DetailsLargeListChoosrDialogOptions(this, parameters);
+/*Generated! Do not modify!*/     }
+/*Generated! Do not modify!*/ 
+/*Generated! Do not modify!*/     public DetailsLargeListChoosrDialogOptions showListChooser(String referenceID, boolean multiSelect, boolean showFilter, String title, String okText, String cancelText, IDLabelList items, Collection<String> selectedIDs){
+/*Generated! Do not modify!*/     	ListChooserParameters parameters = createListChooserParameters(referenceID, multiSelect, showFilter, title, okText, cancelText);
+/*Generated! Do not modify!*/     	Set<String> selectedIDsSet = new HashSet<String>();
+/*Generated! Do not modify!*/     	if (selectedIDs != null){
+/*Generated! Do not modify!*/     		selectedIDsSet = new HashSet<String>(selectedIDs);
+/*Generated! Do not modify!*/     	}
+/*Generated! Do not modify!*/     	List<ListChooserItem> chooserItems = new ArrayList<ListChooserItem>();
+/*Generated! Do not modify!*/     	for (IDLabel i: items.getItems()){
+/*Generated! Do not modify!*/     		chooserItems.add(createItem(i.getID(), i.getLabel(), null, selectedIDsSet.contains(i.getID())));
+/*Generated! Do not modify!*/     	}
+/*Generated! Do not modify!*/     	parameters.setShowIcons(false);
+/*Generated! Do not modify!*/     	parameters.setItems(chooserItems);
+/*Generated! Do not modify!*/     	replyDTO.setListChooserParameters(parameters);
+/*Generated! Do not modify!*/         if (recordMode){
+/*Generated! Do not modify!*/         	addRecordedAction(ReplyActionType.SHOW_LIST_CHOOSER_TEXTS, "showListChooser(" + escapeString(referenceID) + ", " + multiSelect + ", " + showFilter + ", " + escapeString(title) 
+/*Generated! Do not modify!*/         			+ ", " + escapeString(okText) + ", " + escapeString(cancelText) + ", ", gson.toJson(items), selectedIDs);
+/*Generated! Do not modify!*/         }
+/*Generated! Do not modify!*/         return new DetailsLargeListChoosrDialogOptions(this, parameters);
+/*Generated! Do not modify!*/ }
+/*Generated! Do not modify!*/ 
+/*Generated! Do not modify!*/     private ListChooserParameters createListChooserParameters(String referenceID, boolean multiSelect, boolean showFilter, String title, String okText, String cancelText) {
+/*Generated! Do not modify!*/         ListChooserParameters parameters = new ListChooserParameters();
+/*Generated! Do not modify!*/         parameters.setReferenceID(referenceID);
+/*Generated! Do not modify!*/         parameters.setMultiSelect(multiSelect);
+/*Generated! Do not modify!*/         parameters.setShowFilter(showFilter);
+/*Generated! Do not modify!*/         parameters.setTitle(title);
+/*Generated! Do not modify!*/         parameters.setOkText(okText);
+/*Generated! Do not modify!*/         parameters.setCancelText(cancelText);
+/*Generated! Do not modify!*/         return parameters;
+/*Generated! Do not modify!*/     }
+/*Generated! Do not modify!*/ 
+/*Generated! Do not modify!*/     private ListChooserItem createItem(String id, String label, String imageAssetID, boolean selected) {
+/*Generated! Do not modify!*/         ListChooserItem result = new ListChooserItem();
+/*Generated! Do not modify!*/         result.setID(id);
+/*Generated! Do not modify!*/         result.setLabel(label);
+/*Generated! Do not modify!*/         result.setImageAssetID(imageAssetID);
+/*Generated! Do not modify!*/         result.setSelected(selected);
+/*Generated! Do not modify!*/         return result;
+/*Generated! Do not modify!*/     }
 /*Generated! Do not modify!*/ 
 /*Generated! Do not modify!*/ }

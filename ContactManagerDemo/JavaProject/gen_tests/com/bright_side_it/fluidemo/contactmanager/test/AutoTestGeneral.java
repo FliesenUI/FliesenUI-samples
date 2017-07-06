@@ -261,7 +261,7 @@ public class AutoTestGeneral{
     }
 
     private void testStep014(){
-        DetailsSmallRequest request = DetailsSmallRequest.createOnListChooserResultRequest("DEFAULT", "2", Arrays.asList("Rock", "Electro"));
+        DetailsSmallRequest request = DetailsSmallRequest.createOnListChooserResultRequest("DEFAULT");
         FLUIReplyDTO realResult = screenManager.onScreenRequest(request, null, null, true);
         String realResultJSON = gson.toJson(realResult);
 

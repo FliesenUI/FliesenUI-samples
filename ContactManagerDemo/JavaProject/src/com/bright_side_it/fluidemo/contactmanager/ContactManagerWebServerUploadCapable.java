@@ -70,6 +70,7 @@ public class ContactManagerWebServerUploadCapable implements UploadCapableHandle
 		Server server = new Server(8080);
 		server.setHandler(new UploadCapableHandler(new ContactManagerWebServerUploadCapable()));
 		server.start();
+		System.out.println("Running. Go to http://localhost:8080/ in your browser.");
 		server.join();
 	}
 

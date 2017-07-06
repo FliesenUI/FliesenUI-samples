@@ -4,6 +4,11 @@
 /*Generated! Do not modify!*/ import java.util.List;
 /*Generated! Do not modify!*/ import java.io.InputStream;
 /*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactDTO;
+/*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactListDTO;
+/*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactListListDTO;
+/*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactTypeDTO;
+/*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactTypeListDTO;
+/*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactTypeListListDTO;
 /*Generated! Do not modify!*/ 
 /*Generated! Do not modify!*/ public interface DetailsSmallListener{
 /*Generated! Do not modify!*/     void onLoaded(DetailsSmallReply reply, FLUIClientPropertiesDTO clientProperties, ContactDTO contact);

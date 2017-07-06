@@ -10,6 +10,7 @@ import com.bright_side_it.fluidemo.contactmanager.dao.DummyDataDAO;
 
 import generated.fliesenui.core.FLUIClientPropertiesDTO;
 import generated.fliesenui.core.FLUIImageAssets.ImageAsset;
+import generated.fliesenui.core.FLUIReplyUtil;
 import generated.fliesenui.core.IDLabelImageAssetList;
 import generated.fliesenui.dto.ContactDTO;
 import generated.fliesenui.screen.DetailsSharedReply;
@@ -91,7 +92,7 @@ public class DetailsCommonPresenter {
 		for (String i: DummyDataDAO.PREFERRED_MUISC_TYPES){
 			items.addItem(i, i, ImageAsset.MUSIC);
 		}
-		reply.showListChooser(contact.getId(), true, false, "Preferred Music", items, contact.getPreferredMusic());
+		FLUIReplyUtil.showListChooser(reply , contact.getId(), true, false, "Preferred Music", items, contact.getPreferredMusic());
 	}
 
 	public void onListChooserResult(DetailsSharedReply reply, String referenceID, List<String> selectedIDs) {

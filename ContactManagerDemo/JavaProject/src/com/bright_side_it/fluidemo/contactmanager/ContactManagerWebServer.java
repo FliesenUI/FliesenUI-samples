@@ -62,6 +62,7 @@ public class ContactManagerWebServer extends AbstractHandler{
 		Server server = new Server(8080);
 		server.setHandler(new ContactManagerWebServer());
 		server.start();
+		System.out.println("Running. Go to http://localhost:8080/ in your browser.");
 		server.join();
 	}
 	

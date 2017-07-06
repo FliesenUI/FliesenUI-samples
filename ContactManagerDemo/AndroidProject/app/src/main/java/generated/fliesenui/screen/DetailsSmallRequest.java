@@ -85,24 +85,18 @@
 /*Generated! Do not modify!*/         return resultInstance;
 /*Generated! Do not modify!*/     }
 /*Generated! Do not modify!*/ 
-/*Generated! Do not modify!*/     public static DetailsSmallRequest createOnInputDialogResultRequest(String language, String referenceID, String result){
+/*Generated! Do not modify!*/     public static DetailsSmallRequest createOnInputDialogResultRequest(String language){
 /*Generated! Do not modify!*/         DetailsSmallRequest resultInstance = new DetailsSmallRequest("onInputDialogResult", language);
-/*Generated! Do not modify!*/         resultInstance.request.getParameters().put("referenceID", referenceID);
-/*Generated! Do not modify!*/         resultInstance.request.getParameters().put("result", result);
 /*Generated! Do not modify!*/         return resultInstance;
 /*Generated! Do not modify!*/     }
 /*Generated! Do not modify!*/ 
-/*Generated! Do not modify!*/     public static DetailsSmallRequest createOnConfirmDialogResultRequest(String language, String referenceID, boolean result){
+/*Generated! Do not modify!*/     public static DetailsSmallRequest createOnConfirmDialogResultRequest(String language){
 /*Generated! Do not modify!*/         DetailsSmallRequest resultInstance = new DetailsSmallRequest("onConfirmDialogResult", language);
-/*Generated! Do not modify!*/         resultInstance.request.getParameters().put("referenceID", referenceID);
-/*Generated! Do not modify!*/         resultInstance.request.getParameters().put("result", result);
 /*Generated! Do not modify!*/         return resultInstance;
 /*Generated! Do not modify!*/     }
 /*Generated! Do not modify!*/ 
-/*Generated! Do not modify!*/     public static DetailsSmallRequest createOnListChooserResultRequest(String language, String referenceID, java.util.List<String> selectedIDs){
+/*Generated! Do not modify!*/     public static DetailsSmallRequest createOnListChooserResultRequest(String language){
 /*Generated! Do not modify!*/         DetailsSmallRequest resultInstance = new DetailsSmallRequest("onListChooserResult", language);
-/*Generated! Do not modify!*/         resultInstance.request.getParameters().put("referenceID", referenceID);
-/*Generated! Do not modify!*/         resultInstance.request.getParameters().put("selectedIDs", selectedIDs);
 /*Generated! Do not modify!*/         return resultInstance;
 /*Generated! Do not modify!*/     }
 /*Generated! Do not modify!*/ 

@@ -237,11 +237,11 @@ public class FLUITestWriter{
         } else if (requestData.getAction().equals("onBackPressed")){
             return "createOnBackPressedRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else if (requestData.getAction().equals("onInputDialogResult")){
-            return "createOnInputDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", " + quoteIfNotNull((String)p.get("referenceID")) + ", " + quoteIfNotNull((String)p.get("result")) + ")";
+            return "createOnInputDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else if (requestData.getAction().equals("onConfirmDialogResult")){
-            return "createOnConfirmDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", " + quoteIfNotNull((String)p.get("referenceID")) + ", " + p.get("result") + ")";
+            return "createOnConfirmDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else if (requestData.getAction().equals("onListChooserResult")){
-            return "createOnListChooserResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", " + quoteIfNotNull((String)p.get("referenceID")) + ", " + toStringList((List<String>)p.get("selectedIDs")) + ")";
+            return "createOnListChooserResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else {
             throw new Exception("Unexpected action: '" + requestData.getAction() + "'");
         }
@@ -268,11 +268,11 @@ public class FLUITestWriter{
         } else if (requestData.getAction().equals("onBackPressed")){
             return "createOnBackPressedRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else if (requestData.getAction().equals("onInputDialogResult")){
-            return "createOnInputDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", " + quoteIfNotNull((String)p.get("referenceID")) + ", " + quoteIfNotNull((String)p.get("result")) + ")";
+            return "createOnInputDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else if (requestData.getAction().equals("onConfirmDialogResult")){
-            return "createOnConfirmDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", " + quoteIfNotNull((String)p.get("referenceID")) + ", " + p.get("result") + ")";
+            return "createOnConfirmDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else if (requestData.getAction().equals("onListChooserResult")){
-            return "createOnListChooserResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", " + quoteIfNotNull((String)p.get("referenceID")) + ", " + toStringList((List<String>)p.get("selectedIDs")) + ")";
+            return "createOnListChooserResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else {
             throw new Exception("Unexpected action: '" + requestData.getAction() + "'");
         }
@@ -299,11 +299,11 @@ public class FLUITestWriter{
         } else if (requestData.getAction().equals("onLoaded")){
             return "createOnLoadedRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", createStep" + step + "DTO1_ClientProperties())";
         } else if (requestData.getAction().equals("onInputDialogResult")){
-            return "createOnInputDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", " + quoteIfNotNull((String)p.get("referenceID")) + ", " + quoteIfNotNull((String)p.get("result")) + ")";
+            return "createOnInputDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else if (requestData.getAction().equals("onConfirmDialogResult")){
-            return "createOnConfirmDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", " + quoteIfNotNull((String)p.get("referenceID")) + ", " + p.get("result") + ")";
+            return "createOnConfirmDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else if (requestData.getAction().equals("onListChooserResult")){
-            return "createOnListChooserResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", " + quoteIfNotNull((String)p.get("referenceID")) + ", " + toStringList((List<String>)p.get("selectedIDs")) + ")";
+            return "createOnListChooserResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else {
             throw new Exception("Unexpected action: '" + requestData.getAction() + "'");
         }
@@ -332,11 +332,11 @@ public class FLUITestWriter{
         } else if (requestData.getAction().equals("onLoaded")){
             return "createOnLoadedRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", createStep" + step + "DTO1_ClientProperties())";
         } else if (requestData.getAction().equals("onInputDialogResult")){
-            return "createOnInputDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", " + quoteIfNotNull((String)p.get("referenceID")) + ", " + quoteIfNotNull((String)p.get("result")) + ")";
+            return "createOnInputDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else if (requestData.getAction().equals("onConfirmDialogResult")){
-            return "createOnConfirmDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", " + quoteIfNotNull((String)p.get("referenceID")) + ", " + p.get("result") + ")";
+            return "createOnConfirmDialogResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else if (requestData.getAction().equals("onListChooserResult")){
-            return "createOnListChooserResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ", " + quoteIfNotNull((String)p.get("referenceID")) + ", " + toStringList((List<String>)p.get("selectedIDs")) + ")";
+            return "createOnListChooserResultRequest(" + quoteIfNotNull(requestData.getCurrentLanguage()) + ")";
         } else {
             throw new Exception("Unexpected action: '" + requestData.getAction() + "'");
         }

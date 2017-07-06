@@ -114,7 +114,7 @@ app.controller("overviewSmall_Ctrl", function($scope, $mdToast, $mdDialog, $http
          );
      }
     }
-    $scope.showInputDialog = function(referenceID, title, textContent, label, initialValueText, okText, cancelText) {
+    $scope.showInputDialog = function(referenceID, callbackData, title, textContent, label, initialValueText, okText, cancelText) {
         var confirm = $mdDialog.prompt()
           .title(title)
           .textContent(textContent)
@@ -127,6 +127,7 @@ app.controller("overviewSmall_Ctrl", function($scope, $mdToast, $mdDialog, $http
         $mdDialog.show(confirm).then(function(result) {
             var request = overviewSmall$createRequest("onInputDialogResult");
             request.parameters["referenceID"] = referenceID;
+            request.parameters["callbackData"] = callbackData;
             if (typeof result != "undefined"){
                 request.parameters["result"] = result;
                 overviewSmall$executeRequest(request);
@@ -137,11 +138,12 @@ app.controller("overviewSmall_Ctrl", function($scope, $mdToast, $mdDialog, $http
         }, function() {
             var request = overviewSmall$createRequest("onInputDialogResult");
             request.parameters["referenceID"] = referenceID;
+            request.parameters["callbackData"] = callbackData;
             overviewSmall$executeRequest(request);
         });
     };
 
-    $scope.showConfirm = function(referenceID, title, textContent, okText, cancelText) {
+    $scope.showConfirm = function(referenceID, callbackData, title, textContent, okText, cancelText) {
         var confirm = $mdDialog.confirm()
               .title(title)
               .textContent(textContent)
@@ -153,17 +155,20 @@ app.controller("overviewSmall_Ctrl", function($scope, $mdToast, $mdDialog, $http
             var request = overviewSmall$createRequest("onConfirmDialogResult");
             request.parameters["referenceID"] = referenceID;
             request.parameters["result"] = true;
+            request.parameters["callbackData"] = callbackData;
             overviewSmall$executeRequest(request);
         }, function() {
             var request = overviewSmall$createRequest("onConfirmDialogResult");
             request.parameters["referenceID"] = referenceID;
             request.parameters["result"] = false;
+            request.parameters["callbackData"] = callbackData;
             overviewSmall$executeRequest(request);
         });
     };
 
     $scope.showListChooser = function(parameter){
     	$scope.listChooserReferenceID = parameter.referenceID;
+    	$scope.listChooserCallbackData = parameter.callbackData;
     	$scope.listChooserTitle = parameter.title;
     	$scope.listChooserMultiselect = parameter.multiSelect;
     	$scope.listChooserShowIcons = parameter.showIcons;
@@ -218,7 +223,7 @@ app.controller("overviewSmall_Ctrl", function($scope, $mdToast, $mdDialog, $http
                + '      <md-button ng-click="cancel();">'
                + '       {{listChooserCancelText}}'
                + '      </md-button>'
-               + '      <md-button ng-click="listChooser_okClicked();hide();" ng-visible="listChooserMultiselect">'
+               + '      <md-button ng-click="hide();listChooser_okClicked();" ng-visible="listChooserMultiselect">'
                + '        {{listChooserOKText}}'
                + '      </md-button>'
                + '    </md-dialog-actions>'
@@ -256,8 +261,8 @@ app.controller("overviewSmall_Ctrl", function($scope, $mdToast, $mdDialog, $http
     	            //: select item
         	        item.selected = !item.selected;
         	        	  
-        	        $scope.listChooser_okClicked();        		  
     	        	$mdDialog.hide("");
+        	        $scope.listChooser_okClicked();        		  
     	        }
     	    }
         };
@@ -276,6 +281,7 @@ app.controller("overviewSmall_Ctrl", function($scope, $mdToast, $mdDialog, $http
         console.log("selected ids: " + selectedIDs);
         var request = overviewSmall$createRequest("onListChooserResult");
         request.parameters["referenceID"] = $scope.listChooserReferenceID;
+        request.parameters["callbackData"] = $scope.listChooserCallbackData;
         request.parameters["selectedIDs"] = selectedIDs;
         overviewSmall$executeRequest(request);
     }
@@ -284,6 +290,7 @@ app.controller("overviewSmall_Ctrl", function($scope, $mdToast, $mdDialog, $http
 	    console.log("list chooser: cancelled");
         var request = overviewSmall$createRequest("onListChooserResult");
         request.parameters["referenceID"] = $scope.listChooserReferenceID;
+        request.parameters["callbackData"] = $scope.listChooserCallbackData;
         request.parameters["selectedIDs"] = null;
         overviewSmall$executeRequest(request);
     }
@@ -794,12 +801,12 @@ overviewSmall$processReply = function(jsonString){
 
     var inputDialogParameters = reply.inputDialogParameters;
     if (typeof inputDialogParameters != "undefined") {
-        scope.showInputDialog(inputDialogParameters.referenceID, inputDialogParameters.title, inputDialogParameters.textContent, inputDialogParameters.label, inputDialogParameters.initialValueText, inputDialogParameters.okText, inputDialogParameters.cancelText);
+        scope.showInputDialog(inputDialogParameters.referenceID, inputDialogParameters.callbackData, inputDialogParameters.title, inputDialogParameters.textContent, inputDialogParameters.label, inputDialogParameters.initialValueText, inputDialogParameters.okText, inputDialogParameters.cancelText);
     }
 
     var confirmDialogParameters = reply.confirmDialogParameters;
     if (typeof confirmDialogParameters != "undefined") {
-        scope.showConfirm(confirmDialogParameters.referenceID, confirmDialogParameters.title, confirmDialogParameters.textContent, confirmDialogParameters.okText, confirmDialogParameters.cancelText);
+        scope.showConfirm(confirmDialogParameters.referenceID, confirmDialogParameters.callbackData, confirmDialogParameters.title, confirmDialogParameters.textContent, confirmDialogParameters.okText, confirmDialogParameters.cancelText);
     }
     if (typeof reply.listChooserParameters != "undefined") {
         scope.showListChooser(reply.listChooserParameters);

@@ -91,8 +91,6 @@ public class OverviewLargePresenter implements OverviewLargeListener {
 
 	@Override
 	public void onListChooserResult(OverviewLargeReply reply, String referenceID, List<String> selectedIDs) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

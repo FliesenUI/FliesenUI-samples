@@ -8,11 +8,14 @@
 /*Generated! Do not modify!*/ import generated.fliesenui.core.IDLabelImageAssetList;
 /*Generated! Do not modify!*/ import generated.fliesenui.core.IDLabelList;
 /*Generated! Do not modify!*/ import generated.fliesenui.core.FLUIImageAssets.ImageAsset;
+/*Generated! Do not modify!*/ import generated.fliesenui.core.FLUIAbstractReply;
+/*Generated! Do not modify!*/ import generated.fliesenui.core.FLUIAbstractReplyContainer;
 /*Generated! Do not modify!*/ 
 /*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactDTO;
 /*Generated! Do not modify!*/ import generated.fliesenui.dto.ContactListDTO;
 /*Generated! Do not modify!*/ 
-/*Generated! Do not modify!*/ public interface OverviewSharedReply{
+/*Generated! Do not modify!*/ public interface OverviewSharedReply extends FLUIAbstractReplyContainer{
+/*Generated! Do not modify!*/     FLUIAbstractReply getAbstractReply();
 /*Generated! Do not modify!*/     StringLanguage getCurrentLanguage();
 /*Generated! Do not modify!*/     void downloadFile(String fileStreamID);
 /*Generated! Do not modify!*/     void openScreenDetailsLarge(ContactDTO contact);
@@ -42,10 +45,4 @@
 /*Generated! Do not modify!*/     void setSearchNameTextFieldBackgroundColor(String color);
 /*Generated! Do not modify!*/     void setSearchNameTextFieldText(String text);
 /*Generated! Do not modify!*/     void setSearchNameTextFieldVisible(boolean visible);
-/*Generated! Do not modify!*/     void showConfirmDialog(String referenceID, String title, String textContent, String okText, String cancelText);
-/*Generated! Do not modify!*/     void showInputDialog(String referenceID, String title, String textContent, String label, String initialValueText, String okText, String cancelText);
-/*Generated! Do not modify!*/     void showListChooser(String referenceID, boolean multiSelect, boolean showFilter, String title, IDLabelImageAssetList items, Collection<String> selectedIDs);
-/*Generated! Do not modify!*/     void showListChooser(String referenceID, boolean multiSelect, boolean showFilter, String title, IDLabelList items, Collection<String> selectedIDs);
-/*Generated! Do not modify!*/     void showListChooser(String referenceID, boolean multiSelect, boolean showFilter, String title, String okText, String cancelText, IDLabelImageAssetList items, Collection<String> selectedIDs);
-/*Generated! Do not modify!*/     void showListChooser(String referenceID, boolean multiSelect, boolean showFilter, String title, String okText, String cancelText, IDLabelList items, Collection<String> selectedIDs);
 /*Generated! Do not modify!*/ }
